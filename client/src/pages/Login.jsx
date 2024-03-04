@@ -62,7 +62,6 @@ const Login = () => {
 
   return (
     <>
-      <div className="bg-bc-1">
         <Navbar />
         <div className="mx-auto max-w-screen-lg px-3 py-8">
           <div className="mx-auto max-w-screen-sm">
@@ -103,7 +102,6 @@ const Login = () => {
             <ToastContainer />
           </div>
         </div>
-      </div>
     </>
   );
 };
