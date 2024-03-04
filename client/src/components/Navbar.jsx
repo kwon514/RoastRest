@@ -1,4 +1,3 @@
-import React from 'react';
 import roastrest_logo from "../assets/roastrest_icon.png";
 import github_logo from "../assets/github_logo.svg";
 
