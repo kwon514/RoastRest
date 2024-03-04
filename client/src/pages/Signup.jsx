@@ -101,6 +101,7 @@ const Signup = () => {
                     value={password}
                     placeholder="Enter your password"
                     onChange={handleOnChange}
+                    autocomplete="new-password"
                   />
                   <div className="p-3 cursor-pointer" onClick={() => setVisible(!visible)}>
                     {visible ? <Visibility /> : <VisibilityOff />}
