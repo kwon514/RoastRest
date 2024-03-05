@@ -49,3 +49,13 @@ module.exports.Login = async (req, res, next) => {
         console.error(error);
     }
 };
+
+module.exports.Logout = async (req, res, next) => {
+    try {
+        res.clearCookie("token");
+        res.status(200).json({ message: "Logged out successfully!" });
+        next();
+    } catch (error) {
+        console.error(error);
+    }
+};
