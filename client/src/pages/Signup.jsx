@@ -12,7 +12,7 @@ const Signup = () => {
     password: "",
     name: "",
   });
-  const { email, password, name: name } = inputValue;
+  const { email, password, name } = inputValue;
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setInputValue({
