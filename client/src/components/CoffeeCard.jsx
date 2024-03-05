@@ -4,7 +4,7 @@ const CoffeeCard = ({
     name,
     coffeeName,
     roastDate,
-    restTime
+    restDays
 }) => {
     return (
         <Card>
@@ -22,7 +22,7 @@ const CoffeeCard = ({
                     </CardActions>
                 </Grid>
                 <Grid item xs={6} className='inline-flex items-center justify-end px-5'>
-                    <span className='text-lg font-semibold'>{restTime} Days Rest</span>
+                    <span className='text-lg font-semibold'>{restDays} Days Rest</span>
                 </Grid>
             </Grid>
         </Card>
