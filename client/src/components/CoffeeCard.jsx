@@ -18,7 +18,6 @@ const CoffeeCard = ({
                     <CardActions>
                         <Button size="large" sx={{minWidth: 0}}>View</Button>
                         <Button size="large" sx={{minWidth: 0}}>Edit</Button>
-                        <Button size="large" sx={{minWidth: 0}}>Freeze</Button>
                     </CardActions>
                 </Grid>
                 <Grid item xs={6} className='inline-flex items-center justify-end px-5'>
