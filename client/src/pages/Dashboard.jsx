@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import {format} from "date-fns";
+import { format } from "date-fns";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar showLogoutButton={true} />
       <div className="mx-auto max-w-screen-lg px-3">
         <h2 className="text-4xl text-bc-2 font-bold text-center py-8">Coffee Dashboard</h2>
         <Grid container spacing={2}>
