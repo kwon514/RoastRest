@@ -20,7 +20,7 @@ const CoffeeCard = ({
                         <Button size="large" sx={{minWidth: 0}}>Edit</Button>
                     </CardActions>
                 </Grid>
-                <Grid item xs={6} className='inline-flex items-center justify-end px-5'>
+                <Grid item xs={6} className='inline-flex items-center justify-end pr-5'>
                     <span className='text-lg font-semibold'>{restDays} Days Rest</span>
                 </Grid>
             </Grid>
