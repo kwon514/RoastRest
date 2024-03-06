@@ -4,9 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 
-const Navbar = ({
-  showLogoutButton
-}) => {
+function Navbar({ showLogoutButton }) {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
 
