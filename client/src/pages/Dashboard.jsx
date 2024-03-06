@@ -31,7 +31,7 @@ const theme = createTheme({
   },
 });
 
-const Dashboard = () => {
+function Dashboard() {
   const navigate = useNavigate();
   const [cookies] = useCookies([]);
   const [coffeeData, setCoffeeData] = useState([]);

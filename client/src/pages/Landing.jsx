@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import Navbar from "../components/Navbar";
 
-const Landing = () => {
+function Landing() {
   const navigate = useNavigate();
   const [cookies] = useCookies([]);
   const ctaPressed = () => {

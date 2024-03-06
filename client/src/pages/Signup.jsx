@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Navbar from "../components/Navbar";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-const Signup = () => {
+function Signup() {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     email: "",
