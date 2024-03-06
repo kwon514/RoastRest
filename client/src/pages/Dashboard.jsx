@@ -1,12 +1,35 @@
 import Navbar from "../components/Navbar";
 import CoffeeCard from "../components/CoffeeCard";
-import Grid from "@mui/material/Grid";
+import { Grid, Fab, createTheme, ThemeProvider } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 import { useEffect } from "react";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { format } from "date-fns";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#896345",
+    },
+    secondary: {
+      main: "#f0eee7",
+    },
+  },
+  components: {
+    MuiFab: {
+      styleOverrides: {
+        root: {
+          position: "fixed",
+          bottom: "20px",
+          right: "20px",
+        },
+      },
+    },
+  },
+});
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -30,21 +53,26 @@ const Dashboard = () => {
   return (
     <>
       <Navbar showLogoutButton={true} />
-      <div className="mx-auto max-w-screen-lg px-3">
-        <h2 className="text-4xl text-bc-2 font-bold text-center py-8">Coffee Dashboard</h2>
-        <Grid container spacing={2}>
-          {coffeeData.map((coffee) => (
-            <Grid item xs={12} sm={6} key={coffee._id}>
-              <CoffeeCard
-                name={coffee.name}
-                coffeeName={coffee.coffeeName}
-                roastDate={format(new Date(coffee.roastDate), "dd MMM yyyy")}
-                restDays={coffee.restDays}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </div>
+      <ThemeProvider theme={theme}>
+        <div className="mx-auto max-w-screen-lg px-3">
+          <h2 className="text-4xl text-bc-2 font-bold text-center py-8">Coffee Dashboard</h2>
+          <Grid container spacing={2}>
+            {coffeeData.map((coffee) => (
+              <Grid item xs={12} sm={6} key={coffee._id}>
+                <CoffeeCard
+                  name={coffee.name}
+                  coffeeName={coffee.coffeeName}
+                  roastDate={format(new Date(coffee.roastDate), "dd MMM yyyy")}
+                  restDays={coffee.restDays}
+                />
+              </Grid>
+            ))}
+          </Grid>
+          <Fab color="primary" aria-label="add">
+            <AddIcon color="secondary" />
+          </Fab>
+        </div>
+      </ThemeProvider>
     </>
   );
 };
