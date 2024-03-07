@@ -49,7 +49,9 @@ function Dashboard() {
     }
   }, [cookies, navigate]);
 
-  const handleAddCoffee = () => {
+  const handleAddDialogClose = (event, reason) => {
+    if (reason && reason === "backdropClick")
+      return;
     setOpen(!open);
   };
 
@@ -71,10 +73,10 @@ function Dashboard() {
               </Grid>
             ))}
           </Grid>
-          <Fab color="primary" aria-label="add" onClick={handleAddCoffee}>
+          <Fab color="primary" aria-label="add" onClick={handleAddDialogClose}>
             <AddIcon color="secondary" />
           </Fab>
-          <CoffeeDialog open={open} handleClose={handleAddCoffee} />
+          <CoffeeDialog open={open} handleClose={handleAddDialogClose} />
         </div>
       </ThemeProvider>
     </>
