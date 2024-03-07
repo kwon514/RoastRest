@@ -11,12 +11,14 @@ const coffeeSchema = new mongoose.Schema({
     },
     coffeeName: {
         type: String,
+        required: [true, 'Coffee Name is required']
     },
     roastLevel: {
         type: String,
     },
     roastDate: {
         type: Date,
+        required: [true, 'Roast Date is required']
     },
     frozenStart: {
         type: Date
