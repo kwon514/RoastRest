@@ -2,17 +2,6 @@ const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken");
 const Coffee = require('../Models/CoffeeModel');
 
-
-module.exports.getAllCoffee = async (req, res) => {
-    try {
-        const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
-        const coffee = await Coffee.find({ userId });
-        res.status(200).json(coffee);
-    } catch (error) {
-        console.error(error);
-    }
-};
-
 module.exports.addCoffee = async (req, res) => {
     try {
         const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
@@ -29,6 +18,16 @@ module.exports.addCoffee = async (req, res) => {
         });
         const savedCoffee = await coffee.save();
         res.status(201).json(savedCoffee);
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+module.exports.getAllCoffee = async (req, res) => {
+    try {
+        const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
+        const coffee = await Coffee.find({ userId });
+        res.status(200).json(coffee);
     } catch (error) {
         console.error(error);
     }

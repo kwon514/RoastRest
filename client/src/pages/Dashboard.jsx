@@ -38,7 +38,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchCoffee = async () => {
       const { data } = await axios.get(
-        "http://localhost:4000/api/coffee/getAllCoffee",
+        "http://localhost:4000/api/coffee",
         { withCredentials: true }
       );
       setCoffeeData(data);
