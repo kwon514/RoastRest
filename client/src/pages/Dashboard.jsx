@@ -47,7 +47,7 @@ function Dashboard() {
     } else {
       fetchCoffee();
     }
-  }, []);
+  }, [cookies, navigate]);
 
   const handleAddCoffee = () => {
     setOpen(!open);
