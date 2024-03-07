@@ -1,9 +1,7 @@
-import Navbar from "../components/Navbar";
-import CoffeeCard from "../components/CoffeeCard";
+import { Navbar, CoffeeCard, CoffeeDialog } from "../components";
 import { Grid, Fab, createTheme, ThemeProvider } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -35,6 +33,7 @@ function Dashboard() {
   const navigate = useNavigate();
   const [cookies] = useCookies([]);
   const [coffeeData, setCoffeeData] = useState([]);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     const fetchCoffee = async () => {
       const { data } = await axios.get(
@@ -49,6 +48,10 @@ function Dashboard() {
       fetchCoffee();
     }
   }, []);
+
+  const handleAddCoffee = () => {
+    setOpen(!open);
+  };
 
   return (
     <>
@@ -68,9 +71,10 @@ function Dashboard() {
               </Grid>
             ))}
           </Grid>
-          <Fab color="primary" aria-label="add">
+          <Fab color="primary" aria-label="add" onClick={handleAddCoffee}>
             <AddIcon color="secondary" />
           </Fab>
+          <CoffeeDialog open={open} handleClose={handleAddCoffee} />
         </div>
       </ThemeProvider>
     </>
