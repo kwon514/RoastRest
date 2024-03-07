@@ -6,6 +6,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { format } from "date-fns";
+import { calcRestDays } from "../helpers";
 
 const theme = createTheme({
   palette: {
@@ -68,7 +69,7 @@ function Dashboard() {
                   name={coffee.name}
                   coffeeName={coffee.coffeeName}
                   roastDate={format(new Date(coffee.roastDate), "dd MMM yyyy")}
-                  restDays={12}
+                  restDays={calcRestDays(coffee.roastDate, coffee.frozenStart, coffee.frozenEnd)}
                 />
               </Grid>
             ))}
