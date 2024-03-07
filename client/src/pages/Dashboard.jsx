@@ -63,7 +63,7 @@ function Dashboard() {
                   name={coffee.name}
                   coffeeName={coffee.coffeeName}
                   roastDate={format(new Date(coffee.roastDate), "dd MMM yyyy")}
-                  restDays={coffee.restDays}
+                  restDays={12}
                 />
               </Grid>
             ))}

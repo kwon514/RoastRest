@@ -16,14 +16,13 @@ module.exports.getAllCoffee = async (req, res) => {
 module.exports.addCoffee = async (req, res) => {
     try {
         const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
-        const { name, coffeeName, roastLevel, roastDate, restDays, isFrozen, frozenStart, frozenEnd, notes } = req.body;
+        const { name, coffeeName, roastLevel, roastDate, isFrozen, frozenStart, frozenEnd, notes } = req.body;
         const coffee = await Coffee.create({
             userId,
             name,
             coffeeName,
             roastLevel,
             roastDate,
-            restDays,
             isFrozen,
             frozenStart,
             frozenEnd,

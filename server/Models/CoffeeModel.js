@@ -21,10 +21,6 @@ const coffeeSchema = new mongoose.Schema({
         type: Date,
         required: [true, 'Roast date is required']
     },
-    restDays: {
-        type: Number,
-        required: [true, 'Rest days is required']
-    },
     isFrozen: {
         type: Boolean,
         default: false
