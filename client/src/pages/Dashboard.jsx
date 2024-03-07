@@ -34,7 +34,7 @@ function Dashboard() {
   const navigate = useNavigate();
   const [cookies] = useCookies([]);
   const [coffeeData, setCoffeeData] = useState([]);
-  const [open, setOpen] = useState(false);
+  const [openAddDialog, setOpenAddDialog] = useState(false);
   useEffect(() => {
     const fetchCoffee = async () => {
       const { data } = await axios.get(
@@ -53,7 +53,7 @@ function Dashboard() {
   const handleAddDialogClose = (event, reason) => {
     if (reason && reason === "backdropClick")
       return;
-    setOpen(!open);
+    setOpenAddDialog(!openAddDialog);
   };
 
   return (
@@ -77,7 +77,7 @@ function Dashboard() {
           <Fab color="primary" aria-label="add" onClick={handleAddDialogClose}>
             <AddIcon color="secondary" />
           </Fab>
-          <CoffeeDialog open={open} handleClose={handleAddDialogClose} />
+          <CoffeeDialog open={openAddDialog} handleClose={handleAddDialogClose} />
         </div>
       </ThemeProvider>
     </>
