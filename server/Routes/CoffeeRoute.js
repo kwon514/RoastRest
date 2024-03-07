@@ -5,6 +5,7 @@ const { getAllCoffee, getCoffeeById, addCoffee } = require('../Controllers/Coffe
 router.use(RequireAuth)
 
 router.get('/', getAllCoffee)
+router.get('/:id', getCoffeeById)
 router.post('/', addCoffee)
 
 module.exports = router

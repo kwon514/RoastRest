@@ -32,3 +32,13 @@ module.exports.getAllCoffee = async (req, res) => {
         console.error(error);
     }
 };
+
+module.exports.getCoffeeById = async (req, res) => {
+    try {
+        const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
+        const coffee = await Coffee.findOne({ _id: req.params.id, userId });
+        res.status(200).json(coffee);
+    } catch (error) {
+        console.error(error);
+    }
+};
