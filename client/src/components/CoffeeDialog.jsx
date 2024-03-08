@@ -3,7 +3,8 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import axios from "axios";
 import { format, parse } from 'date-fns';
-
+import { ToastContainer, toast } from "react-toastify";
+import { parseDateToISO } from '../helpers';
 
 function CoffeeDialog({ open, handleClose }) {
     const theme = useTheme();
@@ -29,21 +30,17 @@ function CoffeeDialog({ open, handleClose }) {
                 event.preventDefault();
                 const formData = new FormData(event.currentTarget);
                 const formJson = Object.fromEntries(formData.entries());
-                try {
-                    formJson.roastDate = format(parse(formJson.roastDate, "dd/MM/yyyy", new Date()), "yyyy-MM-dd");
-                    formJson.frozenStart = format(parse(formJson.frozenStart, "dd/MM/yyyy", new Date()), "yyyy-MM-dd");
-                    formJson.frozenEnd = format(parse(formJson.frozenEnd, "dd/MM/yyyy", new Date()), "yyyy-MM-dd");
-                } catch (error) {
-                    console.error(error);
-                }
+                formJson.roastDate = parseDateToISO(formJson.roastDate);
+                formJson.frozenStart = parseDateToISO(formJson.frozenStart);
+                formJson.frozenEnd = parseDateToISO(formJson.frozenEnd);
                 axios.post("http://localhost:4000/api/coffee",
                     {
                         ...formJson,
                     },
                     { withCredentials: true }
-                );
-                console.log(formJson);
-                handleClose();
+                ).then(() => {
+                    handleClose();
+                });
             },
         }}>
             <DialogTitle>
@@ -70,6 +67,7 @@ function CoffeeDialog({ open, handleClose }) {
                 <Button onClick={handleClose} color="primary">Cancel</Button>
                 <Button type="submit" color="primary">Add</Button>
             </DialogActions>
+            <ToastContainer />
         </Dialog>
     );
 }
