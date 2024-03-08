@@ -6,7 +6,7 @@ import { format, parse } from 'date-fns';
 import { ToastContainer, toast } from "react-toastify";
 import { parseDateToISO } from '../helpers';
 
-function CoffeeDialog({ open, handleClose }) {
+function CoffeeDialog({ open, handleClose, updateData}) {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const roastLevels = [
@@ -40,6 +40,7 @@ function CoffeeDialog({ open, handleClose }) {
                     { withCredentials: true }
                 ).then(() => {
                     handleClose();
+                    updateData();
                 });
             },
         }}>

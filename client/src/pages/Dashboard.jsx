@@ -35,18 +35,20 @@ function Dashboard() {
   const [cookies] = useCookies([]);
   const [coffeeData, setCoffeeData] = useState([]);
   const [openAddDialog, setOpenAddDialog] = useState(false);
+
+  const updateCoffeeData = () => {
+    axios.get("http://localhost:4000/api/coffee",
+      { withCredentials: true }
+    ).then((res) => {
+      setCoffeeData(res.data);
+    });
+  };
+
   useEffect(() => {
-    const fetchCoffee = async () => {
-      const { data } = await axios.get(
-        "http://localhost:4000/api/coffee",
-        { withCredentials: true }
-      );
-      setCoffeeData(data);
-    };
     if (!cookies.token) {
       navigate("/login");
     } else {
-      fetchCoffee();
+      updateCoffeeData();
     }
   }, [cookies, navigate]);
 
@@ -77,7 +79,7 @@ function Dashboard() {
           <Fab color="primary" aria-label="add" onClick={handleAddDialogClose}>
             <AddIcon color="secondary" />
           </Fab>
-          <CoffeeDialog open={openAddDialog} handleClose={handleAddDialogClose} />
+          <CoffeeDialog open={openAddDialog} handleClose={handleAddDialogClose} updateData={updateCoffeeData} />
         </div>
       </ThemeProvider>
     </>
