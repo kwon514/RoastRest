@@ -65,7 +65,7 @@ function Dashboard() {
         <div className="mx-auto max-w-screen-lg px-3">
           <h2 className="text-4xl text-bc-2 font-bold text-center py-8">Coffee Dashboard</h2>
           <Grid container spacing={2}>
-            {coffeeData.map((coffee) => (
+            {coffeeData.slice().reverse().map((coffee) => (
               <Grid item xs={12} sm={6} key={coffee._id}>
                 <CoffeeCard
                   name={coffee.name}
