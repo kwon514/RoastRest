@@ -1,10 +1,18 @@
-import { Dialog, DialogTitle, DialogContent, TextField, MenuItem, DialogActions, Button } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, TextField, MenuItem, DialogActions, Grid, Button } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import axios from "axios";
 import { parseDateToISO } from '../helpers';
 
 function EditCoffeeDialog({ open, handleClose, updateData, coffeeData }) {
+    const deleteData = () => {
+        axios.delete(`http://localhost:4000/api/coffee/${coffeeData._id}`,
+            { withCredentials: true }).then(() => {
+                handleClose();
+                updateData();
+            });
+    };
+
     const roastLevels = [
         {
             value: 'Light',
@@ -62,8 +70,15 @@ function EditCoffeeDialog({ open, handleClose, updateData, coffeeData }) {
                 </LocalizationProvider>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose} color="primary">Cancel</Button>
-                <Button type="submit" color="primary">Confirm</Button>
+                <Grid container>
+                    <Grid item xs={4} className='pl-4'>
+                        <Button onClick={deleteData} color="primary">Delete</Button>
+                    </Grid>
+                    <Grid item xs={8} className='inline-flex items-center justify-end pr-4'>
+                        <Button onClick={handleClose} color="primary">Cancel</Button>
+                        <Button type="submit" color="primary">Confirm</Button>
+                    </Grid>
+                </Grid>
             </DialogActions>
         </Dialog>
     );
