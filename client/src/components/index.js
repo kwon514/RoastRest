@@ -1,3 +1,4 @@
 export {default as Navbar} from './Navbar';
 export {default as CoffeeCard} from './CoffeeCard';
-export {default as CoffeeDialog} from './CoffeeDialog';
+export {default as AddCoffeeDialog} from './AddCoffeeDialog';
+export {default as EditCoffeeDialog} from './EditCoffeeDialog';

@@ -1,14 +1,10 @@
-import { Dialog, DialogTitle, DialogContent, TextField, MenuItem, DialogActions, Button, useMediaQuery, useTheme } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, TextField, MenuItem, DialogActions, Button } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import axios from "axios";
-import { format, parse } from 'date-fns';
-import { ToastContainer, toast } from "react-toastify";
 import { parseDateToISO } from '../helpers';
 
-function CoffeeDialog({ open, handleClose, updateData}) {
-    const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+function AddCoffeeDialog({ open, handleClose, updateData}) {
     const roastLevels = [
         {
             value: 'Light',
@@ -66,11 +62,10 @@ function CoffeeDialog({ open, handleClose, updateData}) {
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose} color="primary">Cancel</Button>
-                <Button type="submit" color="primary">Add</Button>
+                <Button type="submit" color="primary">Confirm</Button>
             </DialogActions>
-            <ToastContainer />
         </Dialog>
     );
 }
 
-export default CoffeeDialog;
+export default AddCoffeeDialog;
