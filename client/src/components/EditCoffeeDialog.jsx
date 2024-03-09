@@ -52,7 +52,9 @@ function EditCoffeeDialog({ open, handleClose, updateData, coffeeData }) {
             <DialogTitle>
                 Edit Coffee Log
             </DialogTitle>
-            <DialogContent>
+            <DialogContent sx={{
+                paddingBottom: '0px',
+            }}>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <TextField required margin="dense" id="name" name="name" label="Name" type="text" defaultValue={coffeeData.name} fullWidth />
                     <TextField required margin="dense" id="coffeeName" name="coffeeName" label="Coffee Name" type="text" defaultValue={coffeeData.coffeeName} fullWidth />
