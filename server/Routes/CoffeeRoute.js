@@ -1,11 +1,12 @@
 const router = require('express').Router()
 const RequireAuth = require('../Middlewares/RequireAuth')
-const { getAllCoffee, getCoffeeById, addCoffee } = require('../Controllers/CoffeeController')
+const { addCoffee, getAllCoffee, getCoffeeById, updateCoffeeById } = require('../Controllers/CoffeeController')
 
 router.use(RequireAuth)
 
+router.post('/', addCoffee)
 router.get('/', getAllCoffee)
 router.get('/:id', getCoffeeById)
-router.post('/', addCoffee)
+router.put('/:id', updateCoffeeById)
 
 module.exports = router

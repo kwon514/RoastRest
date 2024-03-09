@@ -42,3 +42,22 @@ module.exports.getCoffeeById = async (req, res) => {
         console.error(error);
     }
 };
+
+module.exports.updateCoffeeById = async (req, res) => {
+    try {
+        const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
+        const { name, coffeeName, roastLevel, roastDate, frozenStart, frozenEnd, notes } = req.body;
+        const coffee = await Coffee.findOneAndUpdate({ _id: req.params.id, userId }, {
+            name,
+            coffeeName,
+            roastLevel,
+            roastDate,
+            frozenStart,
+            frozenEnd,
+            notes
+        }, { new: true });
+        res.status(200).json(coffee);
+    } catch (error) {
+        console.error(error);
+    }
+};
