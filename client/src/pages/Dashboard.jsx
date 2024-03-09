@@ -39,7 +39,7 @@ function Dashboard() {
   const [coffeeData, setCoffeeData] = useState({});
 
   const updateCoffeesData = () => {
-    axios.get("http://localhost:4000/api/coffee",
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/coffee`,
       { withCredentials: true }
     ).then((res) => {
       setCoffeesData(res.data);

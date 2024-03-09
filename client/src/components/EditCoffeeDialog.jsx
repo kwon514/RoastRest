@@ -6,7 +6,7 @@ import { parseDateToISO } from '../helpers';
 
 function EditCoffeeDialog({ open, handleClose, updateData, coffeeData }) {
     const deleteData = () => {
-        axios.delete(`http://localhost:4000/api/coffee/${coffeeData._id}`,
+        axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/coffee/${coffeeData._id}`,
             { withCredentials: true }).then(() => {
                 handleClose();
                 updateData();
@@ -38,7 +38,7 @@ function EditCoffeeDialog({ open, handleClose, updateData, coffeeData }) {
                 formJson.roastDate = parseDateToISO(formJson.roastDate);
                 formJson.frozenStart = parseDateToISO(formJson.frozenStart);
                 formJson.frozenEnd = parseDateToISO(formJson.frozenEnd);
-                axios.put(`http://localhost:4000/api/coffee/${coffeeData._id}`,
+                axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/coffee/${coffeeData._id}`,
                     {
                         ...formJson,
                     },

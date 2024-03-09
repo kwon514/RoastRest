@@ -19,7 +19,7 @@ function Navbar({ showLogoutButton }) {
   }
 
   const Logout = () => {
-    axios.post("http://localhost:4000/api/user/logout", {}, { withCredentials: true });
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/logout`, {}, { withCredentials: true });
     navigate("/");
   };
 

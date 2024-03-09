@@ -29,7 +29,7 @@ function AddCoffeeDialog({ open, handleClose, updateData}) {
                 formJson.roastDate = parseDateToISO(formJson.roastDate);
                 formJson.frozenStart = parseDateToISO(formJson.frozenStart);
                 formJson.frozenEnd = parseDateToISO(formJson.frozenEnd);
-                axios.post("http://localhost:4000/api/coffee",
+                axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/coffee`,
                     {
                         ...formJson,
                     },
