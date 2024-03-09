@@ -61,3 +61,13 @@ module.exports.updateCoffeeById = async (req, res) => {
         console.error(error);
     }
 };
+
+module.exports.deleteCoffeeById = async (req, res) => {
+    try {
+        const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
+        await Coffee.findOneAndDelete({ _id: req.params.id, userId });
+        res.status(200).json({ message: 'Coffee log deleted successfully!' });
+    } catch (error) {
+        console.error(error);
+    }
+};
