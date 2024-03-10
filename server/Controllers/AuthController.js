@@ -12,6 +12,7 @@ module.exports.Signup = async (req, res, next) => {
         const user = await User.create({ email, password, name, createdAt });
         const token = createSecretToken(user._id);
         res.cookie("token", token, {
+            domain: process.env.DOMAIN,
             withCredentials: true,
             httpOnly: false,
             sameSite: "none",
@@ -42,6 +43,7 @@ module.exports.Login = async (req, res, next) => {
         }
         const token = createSecretToken(user._id);
         res.cookie("token", token, {
+            domain: process.env.DOMAIN,
             withCredentials: true,
             httpOnly: false,
             sameSite: "none",
