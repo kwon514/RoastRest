@@ -58,7 +58,7 @@ module.exports.Login = async (req, res, next) => {
 
 module.exports.Logout = async (req, res, next) => {
     try {
-        res.clearCookie("token");
+        res.clearCookie("token", { domain: process.env.DOMAIN });
         res.status(200).json({ message: "Logged out successfully!" });
         next();
     } catch (error) {
