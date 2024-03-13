@@ -17,17 +17,15 @@ function Navbar({ showLogoutButton }) {
   }
 
   return (
-    <div className="mx-auto max-w-screen-lg px-3 py-6">
-      <div className="flex flex-wrap items-center justify-between">
-        <div className="cursor-pointer" onClick={handleLogoClick}>
-          <span className="inline-flex items-center text-3xl font-medium">
-            <img className="mr-2" src={roastrest_logo} alt="RoastRest logo of coffee beans" width="50px" />
-            <span className="hidden sm:inline-flex">RoastRest</span>
-          </span>
-        </div>
-        <div>
-          {showLogoutButton ? <NavDropdown /> : <GitHubButton />}
-        </div>
+    <div className="flex items-center justify-between mx-auto max-w-screen-lg px-3 py-6">
+      <div className="flex items-center cursor-pointer" onClick={handleLogoClick}>
+        <span className="inline-flex items-center text-3xl font-medium">
+          <img className="mr-2" src={roastrest_logo} alt="RoastRest logo of coffee beans" width="50px" />
+          <span className="hidden sm:inline-flex">RoastRest</span>
+        </span>
+      </div>
+      <div>
+        {showLogoutButton ? <NavDropdown /> : <GitHubButton />}
       </div>
     </div>
   );
