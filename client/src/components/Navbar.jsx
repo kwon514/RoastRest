@@ -22,7 +22,7 @@ function Navbar({ showLogoutButton }) {
         <div className="cursor-pointer" onClick={handleLogoClick}>
           <span className="inline-flex items-center text-3xl font-medium">
             <img className="mr-2" src={roastrest_logo} alt="RoastRest logo of coffee beans" width="50px" />
-            RoastRest
+            <span className="hidden sm:inline-flex">RoastRest</span>
           </span>
         </div>
         <div>
