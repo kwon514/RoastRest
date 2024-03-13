@@ -1,12 +1,14 @@
 import roastrest_logo from "../assets/roastrest_icon.png";
 import github_logo from "../assets/github_logo.svg";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import axios from "axios";
+import NavDropdown from "./NavDropdown";
 
 function Navbar({ showLogoutButton }) {
   const navigate = useNavigate();
-  const [cookies, removeCookie] = useCookies([]);
+
+  function handleLogoClick() {
+    navigate("/");
+  }
 
   function GitHubButton() {
     return <a href="https://github.com/kwon514/RoastRest" target="_blank" rel="noreferrer">
@@ -14,28 +16,17 @@ function Navbar({ showLogoutButton }) {
     </a>
   }
 
-  function LogoutButton() {
-    return <button className="bg-ba-1 hover:bg-ba-2 text-md text-white font-bold py-3 px-4 rounded-lg" onClick={Logout}>Logout</button>
-  }
-
-  const Logout = () => {
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/logout`, {}, { withCredentials: true });
-    navigate("/");
-  };
-
   return (
     <div className="mx-auto max-w-screen-lg px-3 py-6">
-      <div className="flex flex-warap items-center justify-between">
-        <div>
-          <a href="/">
-            <span className="inline-flex items-center text-3xl font-medium">
-              <img className="mr-2" src={roastrest_logo} alt="RoastRest logo of coffee beans" width="50px" />
-              RoastRest
-            </span>
-          </a>
+      <div className="flex flex-wrap items-center justify-between">
+        <div className="cursor-pointer" onClick={handleLogoClick}>
+          <span className="inline-flex items-center text-3xl font-medium">
+            <img className="mr-2" src={roastrest_logo} alt="RoastRest logo of coffee beans" width="50px" />
+            RoastRest
+          </span>
         </div>
         <div>
-          {showLogoutButton ? <LogoutButton /> : <GitHubButton />}
+          {showLogoutButton ? <NavDropdown /> : <GitHubButton />}
         </div>
       </div>
     </div>

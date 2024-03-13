@@ -25,10 +25,6 @@ function Login() {
     toast.error(err, {
       position: "bottom-left",
     });
-  const handleSuccess = (msg) =>
-    toast.success(msg, {
-      position: "bottom-left",
-    });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,12 +37,10 @@ function Login() {
         { withCredentials: true }
       );
       console.log(data);
-      const { success, message } = data;
+      const { name, message, success } = data;
       if (success) {
-        handleSuccess(message);
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, 1000);
+        localStorage.setItem("name", name);
+        navigate("/dashboard");
       } else {
         handleError(message);
       }

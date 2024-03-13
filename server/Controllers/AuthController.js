@@ -18,9 +18,7 @@ module.exports.Signup = async (req, res, next) => {
             sameSite: "none",
             secure: true,
         });
-        res
-            .status(201)
-            .json({ message: "Logged in successfully!", success: true, user });
+        res.status(201).json({ name: user.name, message: "Logged in successfully!", success: true });
         next();
     } catch (error) {
         console.error(error);
@@ -49,7 +47,7 @@ module.exports.Login = async (req, res, next) => {
             sameSite: "none",
             secure: true,
         });
-        res.status(201).json({ message: "Logged in successfully!", success: true });
+        res.status(201).json({ name: user.name, message: "Logged in successfully!", success: true });
         next()
     } catch (error) {
         console.error(error);
