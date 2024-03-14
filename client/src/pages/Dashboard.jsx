@@ -100,7 +100,7 @@ function Dashboard() {
                   id={coffee._id}
                   name={coffee.name}
                   coffeeName={coffee.coffeeName}
-                  roastDate={coffeeData.roastDate ? formatDate(coffeeData.roastDate, "dd MMM yyyy") : "-"}
+                  roastDate={coffee.roastDate ? formatDate(coffee.roastDate, "dd MMM yyyy") : "-"}
                   restDays={calcRestDays(coffee.roastDate, coffee.frozenStart, coffee.frozenEnd)}
                   viewData={viewCoffeeData}
                   editData={editCoffeeData}
