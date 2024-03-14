@@ -11,7 +11,15 @@ const coffeeSchema = new mongoose.Schema({
     },
     coffeeName: {
         type: String,
-        required: [true, 'Coffee Name is required']
+    },
+    coffeeRoaster: {
+        type: String,
+    },
+    coffeeWeight: {
+        type: Number,
+    },
+    coffeeDose: {
+        type: Number,
     },
     roastLevel: {
         type: String,
@@ -28,7 +36,10 @@ const coffeeSchema = new mongoose.Schema({
     },
     notes: {
         type: String
-    }
+    },
+    websiteUrl: {
+        type: String
+    },
 });
 
 module.exports = mongoose.model('Coffee', coffeeSchema);

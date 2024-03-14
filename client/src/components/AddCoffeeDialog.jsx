@@ -4,7 +4,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import axios from "axios";
 import { parseDateToISO } from '../helpers';
 
-function AddCoffeeDialog({ open, handleClose, updateData}) {
+function AddCoffeeDialog({ open, handleClose, updateData }) {
     const roastLevels = [
         {
             value: 'Light',
@@ -45,19 +45,23 @@ function AddCoffeeDialog({ open, handleClose, updateData}) {
             </DialogTitle>
             <DialogContent>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <TextField required margin="dense" id="name" name="name" label="Name" type="text" fullWidth />
-                    <TextField required margin="dense" id="coffeeName" name="coffeeName" label="Coffee Name" type="text" fullWidth />
-                    <TextField select margin="dense" id="roastLevel" name="roastLevel" label="Roast Level" type="text" defaultValue={""} fullWidth>
+                    <TextField required margin="dense" id="name" name="name" label="Log name" type="text" fullWidth />
+                    <TextField required margin="dense" id="coffeeName" name="coffeeName" label="Coffee name" type="text" fullWidth />
+                    <TextField margin="dense" id="coffeeRoaster" name="coffeeRoaster" label="Roaster name" type="text" fullWidth />
+                    <TextField margin="dense" id="coffeeWeight" name="coffeeWeight" label="Weight" type="number" fullWidth />
+                    <TextField margin="dense" id="coffeeDose" name="coffeeDose" label="Dose" type="number" fullWidth />
+                    <TextField select margin="dense" id="roastLevel" name="roastLevel" label="Roast level" type="text" defaultValue={""} fullWidth>
                         {roastLevels.map((option) => (
                             <MenuItem key={option.value} value={option.value}>
                                 {option.label}
                             </MenuItem>
                         ))}
                     </TextField>
-                    <DatePicker id="roastDate" name="roastDate" label="Roast Date" format="dd/MM/yyyy" defaultValue={(new Date())} slotProps={{ textField: { fullWidth: true, margin: "dense", required: true } }} />
-                    <DatePicker id="frozenStart" name="frozenStart" label="Frozen Start Date" format="dd/MM/yyyy" slotProps={{ textField: { fullWidth: true, margin: "dense" } }} />
-                    <DatePicker id="frozenEnd" name="frozenEnd" label="Frozen End Date (Leave blank if frozen)" format="dd/MM/yyyy" slotProps={{ textField: { fullWidth: true, margin: "dense" } }} />
+                    <DatePicker id="roastDate" name="roastDate" label="Roast date" format="dd/MM/yyyy" defaultValue={(new Date())} slotProps={{ textField: { fullWidth: true, margin: "dense", required: true } }} />
+                    <DatePicker id="frozenStart" name="frozenStart" label="Frozen start date" format="dd/MM/yyyy" slotProps={{ textField: { fullWidth: true, margin: "dense" } }} />
+                    <DatePicker id="frozenEnd" name="frozenEnd" label="Frozen end date (leave blank if frozen)" format="dd/MM/yyyy" slotProps={{ textField: { fullWidth: true, margin: "dense" } }} />
                     <TextField margin="dense" id="notes" name="notes" label="Notes" type="text" fullWidth multiline rows={4} />
+                    <TextField margin="dense" id="websiteUrl" name="websiteUrl" label="Website" type="text" fullWidth />
                 </LocalizationProvider>
             </DialogContent>
             <DialogActions>

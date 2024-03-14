@@ -1,20 +1,23 @@
-const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken");
 const Coffee = require('../Models/CoffeeModel');
 
 module.exports.addCoffee = async (req, res) => {
     try {
         const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
-        const { name, coffeeName, roastLevel, roastDate, frozenStart, frozenEnd, notes } = req.body;
+        const { name, coffeeName, coffeeRoaster, coffeeWeight, coffeeDose, roastLevel, roastDate, frozenStart, frozenEnd, notes, websiteUrl } = req.body;
         const coffee = await Coffee.create({
             userId,
             name,
             coffeeName,
+            coffeeRoaster,
+            coffeeWeight,
+            coffeeDose,
             roastLevel,
             roastDate,
             frozenStart,
             frozenEnd,
-            notes
+            notes,
+            websiteUrl
         });
         const savedCoffee = await coffee.save();
         res.status(201).json(savedCoffee);
@@ -46,15 +49,19 @@ module.exports.getCoffeeById = async (req, res) => {
 module.exports.updateCoffeeById = async (req, res) => {
     try {
         const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
-        const { name, coffeeName, roastLevel, roastDate, frozenStart, frozenEnd, notes } = req.body;
+        const { name, coffeeName, coffeeRoaster, coffeeWeight, coffeeDose, roastLevel, roastDate, frozenStart, frozenEnd, notes, websiteUrl } = req.body;
         const coffee = await Coffee.findOneAndUpdate({ _id: req.params.id, userId }, {
             name,
             coffeeName,
+            coffeeRoaster,
+            coffeeWeight,
+            coffeeDose,
             roastLevel,
             roastDate,
             frozenStart,
             frozenEnd,
-            notes
+            notes,
+            websiteUrl
         }, { new: true });
         res.status(200).json(coffee);
     } catch (error) {
