@@ -1,11 +1,11 @@
-import { Navbar, CoffeeCard, AddCoffeeDialog, EditCoffeeDialog } from "../components";
+import { Navbar, CoffeeCard, AddCoffeeDialog, ViewCoffeeDialog, EditCoffeeDialog } from "../components";
 import { Grid, Fab, createTheme, ThemeProvider } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { format } from "date-fns";
+import { formatDate } from "date-fns";
 import { calcRestDays, getCoffeeData } from "../helpers";
 
 const theme = createTheme({
@@ -36,6 +36,7 @@ function Dashboard() {
   const [coffeesData, setCoffeesData] = useState([]);
   const [addDialog, setAddDialog] = useState(false);
   const [editDialog, setEditDialog] = useState(false);
+  const [viewDialog, setViewDialog] = useState(false);
   const [coffeeData, setCoffeeData] = useState({});
 
   const updateCoffeesData = () => {
@@ -46,11 +47,24 @@ function Dashboard() {
     });
   };
 
+  const viewCoffeeData = (id) => {
+    getCoffeeData(id).then((data) => {
+      setCoffeeData(data);
+      toggleViewDialog();
+    });
+  };
+
   const editCoffeeData = (id) => {
     getCoffeeData(id).then((data) => {
       setCoffeeData(data);
       toggleEditDialog();
     });
+  };
+
+  const toggleViewDialog = (event, reason) => {
+    if (reason && reason === "backdropClick")
+      return;
+    setViewDialog(!viewDialog);
   };
 
   const toggleEditDialog = (event, reason) => {
@@ -86,8 +100,9 @@ function Dashboard() {
                   id={coffee._id}
                   name={coffee.name}
                   coffeeName={coffee.coffeeName}
-                  roastDate={format(new Date(coffee.roastDate), "dd MMM yyyy")}
+                  roastDate={coffeeData.roastDate ? formatDate(coffeeData.roastDate, "dd MMM yyyy") : "-"}
                   restDays={calcRestDays(coffee.roastDate, coffee.frozenStart, coffee.frozenEnd)}
+                  viewData={viewCoffeeData}
                   editData={editCoffeeData}
                 />
               </Grid>
@@ -97,6 +112,7 @@ function Dashboard() {
             <AddIcon color="secondary" />
           </Fab>
           <AddCoffeeDialog open={addDialog} handleClose={toggleAddDialog} updateData={updateCoffeesData} />
+          <ViewCoffeeDialog open={viewDialog} handleClose={toggleViewDialog} coffeeData={coffeeData} />
           <EditCoffeeDialog open={editDialog} handleClose={toggleEditDialog} updateData={updateCoffeesData} coffeeData={coffeeData} />
         </div>
       </ThemeProvider>

@@ -1,6 +1,10 @@
 import { Card, CardContent, CardActions, Button, Grid } from '@mui/material';
 
-function CoffeeCard({ id, name, coffeeName, roastDate, restDays, editData }) {
+function CoffeeCard({ id, name, coffeeName, roastDate, restDays, viewData, editData }) {
+    const openViewDialog = () => {
+        viewData(id);
+    };
+
     const openEditDialog = () => {
         editData(id);
     };
@@ -15,7 +19,7 @@ function CoffeeCard({ id, name, coffeeName, roastDate, restDays, editData }) {
             <Grid container>
                 <Grid item xs={6}>
                     <CardActions>
-                        <Button size="large" sx={{ minWidth: 0 }}>View</Button>
+                        <Button size="large" sx={{ minWidth: 0 }} onClick={openViewDialog}>View</Button>
                         <Button size="large" sx={{ minWidth: 0 }} onClick={openEditDialog}>Edit</Button>
                     </CardActions>
                 </Grid>
