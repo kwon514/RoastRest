@@ -1,10 +1,13 @@
-import { Dialog, DialogTitle, DialogContent, TextField, MenuItem, DialogActions, Button } from '@mui/material';
+import { useMediaQuery, useTheme, Dialog, DialogTitle, DialogContent, TextField, MenuItem, DialogActions, Button } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import axios from "axios";
 import { parseDateToISO } from '../helpers';
 
 function AddCoffeeDialog({ open, handleClose, updateData }) {
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('425'));
+
     const roastLevels = [
         {
             value: 'Light',
@@ -20,7 +23,7 @@ function AddCoffeeDialog({ open, handleClose, updateData }) {
         },
     ];
     return (
-        <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth={'md'} PaperProps={{
+        <Dialog open={open} onClose={handleClose} fullScreen={fullScreen} fullWidth={true} maxWidth={'md'} PaperProps={{
             component: 'form',
             onSubmit: (event) => {
                 event.preventDefault();
