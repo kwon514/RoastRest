@@ -5,8 +5,7 @@ import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { formatDate } from "date-fns";
-import { calcRestDays, getCoffeeData } from "../helpers";
+import { getCoffeeData } from "../helpers";
 
 const theme = createTheme({
   palette: {
@@ -35,10 +34,11 @@ function Dashboard() {
   const weightUnit = "g";
   const [cookies] = useCookies([]);
   const [coffeesData, setCoffeesData] = useState([]);
+  const [coffeeData, setCoffeeData] = useState({});
+
   const [addDialog, setAddDialog] = useState(false);
   const [editDialog, setEditDialog] = useState(false);
   const [viewDialog, setViewDialog] = useState(false);
-  const [coffeeData, setCoffeeData] = useState({});
 
   const updateCoffeesData = () => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/coffee`,
@@ -98,13 +98,11 @@ function Dashboard() {
             {coffeesData.slice().reverse().map((coffee) => (
               <Grid item xs={12} sm={6} key={coffee._id}>
                 <CoffeeCard
-                  id={coffee._id}
-                  name={coffee.name}
-                  coffeeName={coffee.coffeeName}
-                  roastDate={coffee.roastDate ? formatDate(coffee.roastDate, "dd MMM yyyy") : "-"}
-                  restDays={calcRestDays(coffee.roastDate, coffee.frozenStart, coffee.frozenEnd)}
+                  coffeeData={coffee}
+                  weightUnit={weightUnit}
                   viewData={viewCoffeeData}
                   editData={editCoffeeData}
+                  updateData={updateCoffeesData}
                 />
               </Grid>
             ))}
