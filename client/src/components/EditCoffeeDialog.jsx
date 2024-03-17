@@ -73,7 +73,7 @@ function EditCoffeeDialog({ open, handleClose, updateData, coffeeData, weightUni
                     </TextField>
                     <DatePicker id="roastDate" name="roastDate" label="Roast date" format="dd/MM/yyyy" defaultValue={coffeeData.roastDate} slotProps={{ textField: { fullWidth: true, margin: "dense", required: true } }} />
                     <DatePicker id="frozenStart" name="frozenStart" label="Frozen start date" format="dd/MM/yyyy" defaultValue={coffeeData.frozenStart} slotProps={{ textField: { fullWidth: true, margin: "dense" } }} />
-                    <DatePicker id="frozenEnd" name="frozenEnd" label="Frozen end date leave blank if frozen)" format="dd/MM/yyyy" defaultValue={coffeeData.frozenEnd} slotProps={{ textField: { fullWidth: true, margin: "dense" } }} />
+                    <DatePicker id="frozenEnd" name="frozenEnd" label="Frozen end date (leave blank if frozen)" format="dd/MM/yyyy" defaultValue={coffeeData.frozenEnd} slotProps={{ textField: { fullWidth: true, margin: "dense" } }} />
                     <TextField margin="dense" id="notes" name="notes" label="Notes" type="text" defaultValue={coffeeData.notes} fullWidth multiline rows={4} />
                     <TextField margin="dense" id="websiteUrl" name="websiteUrl" label="Website" type="text" defaultValue={coffeeData.websiteUrl} fullWidth />
                 </LocalizationProvider>
