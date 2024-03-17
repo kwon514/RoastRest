@@ -32,6 +32,7 @@ const theme = createTheme({
 
 function Dashboard() {
   const navigate = useNavigate();
+  const weightUnit = "g";
   const [cookies] = useCookies([]);
   const [coffeesData, setCoffeesData] = useState([]);
   const [addDialog, setAddDialog] = useState(false);
@@ -111,9 +112,9 @@ function Dashboard() {
           <Fab color="primary" aria-label="add" onClick={toggleAddDialog}>
             <AddIcon color="secondary" />
           </Fab>
-          <AddCoffeeDialog open={addDialog} handleClose={toggleAddDialog} updateData={updateCoffeesData} />
-          <ViewCoffeeDialog open={viewDialog} handleClose={toggleViewDialog} coffeeData={coffeeData} />
-          <EditCoffeeDialog open={editDialog} handleClose={toggleEditDialog} updateData={updateCoffeesData} coffeeData={coffeeData} />
+          <AddCoffeeDialog open={addDialog} handleClose={toggleAddDialog} updateData={updateCoffeesData} weightUnit={weightUnit} />
+          <ViewCoffeeDialog open={viewDialog} handleClose={toggleViewDialog} coffeeData={coffeeData} weightUnit={weightUnit} />
+          <EditCoffeeDialog open={editDialog} handleClose={toggleEditDialog} updateData={updateCoffeesData} coffeeData={coffeeData} weightUnit={weightUnit} />
         </div>
       </ThemeProvider>
     </>

@@ -1,10 +1,10 @@
-import { useMediaQuery, useTheme, Dialog, DialogTitle, DialogContent, TextField, MenuItem, DialogActions, Button } from '@mui/material';
+import { useMediaQuery, useTheme, Dialog, DialogTitle, DialogContent, TextField, InputAdornment, MenuItem, DialogActions, Button } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import axios from "axios";
 import { parseDateToISO } from '../helpers';
 
-function AddCoffeeDialog({ open, handleClose, updateData }) {
+function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = "g" }) {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('425'));
 
@@ -51,8 +51,8 @@ function AddCoffeeDialog({ open, handleClose, updateData }) {
                     <TextField required margin="dense" id="name" name="name" label="Log name" type="text" fullWidth />
                     <TextField required margin="dense" id="coffeeName" name="coffeeName" label="Coffee name" type="text" fullWidth />
                     <TextField margin="dense" id="coffeeRoaster" name="coffeeRoaster" label="Roaster name" type="text" fullWidth />
-                    <TextField margin="dense" id="coffeeWeight" name="coffeeWeight" label="Weight" type="number" fullWidth />
-                    <TextField margin="dense" id="coffeeDose" name="coffeeDose" label="Dose" type="number" fullWidth />
+                    <TextField margin="dense" id="coffeeWeight" name="coffeeWeight" label="Weight" type="number" InputProps={{ endAdornment: <InputAdornment position="end">{weightUnit}</InputAdornment> }} fullWidth />
+                    <TextField margin="dense" id="coffeeDose" name="coffeeDose" label="Dose" type="number" InputProps={{ endAdornment: <InputAdornment position="end">{weightUnit}</InputAdornment> }} fullWidth />
                     <TextField select margin="dense" id="roastLevel" name="roastLevel" label="Roast level" type="text" defaultValue={""} fullWidth>
                         {roastLevels.map((option) => (
                             <MenuItem key={option.value} value={option.value}>

@@ -1,10 +1,10 @@
-import { useMediaQuery, useTheme, Dialog, DialogTitle, DialogContent, TextField, MenuItem, DialogActions, Grid, Button } from '@mui/material';
+import { useMediaQuery, useTheme, Dialog, DialogTitle, DialogContent, TextField, InputAdornment, MenuItem, DialogActions, Grid, Button } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import axios from "axios";
 import { parseDateToISO } from '../helpers';
 
-function EditCoffeeDialog({ open, handleClose, updateData, coffeeData }) {
+function EditCoffeeDialog({ open, handleClose, updateData, coffeeData, weightUnit = "g" }) {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('425'));
 
@@ -62,8 +62,8 @@ function EditCoffeeDialog({ open, handleClose, updateData, coffeeData }) {
                     <TextField required margin="dense" id="name" name="name" label="Log name" type="text" defaultValue={coffeeData.name} fullWidth />
                     <TextField required margin="dense" id="coffeeName" name="coffeeName" label="Coffee name" type="text" defaultValue={coffeeData.coffeeName} fullWidth />
                     <TextField margin="dense" id="coffeeRoaster" name="coffeeRoaster" label="Roaster name" type="text" defaultValue={coffeeData.coffeeRoaster} fullWidth />
-                    <TextField margin="dense" id="coffeeWeight" name="coffeeWeight" label="Weight" type="number" defaultValue={coffeeData.coffeeWeight} fullWidth />
-                    <TextField margin="dense" id="coffeeDose" name="coffeeDose" label="Dose" type="number" defaultValue={coffeeData.coffeeDose} fullWidth />
+                    <TextField margin="dense" id="coffeeWeight" name="coffeeWeight" label="Weight" type="number" defaultValue={coffeeData.coffeeWeight} InputProps={{ endAdornment: <InputAdornment position="end">{weightUnit}</InputAdornment> }} fullWidth />
+                    <TextField margin="dense" id="coffeeDose" name="coffeeDose" label="Dose" type="number" defaultValue={coffeeData.coffeeDose} InputProps={{ endAdornment: <InputAdornment position="end">{weightUnit}</InputAdornment> }} fullWidth />
                     <TextField select margin="dense" id="roastLevel" name="roastLevel" label="Roast level" type="text" defaultValue={coffeeData.roastLevel} fullWidth>
                         {roastLevels.map((option) => (
                             <MenuItem key={option.value} value={option.value}>

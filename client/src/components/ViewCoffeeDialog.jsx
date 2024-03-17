@@ -3,7 +3,7 @@ import { formatDate } from "date-fns";
 import DataViewField from './DataViewField';
 import { calcRestDays } from '../helpers';
 
-function ViewCoffeeDialog({ open, handleClose, coffeeData }) {
+function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = "g" }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('425'));
 
@@ -16,16 +16,14 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData }) {
         <DataViewField label="Coffee Name" value={coffeeData.coffeeName} />
         <DataViewField label="Roaster" value={coffeeData.coffeeRoaster} />
         <DataViewField label="Rest Days" value={calcRestDays(coffeeData.roastDate, coffeeData.frozenStart, coffeeData.frozenEnd)} />
-        <DataViewField label="Weight" value={coffeeData.coffeeWeight} />
-        <DataViewField label="Dose" value={coffeeData.coffeeDose} />
+        <DataViewField label="Weight" value={coffeeData.coffeeWeight + weightUnit} />
+        <DataViewField label="Dose" value={coffeeData.coffeeDose + weightUnit} />
         <DataViewField label="Roast Level" value={coffeeData.roastLevel} />
         <DataViewField label="Roast Date" value={coffeeData.roastDate ? formatDate(coffeeData.roastDate, "dd MMM yyyy") : "-"} />
         <DataViewField label="Frozen Start" value={coffeeData.frozenStart ? formatDate(coffeeData.frozenStart, "dd MMM yyyy") : "-"} />
         <DataViewField label="Frozen End" value={coffeeData.frozenEnd ? formatDate(coffeeData.frozenEnd, "dd MMM yyyy") : "-"} />
         <DataViewField label="Notes" value={coffeeData.notes} />
         <DataViewField label="Website" value={coffeeData.websiteUrl} link={true} />
-
-
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Close</Button>
