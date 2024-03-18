@@ -50,10 +50,9 @@ const Listbox = styled('ul')(
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.95rem;
   box-sizing: border-box;
-  padding: 6px;
   margin: 12px 0;
-  min-width: 200px;
-  border-radius: 12px;
+  min-width: 160px;
+  border-radius: 6px;
   overflow: auto;
   outline: 0px;
   background: #fff;
@@ -105,8 +104,7 @@ AnimatedListbox.propTypes = {
 const MenuItem = styled(BaseMenuItem)(
     ({ theme }) => `
   list-style: none;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 12px 16px;
   cursor: pointer;
   user-select: none;
 
