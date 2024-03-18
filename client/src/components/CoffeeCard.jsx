@@ -16,7 +16,7 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, updateData }) 
 
     const useDose = () => {
         let newWeight = coffeeData.coffeeWeight - coffeeData.coffeeDose;
-        if (newWeight == 0) {
+        if (newWeight === 0) {
             return;
         } else if (newWeight < 0) {
             newWeight = 0;
