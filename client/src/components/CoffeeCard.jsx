@@ -15,8 +15,12 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, updateData }) 
     const restDays = calcRestDays(coffeeData.roastDate, coffeeData.frozenStart, coffeeData.frozenEnd);
 
     const useDose = () => {
-        const newWeight = coffeeData.coffeeWeight - coffeeData.coffeeDose;
-        const updatedCoffee = { coffeeWeight: newWeight };
+        let newWeight = coffeeData.coffeeWeight - coffeeData.coffeeDose;
+        if (newWeight == 0) {
+            return;
+        } else if (newWeight < 0) {
+            newWeight = 0;
+        }
         axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/coffee/${coffeeData._id}`,
             {
                 coffeeWeight: newWeight,
