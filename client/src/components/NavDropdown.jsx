@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Dropdown } from '@mui/base/Dropdown';
 import { Menu } from '@mui/base/Menu';
 import { MenuButton as BaseMenuButton } from '@mui/base/MenuButton';
-import { MenuItem as BaseMenuItem, menuItemClasses } from '@mui/base/MenuItem';
+import { MenuItem as BaseMenuItem } from '@mui/base/MenuItem';
 import { styled } from '@mui/system';
 import { CssTransition } from '@mui/base/Transitions';
 import { PopupContext } from '@mui/base/Unstable_Popup';
