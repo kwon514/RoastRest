@@ -35,7 +35,7 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, updateData }) 
         <Card>
             <CardContent>
                 <h2 className='text-xl font-bold'>{coffeeData.name}</h2>
-                <h3 className='text-md font-bold mb-1'>{coffeeData.coffeeName} - {coffeeData.coffeeRoaster}</h3>
+                <h3 className='text-md font-bold mb-1'>{coffeeData.coffeeName} {coffeeData.coffeeRoaster ? " - " + coffeeData.coffeeRoaster : ""}</h3>
                 <Grid container spacing={1}>
                     <Grid item xs={6}>
                         <h3 className='text-sm'>Roast date:</h3>
@@ -43,11 +43,11 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, updateData }) 
                     </Grid>
                     <Grid item xs={6}>
                         <h3 className='text-sm'>Roast level:</h3>
-                        <p>{coffeeData.roastLevel}</p>
+                        <p>{coffeeData.roastLevel ? coffeeData.roastLevel : "-"}</p>
                     </Grid>
                     <Grid item xs={6}>
                         <h3 className='text-sm'>Weight:</h3>
-                        <p>{coffeeData.coffeeWeight + weightUnit}</p>
+                        <p>{coffeeData.coffeeWeight ? coffeeData.coffeeWeight + weightUnit : "-"}</p>
                     </Grid>
                     <Grid item xs={6}>
                         <h3 className='text-sm'>Days of rest:</h3>
