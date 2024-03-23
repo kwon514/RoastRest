@@ -9,20 +9,20 @@ const coffeeRoute = require("./Routes/CoffeeRoute");
 const { MONGO_URL, PORT } = process.env;
 
 mongoose
-  .connect(MONGO_URL)
-  .then(() => console.log("MongoDB is  connected successfully"))
-  .catch((err) => console.error(err));
+    .connect(MONGO_URL)
+    .then(() => console.log("MongoDB is  connected successfully"))
+    .catch((err) => console.error(err));
 
 app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
+    console.log(`Server is listening on port ${PORT}`);
 });
 
 app.use(
-  cors({
-    origin: [process.env.CLIENT_URL],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true,
-  })
+    cors({
+        origin: [process.env.CLIENT_URL],
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        credentials: true,
+    })
 );
 app.use(cookieParser());
 
