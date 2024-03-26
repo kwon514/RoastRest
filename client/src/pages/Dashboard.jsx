@@ -81,11 +81,12 @@ function Dashboard() {
     };
 
     useEffect(() => {
-        if (!cookies.token) {
-            navigate("/login");
-        } else {
-            updateCoffeesData();
-        }
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/user`, { withCredentials: true })
+            .then((res) => {
+                updateCoffeesData();
+            }, (err) => {
+                navigate("/login");
+            });
     }, [cookies, navigate]);
 
     return (
