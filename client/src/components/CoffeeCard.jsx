@@ -16,7 +16,7 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, updateData }) 
     const remainingDoses = calcRemainingDoses(coffeeData.coffeeWeight, coffeeData.coffeeDose);
 
     const useDose = () => {
-        let newWeight = coffeeData.coffeeWeight - coffeeData.coffeeDose;
+        let newWeight = Math.round((coffeeData.coffeeWeight - coffeeData.coffeeDose) * 10) / 10;
         if (newWeight === 0) {
             return;
         } else if (newWeight < 0) {
