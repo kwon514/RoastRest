@@ -1,6 +1,7 @@
 const User = require("../Models/UserModel");
 const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 module.exports.Signup = async (req, res, next) => {
     try {
@@ -60,6 +61,32 @@ module.exports.Logout = async (req, res, next) => {
         res.status(200).json({ message: "Logged out successfully!" });
         next();
     } catch (error) {
+        console.error(error);
+    }
+};
+
+module.exports.checkAuth = async (req, res, next) => {
+    try {
+        const token = req.cookies.token;
+        if (!token) {
+            return res.status(401).json({ message: "Unauthorized" });
+        }
+
+        jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
+            if (err) {
+                res.status(401).json({ error: 'Request is not authorized' })
+            } else {
+                const user = await User.findById(data.id)
+                if (user) {
+                    return res.status(200).json({ success: true });
+                }
+                else {
+                    return res.status(401).json({ error: 'Request is not authorized' })
+                }
+            }
+        })
+    }
+    catch (error) {
         console.error(error);
     }
 };
