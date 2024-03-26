@@ -14,10 +14,9 @@ module.exports.Signup = async (req, res, next) => {
         const token = createSecretToken(user._id);
         res.cookie("token", token, {
             domain: process.env.DOMAIN,
-            withCredentials: true,
-            httpOnly: false,
-            sameSite: "none",
+            httpOnly: true,
             secure: true,
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30 * 6),
         });
         res.status(201).json({ name: user.name, message: "Logged in successfully!", success: true });
         next();
@@ -43,10 +42,9 @@ module.exports.Login = async (req, res, next) => {
         const token = createSecretToken(user._id);
         res.cookie("token", token, {
             domain: process.env.DOMAIN,
-            withCredentials: true,
-            httpOnly: false,
-            sameSite: "none",
+            httpOnly: true,
             secure: true,
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30 * 6),
         });
         res.status(201).json({ name: user.name, message: "Logged in successfully!", success: true });
         next()
