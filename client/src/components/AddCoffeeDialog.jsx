@@ -51,8 +51,8 @@ function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = "g" }) {
                     <TextField required margin="dense" id="name" name="name" label="Log name" type="text" fullWidth />
                     <TextField required margin="dense" id="coffeeName" name="coffeeName" label="Coffee name" type="text" fullWidth />
                     <TextField margin="dense" id="coffeeRoaster" name="coffeeRoaster" label="Roaster name" type="text" fullWidth />
-                    <TextField margin="dense" id="coffeeWeight" name="coffeeWeight" label="Weight" type="number" InputProps={{ endAdornment: <InputAdornment position="end">{weightUnit}</InputAdornment> }} fullWidth />
-                    <TextField margin="dense" id="coffeeDose" name="coffeeDose" label="Dose" type="number" InputProps={{ endAdornment: <InputAdornment position="end">{weightUnit}</InputAdornment> }} fullWidth />
+                    <TextField margin="dense" id="coffeeWeight" name="coffeeWeight" label="Weight" type="number" InputProps={{ inputProps: { step: '0.1', min: '0' }, endAdornment: <InputAdornment position="end">{weightUnit}</InputAdornment> }} fullWidth />
+                    <TextField margin="dense" id="coffeeDose" name="coffeeDose" label="Dose" type="number" InputProps={{ inputProps: { step: '0.1', min: '0' }, endAdornment: <InputAdornment position="end">{weightUnit}</InputAdornment> }} fullWidth />
                     <TextField select margin="dense" id="roastLevel" name="roastLevel" label="Roast level" type="text" defaultValue={""} fullWidth>
                         {roastLevels.map((option) => (
                             <MenuItem key={option.value} value={option.value}>
