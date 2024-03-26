@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import Navbar from "../components/Navbar";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { isLoggedIn } from "../helpers";
 
 function Login() {
     const navigate = useNavigate();
@@ -53,6 +54,14 @@ function Login() {
             password: "",
         });
     };
+
+    useEffect(() => {
+        isLoggedIn().then((res) => {
+            if (res) {
+                navigate("/dashboard");
+            }
+        });
+    }, [navigate]);
 
     return (
         <>

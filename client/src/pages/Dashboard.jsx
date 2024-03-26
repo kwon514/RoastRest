@@ -2,10 +2,9 @@ import { Navbar, CoffeeCard, AddCoffeeDialog, ViewCoffeeDialog, EditCoffeeDialog
 import { Grid, Fab, createTheme, ThemeProvider } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { getCoffeeData } from "../helpers";
+import { isLoggedIn, getCoffeeData } from "../helpers";
 
 const theme = createTheme({
     palette: {
@@ -32,7 +31,6 @@ const theme = createTheme({
 function Dashboard() {
     const navigate = useNavigate();
     const weightUnit = "g";
-    const [cookies] = useCookies([]);
     const [coffeesData, setCoffeesData] = useState([]);
     const [coffeeData, setCoffeeData] = useState({});
 
@@ -81,13 +79,14 @@ function Dashboard() {
     };
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/user`, { withCredentials: true })
-            .then((res) => {
+        isLoggedIn().then((res) => {
+            if (res) {
                 updateCoffeesData();
-            }, (err) => {
+            } else {
                 navigate("/login");
-            });
-    }, [cookies, navigate]);
+            }
+        });
+    }, [navigate]);
 
     return (
         <>
