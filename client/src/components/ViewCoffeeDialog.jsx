@@ -1,11 +1,13 @@
 import { useMediaQuery, useTheme, Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
 import { formatDate } from "date-fns";
 import DataViewField from './DataViewField';
-import { calcRestDays } from '../helpers';
+import { calcRemainingDoses, calcRestDays } from '../helpers';
 
 function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = "g" }) {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('425'));
+
+    const remainingDoses = calcRemainingDoses(coffeeData.coffeeWeight, coffeeData.coffeeDose);
 
     return (
         <Dialog open={open} onClose={handleClose} fullScreen={fullScreen} fullWidth={true} maxWidth={'md'}>
@@ -18,6 +20,7 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = "g" }) {
                 <DataViewField label="Rest days" value={calcRestDays(coffeeData.roastDate, coffeeData.frozenStart, coffeeData.frozenEnd)} />
                 <DataViewField label="Weight" value={coffeeData.coffeeWeight + weightUnit} />
                 <DataViewField label="Dose" value={coffeeData.coffeeDose + weightUnit} />
+                <DataViewField label="Remaining doses" value={coffeeData.coffeeWeight ? remainingDoses : "-"} />
                 <DataViewField label="Roast level" value={coffeeData.roastLevel} />
                 <DataViewField label="Roast date" value={coffeeData.roastDate ? formatDate(coffeeData.roastDate, "dd MMM yyyy") : "-"} />
                 <DataViewField label="Frozen start date" value={coffeeData.frozenStart ? formatDate(coffeeData.frozenStart, "dd MMM yyyy") : "-"} />

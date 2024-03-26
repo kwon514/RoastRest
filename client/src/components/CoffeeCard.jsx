@@ -1,5 +1,5 @@
 import { Card, CardContent, CardActions, Button, Grid } from '@mui/material';
-import { calcRestDays, isFrozen } from '../helpers';
+import { calcRemainingDoses, calcRestDays, isFrozen } from '../helpers';
 import { formatDate } from 'date-fns';
 import axios from 'axios';
 
@@ -13,6 +13,7 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, updateData }) 
     };
 
     const restDays = calcRestDays(coffeeData.roastDate, coffeeData.frozenStart, coffeeData.frozenEnd);
+    const remainingDoses = calcRemainingDoses(coffeeData.coffeeWeight, coffeeData.coffeeDose);
 
     const useDose = () => {
         let newWeight = coffeeData.coffeeWeight - coffeeData.coffeeDose;
@@ -42,16 +43,16 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, updateData }) 
                         <p>{coffeeData.roastDate ? formatDate(coffeeData.roastDate, "dd MMM yyyy") : "-"}</p>
                     </Grid>
                     <Grid item xs={6}>
-                        <h3 className='text-sm'>Roast level:</h3>
-                        <p>{coffeeData.roastLevel ? coffeeData.roastLevel : "-"}</p>
+                        <h3 className='text-sm'>Days of rest:</h3>
+                        <p>{restDays + " days"} {isFrozen(coffeeData.frozenStart, coffeeData.frozenEnd) ? "(frozen)" : null}</p>
                     </Grid>
                     <Grid item xs={6}>
                         <h3 className='text-sm'>Weight:</h3>
                         <p>{coffeeData.coffeeWeight ? coffeeData.coffeeWeight + weightUnit : "-"}</p>
                     </Grid>
                     <Grid item xs={6}>
-                        <h3 className='text-sm'>Days of rest:</h3>
-                        <p>{restDays + " days"} {isFrozen(coffeeData.frozenStart, coffeeData.frozenEnd) ? "(frozen)" : null}</p>
+                        <h3 className='text-sm'>Remaining doses:</h3>
+                        <p>{coffeeData.coffeeWeight ? remainingDoses : "-"}</p>
                     </Grid>
                 </Grid>
             </CardContent>
