@@ -47,11 +47,6 @@ function Login() {
     } catch (error) {
       console.log(error);
     }
-    setInputValue({
-      ...inputValue,
-      email: '',
-      password: '',
-    });
   };
 
   useEffect(() => {
