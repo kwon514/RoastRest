@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import Navbar from "../components/Navbar";
+import { Navbar } from "components";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { isLoggedIn } from "../helpers";
+import { isLoggedIn } from "helpers";
 
 function Login() {
     const navigate = useNavigate();

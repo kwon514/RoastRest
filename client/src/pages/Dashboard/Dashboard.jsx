@@ -1,10 +1,11 @@
-import { Navbar, CoffeeCard, AddCoffeeDialog, ViewCoffeeDialog, EditCoffeeDialog } from "../components";
+import { CoffeeCard, AddCoffeeDialog, ViewCoffeeDialog, EditCoffeeDialog } from "./";
+import { Navbar } from "components";
+import { isLoggedIn, getCoffeeData } from "helpers";
 import { Grid, Fab, createTheme, ThemeProvider } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { isLoggedIn, getCoffeeData } from "../helpers";
 
 const theme = createTheme({
     palette: {

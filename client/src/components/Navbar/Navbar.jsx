@@ -1,5 +1,5 @@
-import roastrest_logo from "../assets/roastrest_icon.png";
-import github_logo from "../assets/github_logo.svg";
+import roastrest_logo from "assets/roastrest_icon.png";
+import github_logo from "assets/github_logo.svg";
 import { useNavigate } from "react-router-dom";
 import NavDropdown from "./NavDropdown";
 

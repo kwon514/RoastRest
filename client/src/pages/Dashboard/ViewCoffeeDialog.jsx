@@ -1,7 +1,7 @@
 import { useMediaQuery, useTheme, Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
 import { formatDate } from "date-fns";
 import DataViewField from './DataViewField';
-import { calcRemainingDoses, calcRestDays } from '../helpers';
+import { calcRemainingDoses, calcRestDays } from 'helpers';
 
 function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = "g" }) {
     const theme = useTheme();

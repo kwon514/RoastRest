@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import { isLoggedIn } from "../helpers";
+import { Navbar } from "components";
+import { isLoggedIn } from "helpers";
 
 function Landing() {
     const navigate = useNavigate();

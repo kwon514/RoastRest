@@ -2,7 +2,7 @@ import { useMediaQuery, useTheme, Dialog, DialogTitle, DialogContent, TextField,
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import axios from "axios";
-import { parseDateToISO } from '../helpers';
+import { parseDateToISO } from 'helpers';
 
 function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = "g" }) {
     const theme = useTheme();
