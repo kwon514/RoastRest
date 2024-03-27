@@ -41,12 +41,10 @@ function Signup() {
                 },
                 { withCredentials: true }
             );
-            const { success, message } = data;
+            const { name, success, message } = data;
             if (success) {
-                handleSuccess(message);
-                setTimeout(() => {
-                    navigate("/dashboard");
-                }, 1000);
+                localStorage.setItem("name", name);
+                navigate("/dashboard");
             } else {
                 handleError(message);
             }
