@@ -7,6 +7,7 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = "g" }) {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('425'));
 
+    const restDays = calcRestDays(coffeeData.roastDate, coffeeData.frozenStart, coffeeData.frozenEnd);
     const remainingDoses = calcRemainingDoses(coffeeData.coffeeWeight, coffeeData.coffeeDose);
 
     return (
@@ -17,9 +18,9 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = "g" }) {
             <DialogContent>
                 <DataViewField label="Coffee name" value={coffeeData.coffeeName} />
                 <DataViewField label="Roaster name" value={coffeeData.coffeeRoaster} />
-                <DataViewField label="Rest days" value={calcRestDays(coffeeData.roastDate, coffeeData.frozenStart, coffeeData.frozenEnd)} />
-                <DataViewField label="Weight" value={coffeeData.coffeeWeight + weightUnit} />
-                <DataViewField label="Dose" value={coffeeData.coffeeDose + weightUnit} />
+                <DataViewField label="Rest days" value={restDays} />
+                <DataViewField label="Weight" value={coffeeData.coffeeWeight ? coffeeData.coffeeWeight + weightUnit : "-"} />
+                <DataViewField label="Dose" value={coffeeData.coffeeDose ? coffeeData.coffeeDose + weightUnit : "-"} />
                 <DataViewField label="Remaining doses" value={coffeeData.coffeeWeight ? remainingDoses : "-"} />
                 <DataViewField label="Roast level" value={coffeeData.roastLevel} />
                 <DataViewField label="Roast date" value={coffeeData.roastDate ? formatDate(coffeeData.roastDate, "dd MMM yyyy") : "-"} />
