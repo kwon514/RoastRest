@@ -26,10 +26,6 @@ function Signup() {
         toast.error(err, {
             position: "bottom-left",
         });
-    const handleSuccess = (msg) =>
-        toast.success(msg, {
-            position: "bottom-right",
-        });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
