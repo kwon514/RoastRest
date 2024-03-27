@@ -7,46 +7,63 @@ import { MenuItem as BaseMenuItem } from '@mui/base/MenuItem';
 import { styled } from '@mui/system';
 import { CssTransition } from '@mui/base/Transitions';
 import { PopupContext } from '@mui/base/Unstable_Popup';
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function MenuIntroduction() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    function ArrowIcon() {
-        return (<svg className="inline" stroke="black" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="20" width="20" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"></polyline></svg>)
-    };
-
-    const createHandleMenuClick = (menuItem) => {
-        if (menuItem === "Log out") {
-            return Logout;
-        }
-    };
-
-    const Logout = () => {
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/logout`, {}, { withCredentials: true }).then(() => {
-            localStorage.removeItem("name");
-            navigate("/");
-        });
-    };
-
+  function ArrowIcon() {
     return (
-        <Dropdown>
-            <MenuButton>
-                <div>
-                    <span>Hi, {localStorage.getItem("name")}! </span>
-                    <ArrowIcon />
-                </div>
-            </MenuButton>
-            <Menu slots={{ listbox: AnimatedListbox }}>
-                <MenuItem onClick={createHandleMenuClick('Log out')}>Log out</MenuItem>
-            </Menu>
-        </Dropdown>
+      <svg
+        className="inline"
+        stroke="black"
+        fill="none"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        height="20"
+        width="20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
     );
+  }
+
+  const createHandleMenuClick = (menuItem) => {
+    if (menuItem === 'Log out') {
+      return Logout;
+    }
+  };
+
+  const Logout = () => {
+    axios
+      .post(`${process.env.REACT_APP_BACKEND_URL}/api/user/logout`, {}, { withCredentials: true })
+      .then(() => {
+        localStorage.removeItem('name');
+        navigate('/');
+      });
+  };
+
+  return (
+    <Dropdown>
+      <MenuButton>
+        <div>
+          <span>Hi, {localStorage.getItem('name')}! </span>
+          <ArrowIcon />
+        </div>
+      </MenuButton>
+      <Menu slots={{ listbox: AnimatedListbox }}>
+        <MenuItem onClick={createHandleMenuClick('Log out')}>Log out</MenuItem>
+      </Menu>
+    </Dropdown>
+  );
 }
 
 const Listbox = styled('ul')(
-    ({ theme }) => `
+  ({ theme }) => `
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.95rem;
   box-sizing: border-box;
@@ -78,31 +95,31 @@ const Listbox = styled('ul')(
   .placement-bottom & {
     transform-origin: top;
   }
-  `,
+  `
 );
 
 const AnimatedListbox = React.forwardRef(function AnimatedListbox(props, ref) {
-    const { ownerState, ...other } = props;
-    const popupContext = React.useContext(PopupContext);
-    const verticalPlacement = popupContext.placement.split('-')[0];
+  const { ownerState, ...other } = props;
+  const popupContext = React.useContext(PopupContext);
+  const verticalPlacement = popupContext.placement.split('-')[0];
 
-    return (
-        <CssTransition
-            className={`placement-${verticalPlacement}`}
-            enterClassName="open"
-            exitClassName="closed"
-        >
-            <Listbox {...other} ref={ref} />
-        </CssTransition>
-    );
+  return (
+    <CssTransition
+      className={`placement-${verticalPlacement}`}
+      enterClassName="open"
+      exitClassName="closed"
+    >
+      <Listbox {...other} ref={ref} />
+    </CssTransition>
+  );
 });
 
 AnimatedListbox.propTypes = {
-    ownerState: PropTypes.object.isRequired,
+  ownerState: PropTypes.object.isRequired,
 };
 
 const MenuItem = styled(BaseMenuItem)(
-    ({ theme }) => `
+  ({ theme }) => `
   list-style: none;
   padding: 12px 16px;
   cursor: pointer;
@@ -111,11 +128,11 @@ const MenuItem = styled(BaseMenuItem)(
   &:focus {
     background-color: #faf9f8;
   }
-  `,
+  `
 );
 
 const MenuButton = styled(BaseMenuButton)(
-    ({ theme }) => `
+  ({ theme }) => `
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
@@ -125,5 +142,5 @@ const MenuButton = styled(BaseMenuButton)(
   transition: all 150ms ease;
   cursor: pointer;
   color: #1C2025;
-  `,
+  `
 );
