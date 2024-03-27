@@ -1,21 +1,21 @@
-const jwt = require("jsonwebtoken");
-const User = require("../Models/UserModel");
+const jwt = require('jsonwebtoken');
+const User = require('../Models/UserModel');
 
 const RequireAuth = async (req, res, next) => {
-    const token = req.cookies.token
-    if (!token) {
-        return res.status(401).json({ error: 'Authorization token required' })
+  const token = req.cookies.token;
+  if (!token) {
+    return res.status(401).json({ error: 'Authorization token required' });
+  }
+
+  jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
+    if (err) {
+      res.status(401).json({ error: 'Request is not authorized' });
+    } else {
+      const user = await User.findById(data.id);
+      if (user) next();
+      else res.status(401).json({ error: 'Request is not authorized' });
     }
+  });
+};
 
-    jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
-        if (err) {
-            res.status(401).json({ error: 'Request is not authorized' })
-        } else {
-            const user = await User.findById(data.id)
-            if (user) next()
-            else res.status(401).json({ error: 'Request is not authorized' })
-        }
-    })
-}
-
-module.exports = RequireAuth
+module.exports = RequireAuth;
