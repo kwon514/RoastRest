@@ -4,6 +4,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { Navbar } from 'components';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { toTitleCase } from 'helpers';
 
 function Signup() {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ function Signup() {
         `${process.env.REACT_APP_BACKEND_URL}/api/user/signup`,
         {
           ...inputValue,
+          name: toTitleCase(inputValue.name),
         },
         { withCredentials: true }
       );
@@ -47,12 +49,6 @@ function Signup() {
     } catch (error) {
       console.log(error);
     }
-    setInputValue({
-      ...inputValue,
-      email: '',
-      password: '',
-      name: '',
-    });
   };
 
   return (
@@ -63,7 +59,7 @@ function Signup() {
           <h2 className="text-4xl text-bc-2 font-bold text-center">Create your account</h2>
           <form className="my-5" onSubmit={handleSubmit}>
             <label className="font-bold" htmlFor="email">
-              Name
+              First Name
             </label>
             <div className="mb-5">
               <input
