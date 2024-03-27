@@ -37,7 +37,6 @@ function Login() {
                 },
                 { withCredentials: true }
             );
-            console.log(data);
             const { name, message, success } = data;
             if (success) {
                 localStorage.setItem("name", name);
