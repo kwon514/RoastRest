@@ -1,5 +1,6 @@
 function calcRestDays(strRoastDate, strFrozenStart, strFrozenEnd) {
     const currentDate = new Date();
+    currentDate.setHours(13, 0, 0, 0);
     const roastDate = new Date(strRoastDate);
 
     const daysSinceRoast = Math.floor((currentDate - roastDate) / (1000 * 60 * 60 * 24));
