@@ -41,7 +41,13 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
         />
         <DataViewField
           label="Remaining doses"
-          value={coffeeData.coffeeWeight ? remainingDoses : '-'}
+          value={
+            coffeeData.coffeeWeight &&
+            coffeeData.coffeeDose &&
+            coffeeData.coffeeWeight > coffeeData.coffeeDose
+              ? remainingDoses
+              : '-'
+          }
         />
         <DataViewField label="Roast level" value={coffeeData.roastLevel} />
         <DataViewField

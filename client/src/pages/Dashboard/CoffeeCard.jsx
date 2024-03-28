@@ -61,7 +61,9 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, updateData }) 
           <Grid item xs={6}>
             <h3 className="text-sm">Remaining doses:</h3>
             <p>
-              {coffeeData.coffeeWeight && coffeeData.coffeeWeight > coffeeData.coffeeDose
+              {coffeeData.coffeeWeight &&
+              coffeeData.coffeeDose &&
+              coffeeData.coffeeWeight > coffeeData.coffeeDose
                 ? remainingDoses
                 : '-'}
             </p>
