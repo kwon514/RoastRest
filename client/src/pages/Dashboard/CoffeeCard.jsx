@@ -38,10 +38,19 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, updateData }) 
   return (
     <Card>
       <CardContent>
-        <h2 className="text-xl font-bold">{coffeeData.name}</h2>
-        <h3 className="text-md font-bold mb-1">
-          {coffeeData.coffeeName} {coffeeData.coffeeRoaster ? ' - ' + coffeeData.coffeeRoaster : ''}
-        </h3>
+        <h2 className="text-xl font-bold">
+          {coffeeData.name ? coffeeData.name : coffeeData.coffeeName}
+        </h2>
+        {coffeeData.name ? (
+          <h3 className="text-md font-bold mb-1">
+            {coffeeData.coffeeName}{' '}
+            {coffeeData.coffeeRoaster ? ' - ' + coffeeData.coffeeRoaster : ''}
+          </h3>
+        ) : (
+          <h3 className="text-md font-bold mb-1">
+            {coffeeData.coffeeRoaster ? coffeeData.coffeeRoaster : '-'}
+          </h3>
+        )}
         <Grid container spacing={1}>
           <Grid item xs={6}>
             <h3 className="text-sm">Roast date:</h3>
