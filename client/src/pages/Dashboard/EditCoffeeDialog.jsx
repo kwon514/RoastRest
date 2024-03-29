@@ -85,7 +85,6 @@ function EditCoffeeDialog({ open, handleClose, updateData, coffeeData, weightUni
       >
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <TextField
-            required
             margin="dense"
             id="name"
             name="name"

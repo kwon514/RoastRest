@@ -67,15 +67,7 @@ function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = 'g' }) {
       <DialogTitle>New Coffee Log</DialogTitle>
       <DialogContent>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <TextField
-            required
-            margin="dense"
-            id="name"
-            name="name"
-            label="Log name"
-            type="text"
-            fullWidth
-          />
+          <TextField margin="dense" id="name" name="name" label="Log name" type="text" fullWidth />
           <TextField
             required
             margin="dense"
