@@ -7,10 +7,10 @@ const coffeeSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    required: [true, 'Name is required'],
   },
   coffeeName: {
     type: String,
+    required: [true, 'Coffee Name is required'],
   },
   coffeeRoaster: {
     type: String,
