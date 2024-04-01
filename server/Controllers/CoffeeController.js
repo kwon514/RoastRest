@@ -16,6 +16,7 @@ module.exports.addCoffee = async (req, res) => {
       frozenEnd,
       notes,
       websiteUrl,
+      creationDate,
     } = req.body;
     const coffee = await Coffee.create({
       userId,
@@ -30,6 +31,7 @@ module.exports.addCoffee = async (req, res) => {
       frozenEnd,
       notes,
       websiteUrl,
+      creationDate,
     });
     const savedCoffee = await coffee.save();
     res.status(201).json(savedCoffee);
