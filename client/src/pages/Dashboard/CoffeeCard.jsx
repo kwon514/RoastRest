@@ -38,10 +38,10 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, updateData }) 
 
   return (
     <Card>
-      <CardContent>
+      <CardContent sx={{ padding: '8px 0 8px 16px' }}>
         <Grid container>
           <Grid item xs={11}>
-            <h2 className="text-xl font-bold">
+            <h2 className="text-xl font-bold mt-2">
               {coffeeData.name ? coffeeData.name : coffeeData.coffeeName}
             </h2>
             {coffeeData.name ? (
