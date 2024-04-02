@@ -42,27 +42,6 @@ function Dashboard() {
   let currentSort = useRef('creationDate');
   let searchBy = useRef('all');
 
-  const updateAllCoffeeData = useCallback(() => {
-    getAllCoffeeData().then((coffees) => {
-      setAllCoffeeData(coffees);
-      setVisibleCoffeeData(sortCoffees(coffees, currentSort.current));
-    });
-  }, [currentSort]);
-
-  const viewCoffeeData = (id) => {
-    getCoffeeData(id).then((data) => {
-      setTargetCoffeeData(data);
-      toggleViewDialog();
-    });
-  };
-
-  const editCoffeeData = (id) => {
-    getCoffeeData(id).then((data) => {
-      setTargetCoffeeData(data);
-      toggleEditDialog();
-    });
-  };
-
   const toggleViewDialog = (event, reason) => {
     if (reason && reason === 'backdropClick') return;
     setViewDialog(!viewDialog);
@@ -89,6 +68,10 @@ function Dashboard() {
     searchBy.current = value;
     handleSearch(getSearchValue());
   };
+
+  const clearSearch = useCallback(() => {
+    document.getElementById('search').value = '';
+  }, []);
 
   const getSearchValue = () => {
     return document.getElementById('search').value;
@@ -124,6 +107,28 @@ function Dashboard() {
   const handleSort = (key) => {
     currentSort.current = key;
     setVisibleCoffeeData(sortCoffees(visibleCoffeeData, key));
+  };
+
+  const updateAllCoffeeData = useCallback(() => {
+    getAllCoffeeData().then((coffees) => {
+      clearSearch();
+      setAllCoffeeData(coffees);
+      setVisibleCoffeeData(sortCoffees(coffees, currentSort.current));
+    });
+  }, [clearSearch, currentSort]);
+
+  const viewCoffeeData = (id) => {
+    getCoffeeData(id).then((data) => {
+      setTargetCoffeeData(data);
+      toggleViewDialog();
+    });
+  };
+
+  const editCoffeeData = (id) => {
+    getCoffeeData(id).then((data) => {
+      setTargetCoffeeData(data);
+      toggleEditDialog();
+    });
   };
 
   useEffect(() => {
