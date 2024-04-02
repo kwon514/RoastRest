@@ -65,7 +65,7 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
         <DataViewField label="Notes" value={coffeeData.notes} />
         <DataViewField label="Website" value={coffeeData.websiteUrl} link={true} />
         <DataViewField
-          label="Creation Date"
+          label="Log date"
           value={
             coffeeData.creationDate ? formatDate(coffeeData.creationDate, 'dd MMM yyyy') : null
           }
