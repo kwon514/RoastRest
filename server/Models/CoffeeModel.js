@@ -40,6 +40,10 @@ const coffeeSchema = new mongoose.Schema({
   websiteUrl: {
     type: String,
   },
+  creationDate: {
+    type: Date,
+    required: [true, 'Creation Date is required'],
+  },
 });
 
 module.exports = mongoose.model('Coffee', coffeeSchema);

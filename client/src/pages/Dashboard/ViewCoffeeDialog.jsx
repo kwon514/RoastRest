@@ -33,11 +33,11 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
         <DataViewField label="Rest days" value={restDays} />
         <DataViewField
           label="Weight"
-          value={coffeeData.coffeeWeight ? coffeeData.coffeeWeight + weightUnit : '-'}
+          value={coffeeData.coffeeWeight ? coffeeData.coffeeWeight + weightUnit : null}
         />
         <DataViewField
           label="Dose"
-          value={coffeeData.coffeeDose ? coffeeData.coffeeDose + weightUnit : '-'}
+          value={coffeeData.coffeeDose ? coffeeData.coffeeDose + weightUnit : null}
         />
         <DataViewField
           label="Remaining doses"
@@ -52,18 +52,24 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
         <DataViewField label="Roast level" value={coffeeData.roastLevel} />
         <DataViewField
           label="Roast date"
-          value={coffeeData.roastDate ? formatDate(coffeeData.roastDate, 'dd MMM yyyy') : '-'}
+          value={coffeeData.roastDate ? formatDate(coffeeData.roastDate, 'dd MMM yyyy') : null}
         />
         <DataViewField
           label="Frozen start date"
-          value={coffeeData.frozenStart ? formatDate(coffeeData.frozenStart, 'dd MMM yyyy') : '-'}
+          value={coffeeData.frozenStart ? formatDate(coffeeData.frozenStart, 'dd MMM yyyy') : null}
         />
         <DataViewField
           label="Frozen end date"
-          value={coffeeData.frozenEnd ? formatDate(coffeeData.frozenEnd, 'dd MMM yyyy') : '-'}
+          value={coffeeData.frozenEnd ? formatDate(coffeeData.frozenEnd, 'dd MMM yyyy') : null}
         />
         <DataViewField label="Notes" value={coffeeData.notes} />
         <DataViewField label="Website" value={coffeeData.websiteUrl} link={true} />
+        <DataViewField
+          label="Log date"
+          value={
+            coffeeData.creationDate ? formatDate(coffeeData.creationDate, 'dd MMM yyyy') : null
+          }
+        />
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Close</Button>

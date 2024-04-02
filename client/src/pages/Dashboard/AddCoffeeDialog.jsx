@@ -54,6 +54,7 @@ function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = 'g' }) {
               `${process.env.REACT_APP_BACKEND_URL}/api/coffee`,
               {
                 ...formJson,
+                creationDate: new Date(),
               },
               { withCredentials: true }
             )
