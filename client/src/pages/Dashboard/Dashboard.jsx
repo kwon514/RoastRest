@@ -79,7 +79,6 @@ function Dashboard() {
 
   const handleSearch = (value) => {
     let searchResults = [];
-    console.log('searching by', searchBy.current, 'for', value);
     if (searchBy.current === 'all') {
       searchResults = allCoffeeData.filter(
         (coffee) =>
