@@ -32,18 +32,9 @@ function EditCoffeeDialog({ open, handleClose, updateData, coffeeData, weightUni
   };
 
   const roastLevels = [
-    {
-      value: 'Light',
-      label: 'Light',
-    },
-    {
-      value: 'Medium',
-      label: 'Medium',
-    },
-    {
-      value: 'Dark',
-      label: 'Dark',
-    },
+    { value: 'Light', label: 'Light' },
+    { value: 'Medium', label: 'Medium' },
+    { value: 'Dark', label: 'Dark' },
   ];
 
   return (
