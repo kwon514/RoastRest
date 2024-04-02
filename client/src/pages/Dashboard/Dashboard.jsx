@@ -112,6 +112,15 @@ function Dashboard() {
     setVisibleCoffeeData(searchResults);
   };
 
+  const sortOptions = [
+    { value: 'creationDate', label: 'Log Date' },
+    { value: 'name', label: 'Log Name' },
+    { value: 'coffeeName', label: 'Coffee Name' },
+    { value: 'coffeeRoaster', label: 'Roaster' },
+    { value: 'coffeeWeight', label: 'Weight' },
+    { value: 'restDays', label: 'Rest Days' },
+  ];
+
   const handleSort = (key) => {
     currentSort.current = key;
     setVisibleCoffeeData(sortCoffees(visibleCoffeeData, key));
@@ -173,12 +182,11 @@ function Dashboard() {
                 defaultValue="creationDate"
                 onChange={(e) => handleSort(e.target.value)}
               >
-                <MenuItem value="creationDate">Log Date</MenuItem>
-                <MenuItem value="name">Log Name</MenuItem>
-                <MenuItem value="coffeeName">Coffee Name</MenuItem>
-                <MenuItem value="coffeeRoaster">Roaster</MenuItem>
-                <MenuItem value="coffeeWeight">Weight</MenuItem>
-                <MenuItem value="restDays">Rest Days</MenuItem>
+                {sortOptions.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
               </TextField>
             </Grid>
           </Grid>
