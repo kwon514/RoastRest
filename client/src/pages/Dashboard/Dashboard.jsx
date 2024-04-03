@@ -41,6 +41,7 @@ function Dashboard() {
 
   let currentSort = useRef('creationDate');
   let searchBy = useRef('all');
+  let duplicateDialog = useRef(false);
 
   const toggleViewDialog = (event, reason) => {
     if (reason && reason === 'backdropClick') return;
@@ -52,8 +53,13 @@ function Dashboard() {
     setEditDialog(!editDialog);
   };
 
-  const toggleAddDialog = (event, reason) => {
+  const toggleAddDialog = (event, reason, isDuplicate) => {
     if (reason && reason === 'backdropClick') return;
+    else if (isDuplicate) {
+      duplicateDialog.current = true;
+    } else {
+      duplicateDialog.current = false;
+    }
     setAddDialog(!addDialog);
   };
 
@@ -216,6 +222,8 @@ function Dashboard() {
             open={addDialog}
             handleClose={toggleAddDialog}
             updateData={updateAllCoffeeData}
+            coffeeData={targetCoffeeData}
+            isDuplicate={duplicateDialog.current}
             weightUnit={weightUnit}
           />
           <ViewCoffeeDialog
