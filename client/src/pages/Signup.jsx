@@ -56,14 +56,16 @@ function Signup() {
       <Navbar />
       <div className="mx-auto max-w-screen-lg px-3 py-8">
         <div className="mx-auto max-w-screen-sm">
-          <h2 className="text-4xl text-bc-2 font-bold text-center">Create your account</h2>
+          <h2 className="text-4xl text-rr-brown-primary font-bold text-center">
+            Create your account
+          </h2>
           <form className="my-5" onSubmit={handleSubmit}>
             <label className="font-bold" htmlFor="email">
               First Name
             </label>
             <div className="mb-5">
               <input
-                className="w-full p-3 rounded border-2 border-bc-2"
+                className="w-full p-3 rounded border-2 border-rr-brown-buttons"
                 type="text"
                 name="name"
                 value={name}
@@ -76,7 +78,7 @@ function Signup() {
             </label>
             <div className="mb-5">
               <input
-                className="w-full p-3 rounded border-2 border-bc-2"
+                className="w-full p-3 rounded border-2 border-rr-brown-buttons"
                 type="email"
                 name="email"
                 value={email}
@@ -88,7 +90,7 @@ function Signup() {
               Password
             </label>
             <div className="flex justify-between items-center mb-5">
-              <div className="flex w-full rounded bg-white border-bc-2 border-2 focus-within:border-black">
+              <div className="flex w-full rounded bg-white border-rr-brown-buttons border-2 focus-within:border-black">
                 <input
                   className="w-full p-3 border-none outline-none"
                   type={visible ? 'text' : 'password'}
@@ -105,7 +107,7 @@ function Signup() {
             </div>
             <button
               type="submit"
-              className="bg-ba-1 hover:bg-ba-2 text-xl text-white p-3 rounded-md w-full mb-3"
+              className="bg-rr-brown-buttons hover:bg-rr-brown-hover text-xl text-white p-3 rounded-md w-full mb-3"
             >
               Submit
             </button>
