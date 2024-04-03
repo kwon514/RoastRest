@@ -3,7 +3,7 @@ import { MoreVert, ContentCopy, DeleteOutline } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem, ListItemIcon } from '@mui/material';
 import { deleteCoffeeData } from 'helpers';
 
-function CoffeeCardMenu({ coffeeData, updateData }) {
+function CoffeeCardMenu({ coffeeData, updateData, duplicateData }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -12,6 +12,11 @@ function CoffeeCardMenu({ coffeeData, updateData }) {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleDuplicate = () => {
+    duplicateData(coffeeData._id);
+    handleClose();
   };
 
   const handleDelete = () => {
@@ -48,7 +53,7 @@ function CoffeeCardMenu({ coffeeData, updateData }) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleDuplicate}>
           <ListItemIcon>
             <ContentCopy fontSize="small" />
           </ListItemIcon>
