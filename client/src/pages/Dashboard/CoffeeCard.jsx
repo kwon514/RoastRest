@@ -4,7 +4,7 @@ import { calcRemainingDoses, calcRestDays, isFrozen } from 'helpers';
 import { formatDate } from 'date-fns';
 import axios from 'axios';
 
-function CoffeeCard({ coffeeData, weightUnit, viewData, editData, updateData }) {
+function CoffeeCard({ coffeeData, weightUnit, viewData, editData, duplicateData, updateData }) {
   const openViewDialog = () => {
     viewData(coffeeData._id);
   };
@@ -56,7 +56,11 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, updateData }) 
             )}
           </Grid>
           <Grid item xs={1} className="inline-flex justify-end">
-            <CoffeeCardMenu coffeeData={coffeeData} updateData={updateData} />
+            <CoffeeCardMenu
+              coffeeData={coffeeData}
+              updateData={updateData}
+              duplicateData={duplicateData}
+            />
           </Grid>
         </Grid>
         <Grid container spacing={1}>
