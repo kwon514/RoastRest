@@ -84,7 +84,7 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, duplicateData,
             <p>
               {coffeeData.coffeeWeight &&
               coffeeData.coffeeDose &&
-              coffeeData.coffeeWeight > coffeeData.coffeeDose
+              coffeeData.coffeeWeight >= coffeeData.coffeeDose
                 ? remainingDoses
                 : '-'}
             </p>
