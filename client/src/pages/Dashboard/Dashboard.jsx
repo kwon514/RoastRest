@@ -136,6 +136,13 @@ function Dashboard() {
     });
   };
 
+  const duplicateCoffeeData = (id) => {
+    getCoffeeData(id).then((data) => {
+      setTargetCoffeeData(data);
+      toggleAddDialog(null, null, true);
+    });
+  };
+
   useEffect(() => {
     isLoggedIn().then((res) => {
       if (res) {
@@ -210,6 +217,7 @@ function Dashboard() {
                   weightUnit={weightUnit}
                   viewData={viewCoffeeData}
                   editData={editCoffeeData}
+                  duplicateData={duplicateCoffeeData}
                   updateData={updateAllCoffeeData}
                 />
               </Grid>
