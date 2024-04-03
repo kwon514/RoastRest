@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { MoreVert, ContentCopy, DeleteOutline } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem, ListItemIcon } from '@mui/material';
+import { deleteCoffeeData } from 'helpers';
 
-function CoffeeCardMenu() {
+function CoffeeCardMenu({ coffeeData, updateData }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -11,6 +12,13 @@ function CoffeeCardMenu() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleDelete = () => {
+    deleteCoffeeData(coffeeData._id).then(() => {
+      updateData();
+    });
+    handleClose();
   };
 
   return (
@@ -46,7 +54,7 @@ function CoffeeCardMenu() {
           </ListItemIcon>
           Duplicate
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleDelete}>
           <ListItemIcon>
             <DeleteOutline fontSize="medium" />
           </ListItemIcon>
