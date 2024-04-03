@@ -18,7 +18,7 @@ function Landing() {
       <Navbar />
       <div className="mx-auto max-w-screen-lg px-3 py-12 md:py-24">
         <header className="text-center">
-          <h1 className="text-4xl sm:text-[3.5rem] px-2 md:px-0 leading-none font-black text-bc-2">
+          <h1 className="text-4xl sm:text-[3.5rem] px-2 md:px-0 leading-none font-black text-rr-brown-primary">
             Stay on top of your coffee rest periods.
           </h1>
           <p className="text-lg sm:text-2xl mt-6 sm:mt-10 px-5 md:px-20">
@@ -26,7 +26,7 @@ function Landing() {
             coffee beans.
           </p>
           <button
-            className="bg-ba-1 hover:bg-ba-2 text-xl text-white font-bold py-4 px-6 rounded-lg mt-12"
+            className="bg-rr-brown-buttons hover:bg-rr-brown-hover text-xl text-white font-bold py-4 px-6 rounded-lg mt-12"
             onClick={ctaPressed}
           >
             Start logging ☕

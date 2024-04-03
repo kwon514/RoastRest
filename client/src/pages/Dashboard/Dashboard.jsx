@@ -145,7 +145,9 @@ function Dashboard() {
       <Navbar showLogoutButton={true} />
       <ThemeProvider theme={theme}>
         <div className="max-w-screen-lg mx-auto px-3 mb-24 xl:mb-0">
-          <h2 className="text-4xl text-bc-2 font-bold text-center py-8">Coffee Dashboard</h2>
+          <h2 className="text-4xl text-rr-brown-primary font-bold text-center py-8">
+            Coffee Dashboard
+          </h2>
           <Grid container spacing={1} className="mb-4">
             <Grid item xs={3} sm={2}>
               <TextField
