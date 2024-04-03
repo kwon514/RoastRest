@@ -1,4 +1,5 @@
 export { default as CoffeeCard } from './CoffeeCard';
+export { default as CoffeeCardMenu } from './CoffeeCardMenu';
 export { default as AddCoffeeDialog } from './AddCoffeeDialog';
 export { default as ViewCoffeeDialog } from './ViewCoffeeDialog';
 export { default as EditCoffeeDialog } from './EditCoffeeDialog';

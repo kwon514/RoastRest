@@ -14,21 +14,17 @@ import {
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import axios from 'axios';
-import { parseDateToISO } from 'helpers';
+import { parseDateToISO, deleteCoffeeData } from 'helpers';
 
 function EditCoffeeDialog({ open, handleClose, updateData, coffeeData, weightUnit = 'g' }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('425'));
 
   const deleteData = () => {
-    axios
-      .delete(`${process.env.REACT_APP_BACKEND_URL}/api/coffee/${coffeeData._id}`, {
-        withCredentials: true,
-      })
-      .then(() => {
-        handleClose();
-        updateData();
-      });
+    deleteCoffeeData(coffeeData._id).then(() => {
+      handleClose();
+      updateData();
+    });
   };
 
   const roastLevels = [

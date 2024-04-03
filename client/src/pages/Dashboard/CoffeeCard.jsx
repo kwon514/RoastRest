@@ -1,9 +1,10 @@
 import { Card, CardContent, CardActions, Button, Grid } from '@mui/material';
+import { CoffeeCardMenu } from './';
 import { calcRemainingDoses, calcRestDays, isFrozen } from 'helpers';
 import { formatDate } from 'date-fns';
 import axios from 'axios';
 
-function CoffeeCard({ coffeeData, weightUnit, viewData, editData, updateData }) {
+function CoffeeCard({ coffeeData, weightUnit, viewData, editData, duplicateData, updateData }) {
   const openViewDialog = () => {
     viewData(coffeeData._id);
   };
@@ -37,20 +38,31 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, updateData }) 
 
   return (
     <Card>
-      <CardContent>
-        <h2 className="text-xl font-bold">
-          {coffeeData.name ? coffeeData.name : coffeeData.coffeeName}
-        </h2>
-        {coffeeData.name ? (
-          <h3 className="text-md font-bold mb-1">
-            {coffeeData.coffeeName}{' '}
-            {coffeeData.coffeeRoaster ? ' - ' + coffeeData.coffeeRoaster : ''}
-          </h3>
-        ) : (
-          <h3 className="text-md font-bold mb-1">
-            {coffeeData.coffeeRoaster ? coffeeData.coffeeRoaster : '-'}
-          </h3>
-        )}
+      <CardContent sx={{ padding: '8px 0 8px 16px' }}>
+        <Grid container>
+          <Grid item xs={11}>
+            <h2 className="text-xl font-bold mt-2">
+              {coffeeData.name ? coffeeData.name : coffeeData.coffeeName}
+            </h2>
+            {coffeeData.name ? (
+              <h3 className="text-md font-bold mb-1">
+                {coffeeData.coffeeName}{' '}
+                {coffeeData.coffeeRoaster ? ' - ' + coffeeData.coffeeRoaster : ''}
+              </h3>
+            ) : (
+              <h3 className="text-md font-bold mb-1">
+                {coffeeData.coffeeRoaster ? coffeeData.coffeeRoaster : '-'}
+              </h3>
+            )}
+          </Grid>
+          <Grid item xs={1} className="inline-flex justify-end">
+            <CoffeeCardMenu
+              coffeeData={coffeeData}
+              updateData={updateData}
+              duplicateData={duplicateData}
+            />
+          </Grid>
+        </Grid>
         <Grid container spacing={1}>
           <Grid item xs={6}>
             <h3 className="text-sm">Roast date:</h3>

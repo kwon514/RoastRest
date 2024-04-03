@@ -15,24 +15,23 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import axios from 'axios';
 import { parseDateToISO } from 'helpers';
 
-function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = 'g' }) {
+function AddCoffeeDialog({
+  open,
+  handleClose,
+  updateData,
+  coffeeData,
+  isDuplicate,
+  weightUnit = 'g',
+}) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('425'));
 
   const roastLevels = [
-    {
-      value: 'Light',
-      label: 'Light',
-    },
-    {
-      value: 'Medium',
-      label: 'Medium',
-    },
-    {
-      value: 'Dark',
-      label: 'Dark',
-    },
+    { value: 'Light', label: 'Light' },
+    { value: 'Medium', label: 'Medium' },
+    { value: 'Dark', label: 'Dark' },
   ];
+
   return (
     <Dialog
       open={open}
@@ -68,7 +67,15 @@ function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = 'g' }) {
       <DialogTitle>New Coffee Log</DialogTitle>
       <DialogContent>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <TextField margin="dense" id="name" name="name" label="Log name" type="text" fullWidth />
+          <TextField
+            margin="dense"
+            id="name"
+            name="name"
+            label="Log name"
+            type="text"
+            {...(isDuplicate ? { defaultValue: coffeeData.name } : {})}
+            fullWidth
+          />
           <TextField
             required
             margin="dense"
@@ -76,6 +83,7 @@ function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = 'g' }) {
             name="coffeeName"
             label="Coffee name"
             type="text"
+            {...(isDuplicate ? { defaultValue: coffeeData.coffeeName } : {})}
             fullWidth
           />
           <TextField
@@ -84,6 +92,7 @@ function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = 'g' }) {
             name="coffeeRoaster"
             label="Roaster name"
             type="text"
+            {...(isDuplicate ? { defaultValue: coffeeData.coffeeRoaster } : {})}
             fullWidth
           />
           <TextField
@@ -96,6 +105,7 @@ function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = 'g' }) {
               inputProps: { step: '0.1', min: '0' },
               endAdornment: <InputAdornment position="end">{weightUnit}</InputAdornment>,
             }}
+            {...(isDuplicate ? { defaultValue: coffeeData.coffeeWeight } : {})}
             fullWidth
           />
           <TextField
@@ -108,6 +118,7 @@ function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = 'g' }) {
               inputProps: { step: '0.1', min: '0' },
               endAdornment: <InputAdornment position="end">{weightUnit}</InputAdornment>,
             }}
+            {...(isDuplicate ? { defaultValue: coffeeData.coffeeDose } : {})}
             fullWidth
           />
           <TextField
@@ -117,7 +128,7 @@ function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = 'g' }) {
             name="roastLevel"
             label="Roast level"
             type="text"
-            defaultValue={''}
+            {...(isDuplicate ? { defaultValue: coffeeData.roastLevel } : { defaultValue: '' })}
             fullWidth
           >
             {roastLevels.map((option) => (
@@ -131,7 +142,9 @@ function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = 'g' }) {
             name="roastDate"
             label="Roast date"
             format="dd/MM/yyyy"
-            defaultValue={new Date()}
+            {...(isDuplicate
+              ? { defaultValue: coffeeData.roastDate }
+              : { defaultValue: new Date() })}
             slotProps={{ textField: { fullWidth: true, margin: 'dense', required: true } }}
           />
           <DatePicker
@@ -139,6 +152,7 @@ function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = 'g' }) {
             name="frozenStart"
             label="Frozen start date"
             format="dd/MM/yyyy"
+            {...(isDuplicate ? { defaultValue: coffeeData.frozenStart } : {})}
             slotProps={{ textField: { fullWidth: true, margin: 'dense' } }}
           />
           <DatePicker
@@ -146,6 +160,7 @@ function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = 'g' }) {
             name="frozenEnd"
             label="Frozen end date (leave blank if frozen)"
             format="dd/MM/yyyy"
+            {...(isDuplicate ? { defaultValue: coffeeData.frozenEnd } : {})}
             slotProps={{ textField: { fullWidth: true, margin: 'dense' } }}
           />
           <TextField
@@ -154,6 +169,7 @@ function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = 'g' }) {
             name="notes"
             label="Notes"
             type="text"
+            {...(isDuplicate ? { defaultValue: coffeeData.notes } : {})}
             fullWidth
             multiline
             rows={4}
@@ -164,6 +180,7 @@ function AddCoffeeDialog({ open, handleClose, updateData, weightUnit = 'g' }) {
             name="websiteUrl"
             label="Website"
             type="text"
+            {...(isDuplicate ? { defaultValue: coffeeData.websiteUrl } : {})}
             fullWidth
           />
         </LocalizationProvider>
