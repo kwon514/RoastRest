@@ -97,7 +97,7 @@ function Dashboard() {
         coffee[searchBy.current].toLowerCase().includes(value.toLowerCase())
       );
     }
-    setVisibleCoffeeData(searchResults);
+    setVisibleCoffeeData(sortCoffees(searchResults, currentSort.current));
   };
 
   const sortOptions = [
