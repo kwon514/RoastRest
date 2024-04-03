@@ -56,7 +56,7 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, updateData }) 
             )}
           </Grid>
           <Grid item xs={1} className="inline-flex justify-end">
-            <CoffeeCardMenu />
+            <CoffeeCardMenu coffeeData={coffeeData} updateData={updateData} />
           </Grid>
         </Grid>
         <Grid container spacing={1}>
