@@ -1,13 +1,13 @@
 import {
   SearchSortPanel,
-  CoffeeCard,
+  CoffeeGrid,
   AddCoffeeDialog,
   ViewCoffeeDialog,
   EditCoffeeDialog,
 } from './';
 import { Navbar } from 'components';
 import { isLoggedIn, getAllCoffeeData, getCoffeeData, sortCoffees } from 'helpers';
-import { Grid, Fab, createTheme, ThemeProvider, TextField, MenuItem } from '@mui/material';
+import { Fab, createTheme, ThemeProvider } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -131,49 +131,27 @@ function Dashboard() {
               <h2 className="text-sm text-rr-brown-primary font-bold uppercase ml-2 mb-1">
                 Pinned
               </h2>
-              <Grid container spacing={2} className="mb-6">
-                {visibleCoffeeData.slice().map((coffee) => {
-                  if (coffee.isPinned) {
-                    return (
-                      <Grid item xs={12} sm={6} key={coffee._id}>
-                        <CoffeeCard
-                          coffeeData={coffee}
-                          weightUnit={weightUnit}
-                          viewData={viewCoffeeData}
-                          editData={editCoffeeData}
-                          duplicateData={duplicateCoffeeData}
-                          updateData={updateAllCoffeeData}
-                        />
-                      </Grid>
-                    );
-                  }
-                  return null;
-                })}
-              </Grid>
+              <CoffeeGrid
+                coffeeData={visibleCoffeeData.filter((coffee) => coffee.isPinned)}
+                weightUnit={weightUnit}
+                viewData={viewCoffeeData}
+                editData={editCoffeeData}
+                duplicateData={duplicateCoffeeData}
+                updateData={updateAllCoffeeData}
+              />
               <h2 className="text-sm text-rr-brown-primary font-bold uppercase ml-2 mb-1">
                 Others
               </h2>
             </>
           )}
-          <Grid container spacing={2}>
-            {visibleCoffeeData.slice().map((coffee) => {
-              if (!coffee.isPinned) {
-                return (
-                  <Grid item xs={12} sm={6} key={coffee._id}>
-                    <CoffeeCard
-                      coffeeData={coffee}
-                      weightUnit={weightUnit}
-                      viewData={viewCoffeeData}
-                      editData={editCoffeeData}
-                      duplicateData={duplicateCoffeeData}
-                      updateData={updateAllCoffeeData}
-                    />
-                  </Grid>
-                );
-              }
-              return null;
-            })}
-          </Grid>
+          <CoffeeGrid
+            coffeeData={visibleCoffeeData.filter((coffee) => !coffee.isPinned)}
+            weightUnit={weightUnit}
+            viewData={viewCoffeeData}
+            editData={editCoffeeData}
+            duplicateData={duplicateCoffeeData}
+            updateData={updateAllCoffeeData}
+          />
           <Fab color="primary" aria-label="add" onClick={toggleAddDialog}>
             <AddIcon color="secondary" />
           </Fab>
