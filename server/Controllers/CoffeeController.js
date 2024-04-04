@@ -75,6 +75,7 @@ module.exports.updateCoffeeById = async (req, res) => {
       frozenEnd,
       notes,
       websiteUrl,
+      isPinned,
     } = req.body;
     const coffee = await Coffee.findOneAndUpdate(
       { _id: req.params.id, userId },
@@ -90,6 +91,7 @@ module.exports.updateCoffeeById = async (req, res) => {
         frozenEnd,
         notes,
         websiteUrl,
+        isPinned,
       },
       { new: true }
     );
