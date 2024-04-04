@@ -7,6 +7,6 @@ RoastRest is a free and open source web application developed for coffee enthusi
 RoastRest is live and can be accessed [here](https://roastrest.me/).
 
 <div style="display:flex; justify-content: center; align-items: center; margin-top: 25px;">
-    <img src="client/public/roastrest-mobile.png" alt="roastrest mobile dashboard" width="23%" style="padding: 0 4% 0 2%;"/>
+    <img src="client/public/roastrest-mobile.png" alt="roastrest mobile dashboard" width="23%" style="padding: 4% 4% 0 2%;"/>
     <img src="client/public/roastrest-laptop.png" alt="roastrest laptop dashboard" width="74%" />
 </div>
