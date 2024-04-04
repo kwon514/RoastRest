@@ -44,6 +44,10 @@ const coffeeSchema = new mongoose.Schema({
     type: Date,
     required: [true, 'Creation Date is required'],
   },
+  isPinned: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model('Coffee', coffeeSchema);
