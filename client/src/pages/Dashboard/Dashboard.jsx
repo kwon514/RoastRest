@@ -157,7 +157,7 @@ function Dashboard() {
     <>
       <Navbar showLogoutButton={true} />
       <ThemeProvider theme={theme}>
-        <div className="max-w-screen-lg mx-auto px-3 mb-24 xl:mb-0">
+        <div className="max-w-screen-lg mx-auto px-3 mb-24">
           <h2 className="text-4xl text-rr-brown-primary font-bold text-center py-8">
             Coffee Dashboard
           </h2>
