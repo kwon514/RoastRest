@@ -209,27 +209,35 @@ function Dashboard() {
               </TextField>
             </Grid>
           </Grid>
-          <h2 className="text-sm text-rr-brown-primary font-bold uppercase ml-2 mb-1">Pinned</h2>
-          <Grid container spacing={2} className="mb-6">
-            {visibleCoffeeData.slice().map((coffee) => {
-              if (coffee.isPinned) {
-                return (
-                  <Grid item xs={12} sm={6} key={coffee._id}>
-                    <CoffeeCard
-                      coffeeData={coffee}
-                      weightUnit={weightUnit}
-                      viewData={viewCoffeeData}
-                      editData={editCoffeeData}
-                      duplicateData={duplicateCoffeeData}
-                      updateData={updateAllCoffeeData}
-                    />
-                  </Grid>
-                );
-              }
-              return null;
-            })}
-          </Grid>
-          <h2 className="text-sm text-rr-brown-primary font-bold uppercase ml-2 mb-1">Others</h2>
+          {visibleCoffeeData.some((coffee) => coffee.isPinned) && (
+            <>
+              <h2 className="text-sm text-rr-brown-primary font-bold uppercase ml-2 mb-1">
+                Pinned
+              </h2>
+              <Grid container spacing={2} className="mb-6">
+                {visibleCoffeeData.slice().map((coffee) => {
+                  if (coffee.isPinned) {
+                    return (
+                      <Grid item xs={12} sm={6} key={coffee._id}>
+                        <CoffeeCard
+                          coffeeData={coffee}
+                          weightUnit={weightUnit}
+                          viewData={viewCoffeeData}
+                          editData={editCoffeeData}
+                          duplicateData={duplicateCoffeeData}
+                          updateData={updateAllCoffeeData}
+                        />
+                      </Grid>
+                    );
+                  }
+                  return null;
+                })}
+              </Grid>
+              <h2 className="text-sm text-rr-brown-primary font-bold uppercase ml-2 mb-1">
+                Others
+              </h2>
+            </>
+          )}
           <Grid container spacing={2}>
             {visibleCoffeeData.slice().map((coffee) => {
               if (!coffee.isPinned) {
