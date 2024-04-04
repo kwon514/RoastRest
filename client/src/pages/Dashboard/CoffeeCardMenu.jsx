@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { MoreVert, ContentCopy, DeleteOutline } from '@mui/icons-material';
+import { MoreVert, PushPinOutlined, ContentCopy, DeleteOutline } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem, ListItemIcon } from '@mui/material';
-import { deleteCoffeeData } from 'helpers';
+import { toggleCoffeePin, deleteCoffeeData } from 'helpers';
 
 function CoffeeCardMenu({ coffeeData, updateData, duplicateData }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -12,6 +12,14 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData }) {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handlePin = () => {
+    console.log(coffeeData._id, coffeeData.isPinned);
+    toggleCoffeePin(coffeeData._id, coffeeData.isPinned).then(() => {
+      updateData();
+    });
+    handleClose();
   };
 
   const handleDuplicate = () => {
@@ -53,6 +61,12 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData }) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        <MenuItem onClick={handlePin}>
+          <ListItemIcon>
+            <PushPinOutlined fontSize="small" />
+          </ListItemIcon>
+          {coffeeData.isPinned ? 'Unpin' : 'Pin'}
+        </MenuItem>
         <MenuItem onClick={handleDuplicate}>
           <ListItemIcon>
             <ContentCopy fontSize="small" />
