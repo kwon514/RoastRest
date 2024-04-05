@@ -1,5 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import { Login, Signup, Landing, Dashboard } from './pages';
+import axios from 'axios';
+
+axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
   return (
