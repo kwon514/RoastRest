@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { Navbar } from 'components';
 import { isLoggedIn } from 'helpers';
@@ -15,6 +16,9 @@ function Landing() {
   };
   return (
     <>
+      <Helmet>
+        <title>RoastRest: Log, Track, & Optimise Your Coffee</title>
+      </Helmet>
       <Navbar />
       <div className="mx-auto max-w-screen-lg px-3 py-12 md:py-24">
         <header className="text-center">

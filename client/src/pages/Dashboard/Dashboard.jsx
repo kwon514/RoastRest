@@ -11,6 +11,7 @@ import { Fab, createTheme, ThemeProvider } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const theme = createTheme({
   palette: {
@@ -113,6 +114,9 @@ function Dashboard() {
 
   return (
     <>
+      <Helmet>
+        <title>Coffee Dashboard | RoastRest</title>
+      </Helmet>
       <Navbar showLogoutButton={true} />
       <ThemeProvider theme={theme}>
         <div className="max-w-screen-lg mx-auto px-3 mb-24">

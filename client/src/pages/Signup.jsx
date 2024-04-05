@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { Navbar } from 'components';
@@ -53,6 +54,9 @@ function Signup() {
 
   return (
     <>
+      <Helmet>
+        <title>Sign Up | RoastRest</title>
+      </Helmet>
       <Navbar />
       <div className="mx-auto max-w-screen-lg px-3 py-8">
         <div className="mx-auto max-w-screen-sm">
