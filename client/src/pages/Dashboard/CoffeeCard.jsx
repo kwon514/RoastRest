@@ -25,7 +25,7 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, duplicateData,
     }
     axios
       .put(
-        `${process.env.REACT_APP_BACKEND_URL}/api/coffee/${coffeeData._id}`,
+        `/coffee/${coffeeData._id}`,
         {
           coffeeWeight: newWeight,
         },

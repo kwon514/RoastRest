@@ -51,7 +51,7 @@ function EditCoffeeDialog({ open, handleClose, updateData, coffeeData, weightUni
           formJson.frozenEnd = parseDateToISO(formJson.frozenEnd);
           axios
             .put(
-              `${process.env.REACT_APP_BACKEND_URL}/api/coffee/${coffeeData._id}`,
+              `/coffee/${coffeeData._id}`,
               {
                 ...formJson,
               },

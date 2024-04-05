@@ -39,12 +39,10 @@ export default function MenuIntroduction() {
   };
 
   const Logout = () => {
-    axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/api/user/logout`, {}, { withCredentials: true })
-      .then(() => {
-        localStorage.removeItem('name');
-        navigate('/');
-      });
+    axios.post(`/user/logout`, {}, { withCredentials: true }).then(() => {
+      localStorage.removeItem('name');
+      navigate('/');
+    });
   };
 
   return (

@@ -50,7 +50,7 @@ function AddCoffeeDialog({
           formJson.frozenEnd = parseDateToISO(formJson.frozenEnd);
           axios
             .post(
-              `${process.env.REACT_APP_BACKEND_URL}/api/coffee`,
+              `/coffee`,
               {
                 ...formJson,
                 creationDate: new Date(),

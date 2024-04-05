@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 function deleteCoffeeData(coffeeId) {
-  return axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/coffee/${coffeeId}`, {
+  return axios.delete(`/coffee/${coffeeId}`, {
     withCredentials: true,
   });
 }
