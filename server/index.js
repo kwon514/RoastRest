@@ -28,5 +28,5 @@ app.use(cookieParser());
 
 app.use(express.json());
 
-app.use('/api/user', authRoute);
-app.use('/api/coffee', coffeeRoute);
+app.use('/user', authRoute);
+app.use('/coffee', coffeeRoute);
