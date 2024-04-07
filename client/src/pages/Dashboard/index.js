@@ -1,5 +1,6 @@
 export { default as SearchSortPanel } from './SearchSortPanel';
 export { default as CoffeeGrid } from './CoffeeGrid';
+export { default as CoffeeGridSkeleton } from './CoffeeGridSkeleton';
 export { default as CoffeeCard } from './CoffeeCard';
 export { default as CoffeeCardMenu } from './CoffeeCardMenu';
 export { default as AddCoffeeDialog } from './Dialogs/AddCoffeeDialog';
