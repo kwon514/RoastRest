@@ -39,6 +39,8 @@ const theme = createTheme({
 function Dashboard() {
   const navigate = useNavigate();
   const weightUnit = 'g';
+  const [isLoadingData, setIsLoadingData] = useState(true);
+
   const [allCoffeeData, setAllCoffeeData] = useState([]);
   const [visibleCoffeeData, setVisibleCoffeeData] = useState([]);
   const [targetCoffeeData, setTargetCoffeeData] = useState({});
@@ -79,6 +81,7 @@ function Dashboard() {
       clearSearch();
       setAllCoffeeData(coffees);
       setVisibleCoffeeData(sortCoffees(coffees, currentSort.current));
+      setIsLoadingData(false);
     });
   }, [clearSearch, currentSort]);
 
@@ -131,7 +134,7 @@ function Dashboard() {
             currentSort={currentSort}
             sortCoffees={sortCoffees}
           />
-          {allCoffeeData.length === 0 ? (
+          {isLoadingData ? (
             <CoffeeGridSkeleton />
           ) : (
             <>
