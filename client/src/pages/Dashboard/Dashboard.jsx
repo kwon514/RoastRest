@@ -1,6 +1,7 @@
 import {
   SearchSortPanel,
   CoffeeGrid,
+  CoffeeGridSkeleton,
   AddCoffeeDialog,
   ViewCoffeeDialog,
   EditCoffeeDialog,
@@ -130,32 +131,38 @@ function Dashboard() {
             currentSort={currentSort}
             sortCoffees={sortCoffees}
           />
-          {visibleCoffeeData.some((coffee) => coffee.isPinned) && (
+          {allCoffeeData.length === 0 ? (
+            <CoffeeGridSkeleton />
+          ) : (
             <>
-              <h2 className="text-sm text-rr-brown-primary font-bold uppercase ml-2 mb-1">
-                Pinned
-              </h2>
+              {visibleCoffeeData.some((coffee) => coffee.isPinned) && (
+                <>
+                  <h2 className="text-sm text-rr-brown-primary font-bold uppercase ml-2 mb-1">
+                    Pinned
+                  </h2>
+                  <CoffeeGrid
+                    coffeeData={visibleCoffeeData.filter((coffee) => coffee.isPinned)}
+                    weightUnit={weightUnit}
+                    viewData={viewCoffeeData}
+                    editData={editCoffeeData}
+                    duplicateData={duplicateCoffeeData}
+                    updateData={updateAllCoffeeData}
+                  />
+                  <h2 className="text-sm text-rr-brown-primary font-bold uppercase ml-2 mb-1">
+                    Others
+                  </h2>
+                </>
+              )}
               <CoffeeGrid
-                coffeeData={visibleCoffeeData.filter((coffee) => coffee.isPinned)}
+                coffeeData={visibleCoffeeData.filter((coffee) => !coffee.isPinned)}
                 weightUnit={weightUnit}
                 viewData={viewCoffeeData}
                 editData={editCoffeeData}
                 duplicateData={duplicateCoffeeData}
                 updateData={updateAllCoffeeData}
               />
-              <h2 className="text-sm text-rr-brown-primary font-bold uppercase ml-2 mb-1">
-                Others
-              </h2>
             </>
           )}
-          <CoffeeGrid
-            coffeeData={visibleCoffeeData.filter((coffee) => !coffee.isPinned)}
-            weightUnit={weightUnit}
-            viewData={viewCoffeeData}
-            editData={editCoffeeData}
-            duplicateData={duplicateCoffeeData}
-            updateData={updateAllCoffeeData}
-          />
           <Fab color="primary" aria-label="add" onClick={toggleAddDialog}>
             <AddIcon color="secondary" />
           </Fab>
