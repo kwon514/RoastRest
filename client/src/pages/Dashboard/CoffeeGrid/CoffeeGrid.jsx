@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import { CoffeeCard } from './';
+import { CoffeeCard } from '..';
 
 function CoffeeGrid({ coffeeData, weightUnit, viewData, editData, duplicateData, updateData }) {
   return (

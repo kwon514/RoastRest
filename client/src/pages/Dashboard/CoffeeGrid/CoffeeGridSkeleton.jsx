@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import { CoffeeCardSkeleton } from './';
+import { CoffeeCardSkeleton } from '..';
 
 function CoffeeGridSkeleton() {
   return (

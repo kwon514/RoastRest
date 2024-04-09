@@ -1,5 +1,5 @@
 import { Card, CardContent, CardActions, Button, Grid } from '@mui/material';
-import { CoffeeCardMenu } from './';
+import { CoffeeCardMenu } from '..';
 import { calcRemainingDoses, calcRestDays, isFrozen } from 'helpers';
 import { formatDate } from 'date-fns';
 import axios from 'axios';
