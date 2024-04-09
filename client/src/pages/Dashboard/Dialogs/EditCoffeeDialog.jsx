@@ -155,7 +155,10 @@ function EditCoffeeDialog({ open, handleClose, updateData, coffeeData, weightUni
             label="Frozen start date"
             format="dd/MM/yyyy"
             defaultValue={coffeeData.frozenStart}
-            slotProps={{ textField: { fullWidth: true, margin: 'dense' } }}
+            slotProps={{
+              field: { clearable: true },
+              textField: { fullWidth: true, margin: 'dense' },
+            }}
           />
           <DatePicker
             id="frozenEnd"
@@ -163,7 +166,10 @@ function EditCoffeeDialog({ open, handleClose, updateData, coffeeData, weightUni
             label="Frozen end date (leave blank if frozen)"
             format="dd/MM/yyyy"
             defaultValue={coffeeData.frozenEnd}
-            slotProps={{ textField: { fullWidth: true, margin: 'dense' } }}
+            slotProps={{
+              field: { clearable: true },
+              textField: { fullWidth: true, margin: 'dense' },
+            }}
           />
           <TextField
             margin="dense"
