@@ -63,7 +63,7 @@ module.exports.getCoffeeById = async (req, res) => {
 module.exports.updateCoffeeById = async (req, res) => {
   try {
     const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
-    const {
+    let {
       name,
       coffeeName,
       coffeeRoaster,
@@ -77,6 +77,14 @@ module.exports.updateCoffeeById = async (req, res) => {
       websiteUrl,
       isPinned,
     } = req.body;
+
+    if (!frozenStart) {
+      frozenStart = null;
+    }
+    if (!frozenEnd) {
+      frozenEnd = null;
+    }
+
     const coffee = await Coffee.findOneAndUpdate(
       { _id: req.params.id, userId },
       {
