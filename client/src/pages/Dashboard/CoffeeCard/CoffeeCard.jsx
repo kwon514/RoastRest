@@ -1,8 +1,7 @@
 import { Card, CardContent, CardActions, Button, Grid } from '@mui/material';
 import { CoffeeCardMenu } from '..';
-import { calcRemainingDoses, calcRestDays, isFrozen } from 'helpers';
+import { calcRemainingDoses, calcRestDays, useCoffeeDose, isFrozen } from 'helpers';
 import { formatDate } from 'date-fns';
-import axios from 'axios';
 
 function CoffeeCard({ coffeeData, weightUnit, viewData, editData, duplicateData, updateData }) {
   const openViewDialog = () => {
@@ -17,23 +16,9 @@ function CoffeeCard({ coffeeData, weightUnit, viewData, editData, duplicateData,
   const remainingDoses = calcRemainingDoses(coffeeData.coffeeWeight, coffeeData.coffeeDose);
 
   const useDose = () => {
-    let newWeight = Math.round((coffeeData.coffeeWeight - coffeeData.coffeeDose) * 10) / 10;
-    if (newWeight === 0) {
-      return;
-    } else if (newWeight < 0) {
-      newWeight = 0;
-    }
-    axios
-      .put(
-        `/coffee/${coffeeData._id}`,
-        {
-          coffeeWeight: newWeight,
-        },
-        { withCredentials: true }
-      )
-      .then(() => {
-        updateData();
-      });
+    useCoffeeDose(coffeeData._id, coffeeData.coffeeWeight, coffeeData.coffeeDose).then(() => {
+      updateData();
+    });
   };
 
   return (
