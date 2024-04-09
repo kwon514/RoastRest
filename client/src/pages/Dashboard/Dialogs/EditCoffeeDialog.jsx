@@ -13,8 +13,7 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
-import axios from 'axios';
-import { parseDateToISO, deleteCoffeeData } from 'helpers';
+import { editCoffeeData, deleteCoffeeData } from 'helpers';
 
 function EditCoffeeDialog({ open, handleClose, updateData, coffeeData, weightUnit = 'g' }) {
   const theme = useTheme();
@@ -46,21 +45,10 @@ function EditCoffeeDialog({ open, handleClose, updateData, coffeeData, weightUni
           event.preventDefault();
           const formData = new FormData(event.currentTarget);
           const formJson = Object.fromEntries(formData.entries());
-          formJson.roastDate = parseDateToISO(formJson.roastDate);
-          formJson.frozenStart = parseDateToISO(formJson.frozenStart);
-          formJson.frozenEnd = parseDateToISO(formJson.frozenEnd);
-          axios
-            .put(
-              `/coffee/${coffeeData._id}`,
-              {
-                ...formJson,
-              },
-              { withCredentials: true }
-            )
-            .then(() => {
-              handleClose();
-              updateData();
-            });
+          editCoffeeData(coffeeData._id, formJson).then(() => {
+            handleClose();
+            updateData();
+          });
         },
       }}
     >
