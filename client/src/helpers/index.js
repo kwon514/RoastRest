@@ -2,6 +2,7 @@ export { default as isLoggedIn } from './Authentication/isLoggedIn';
 export { default as calcRestDays } from './Coffee/calcRestDays';
 export { default as getAllCoffeeData } from './Coffee/getAllCoffeeData';
 export { default as getCoffeeData } from './Coffee/getCoffeeData';
+export { default as addCoffeeData } from './Coffee/addCoffeeData';
 export { default as deleteCoffeeData } from './Coffee/deleteCoffeeData';
 export { default as calcRemainingDoses } from './Coffee/calcRemainingDoses';
 export { default as useCoffeeDose } from './Coffee/useCoffeeDose';
