@@ -1,4 +1,5 @@
 export { default as isLoggedIn } from './Authentication/isLoggedIn';
+export { default as logoutUser } from './Authentication/logoutUser';
 export { default as calcRestDays } from './Coffee/calcRestDays';
 export { default as getAllCoffeeData } from './Coffee/getAllCoffeeData';
 export { default as getCoffeeData } from './Coffee/getCoffeeData';
