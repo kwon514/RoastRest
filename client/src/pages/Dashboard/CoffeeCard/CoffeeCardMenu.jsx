@@ -15,7 +15,6 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData }) {
   };
 
   const handlePin = () => {
-    console.log(coffeeData._id, coffeeData.isPinned);
     toggleCoffeePin(coffeeData._id, coffeeData.isPinned).then(() => {
       updateData();
     });
