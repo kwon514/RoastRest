@@ -12,8 +12,7 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
-import axios from 'axios';
-import { parseDateToISO } from 'helpers';
+import { addCoffeeData } from 'helpers';
 
 function AddCoffeeDialog({
   open,
@@ -45,22 +44,10 @@ function AddCoffeeDialog({
           event.preventDefault();
           const formData = new FormData(event.currentTarget);
           const formJson = Object.fromEntries(formData.entries());
-          formJson.roastDate = parseDateToISO(formJson.roastDate);
-          formJson.frozenStart = parseDateToISO(formJson.frozenStart);
-          formJson.frozenEnd = parseDateToISO(formJson.frozenEnd);
-          axios
-            .post(
-              `/coffee`,
-              {
-                ...formJson,
-                creationDate: new Date(),
-              },
-              { withCredentials: true }
-            )
-            .then(() => {
-              handleClose();
-              updateData();
-            });
+          addCoffeeData(formJson).then(() => {
+            updateData();
+            handleClose();
+          });
         },
       }}
     >
