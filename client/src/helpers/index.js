@@ -1,11 +1,12 @@
+export { default as isLoggedIn } from './Authentication/isLoggedIn';
 export { default as calcRestDays } from './Coffee/calcRestDays';
-export { default as parseDateToISO } from './Miscellaneous/parseDateToISO';
+export { default as getAllCoffeeData } from './Coffee/getAllCoffeeData';
 export { default as getCoffeeData } from './Coffee/getCoffeeData';
 export { default as deleteCoffeeData } from './Coffee/deleteCoffeeData';
-export { default as getAllCoffeeData } from './Coffee/getAllCoffeeData';
-export { default as toggleCoffeePin } from './Coffee/toggleCoffeePin';
-export { default as isFrozen } from './Coffee/isFrozen';
-export { default as isLoggedIn } from './Authentication/isLoggedIn';
 export { default as calcRemainingDoses } from './Coffee/calcRemainingDoses';
+export { default as useCoffeeDose } from './Coffee/useCoffeeDose';
+export { default as isFrozen } from './Coffee/isFrozen';
+export { default as toggleCoffeePin } from './Coffee/toggleCoffeePin';
+export { default as parseDateToISO } from './Miscellaneous/parseDateToISO';
 export { default as toTitleCase } from './Miscellaneous/toTitleCase';
 export { default as sortCoffees } from './Miscellaneous/sortCoffees';
