@@ -1,16 +1,17 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { Dropdown } from '@mui/base/Dropdown';
-import { Menu } from '@mui/base/Menu';
-import { MenuButton as BaseMenuButton } from '@mui/base/MenuButton';
-import { MenuItem as BaseMenuItem } from '@mui/base/MenuItem';
+import { forwardRef, useContext } from 'react';
+import {
+  Dropdown,
+  Menu,
+  MenuButton as BaseMenuButton,
+  MenuItem as BaseMenuItem,
+  CssTransition,
+  PopupContext,
+} from '@mui/base';
 import { styled } from '@mui/system';
-import { CssTransition } from '@mui/base/Transitions';
-import { PopupContext } from '@mui/base/Unstable_Popup';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { logoutUser } from 'helpers';
 
-export default function MenuIntroduction() {
+function NavDropdown() {
   const navigate = useNavigate();
 
   function ArrowIcon() {
@@ -39,8 +40,7 @@ export default function MenuIntroduction() {
   };
 
   const Logout = () => {
-    axios.post(`/user/logout`, {}, { withCredentials: true }).then(() => {
-      localStorage.removeItem('name');
+    logoutUser().then(() => {
       navigate('/');
     });
   };
@@ -96,9 +96,9 @@ const Listbox = styled('ul')(
   `
 );
 
-const AnimatedListbox = React.forwardRef(function AnimatedListbox(props, ref) {
+const AnimatedListbox = forwardRef(function AnimatedListbox(props, ref) {
   const { ownerState, ...other } = props;
-  const popupContext = React.useContext(PopupContext);
+  const popupContext = useContext(PopupContext);
   const verticalPlacement = popupContext.placement.split('-')[0];
 
   return (
@@ -111,10 +111,6 @@ const AnimatedListbox = React.forwardRef(function AnimatedListbox(props, ref) {
     </CssTransition>
   );
 });
-
-AnimatedListbox.propTypes = {
-  ownerState: PropTypes.object.isRequired,
-};
 
 const MenuItem = styled(BaseMenuItem)(
   ({ theme }) => `
@@ -142,3 +138,5 @@ const MenuButton = styled(BaseMenuButton)(
   color: #1C2025;
   `
 );
+
+export default NavDropdown;
