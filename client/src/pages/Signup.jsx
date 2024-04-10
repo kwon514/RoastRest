@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { Navbar } from 'components';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { toTitleCase } from 'helpers';
+import { registerUser } from 'helpers';
 
 function Signup() {
   const navigate = useNavigate();
@@ -14,6 +13,7 @@ function Signup() {
     password: '',
     name: '',
   });
+
   const { email, password, name } = inputValue;
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -22,6 +22,7 @@ function Signup() {
       [name]: value,
     });
   };
+
   const [visible, setVisible] = useState(false);
 
   const handleError = (err) =>
@@ -32,21 +33,15 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        `/user/signup`,
-        {
-          ...inputValue,
-          name: toTitleCase(inputValue.name),
-        },
-        { withCredentials: true }
-      );
-      const { name, success, message } = data;
-      if (success) {
-        localStorage.setItem('name', name);
-        navigate('/dashboard');
-      } else {
-        handleError(message);
-      }
+      registerUser(email, password, name).then((res) => {
+        const { name, message, success } = res.data;
+        if (success) {
+          localStorage.setItem('name', name);
+          navigate('/dashboard');
+        } else {
+          handleError(message);
+        }
+      });
     } catch (error) {
       console.log(error);
     }
