@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { Navbar } from 'components';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { isLoggedIn } from 'helpers';
+import { isLoggedIn, loginUser } from 'helpers';
 
 function Login() {
   const navigate = useNavigate();
+
   const [inputValue, setInputValue] = useState({
     email: '',
     password: '',
   });
+
   const { email, password } = inputValue;
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setInputValue({
@@ -21,6 +23,7 @@ function Login() {
       [name]: value,
     });
   };
+
   const [visible, setVisible] = useState(false);
 
   const handleError = (err) =>
@@ -30,24 +33,15 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const { data } = await axios.post(
-        `/user/login`,
-        {
-          ...inputValue,
-        },
-        { withCredentials: true }
-      );
-      const { name, message, success } = data;
+    loginUser(email, password).then((res) => {
+      const { name, message, success } = res.data;
       if (success) {
         localStorage.setItem('name', name);
         navigate('/dashboard');
       } else {
         handleError(message);
       }
-    } catch (error) {
-      console.log(error);
-    }
+    });
   };
 
   useEffect(() => {
