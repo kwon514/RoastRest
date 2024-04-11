@@ -1,11 +1,13 @@
-import { Grid, TextField, MenuItem } from '@mui/material';
 import { useRef } from 'react';
+import { Grid, TextField, MenuItem, Button } from '@mui/material';
+import { BiSortDown, BiSortUp } from 'react-icons/bi';
 
 function SearchSortPanel({
   allCoffeeData,
   visibleCoffeeData,
   setVisibleCoffeeData,
   currentSort,
+  reverseSort,
   sortCoffees,
 }) {
   let searchBy = useRef('all');
@@ -40,7 +42,7 @@ function SearchSortPanel({
         coffee[searchBy.current].toLowerCase().includes(value.toLowerCase())
       );
     }
-    setVisibleCoffeeData(sortCoffees(searchResults, currentSort.current));
+    setVisibleCoffeeData(sortCoffees(searchResults, currentSort.current, reverseSort.current));
   };
 
   const sortOptions = [
@@ -54,7 +56,12 @@ function SearchSortPanel({
 
   const handleSort = (key) => {
     currentSort.current = key;
-    setVisibleCoffeeData(sortCoffees(visibleCoffeeData, key));
+    setVisibleCoffeeData(sortCoffees(visibleCoffeeData, key, reverseSort.current));
+  };
+
+  const handleOrder = () => {
+    reverseSort.current = !reverseSort.current;
+    setVisibleCoffeeData(sortCoffees(visibleCoffeeData, currentSort.current, reverseSort.current));
   };
 
   return (
@@ -104,6 +111,16 @@ function SearchSortPanel({
             </MenuItem>
           ))}
         </TextField>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleOrder}
+          sx={{
+            margin: '0 0 0 0.5rem',
+          }}
+        >
+          {reverseSort.current ? <BiSortDown size={24} /> : <BiSortUp size={24} />}
+        </Button>
       </Grid>
     </Grid>
   );
