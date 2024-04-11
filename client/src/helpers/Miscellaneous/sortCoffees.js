@@ -1,6 +1,6 @@
 import { calcRestDays } from 'helpers';
 
-function sortCoffees(coffees, key) {
+function sortCoffees(coffees, key, reverse = false) {
   let sortedData = [];
   if (key === 'restDays') {
     sortedData = [...coffees].sort((a, b) => {
@@ -28,6 +28,9 @@ function sortCoffees(coffees, key) {
       }
       return 0;
     });
+  }
+  if (reverse) {
+    sortedData.reverse();
   }
   return sortedData;
 }
