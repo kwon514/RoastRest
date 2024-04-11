@@ -112,6 +112,7 @@ function SearchSortPanel({
           ))}
         </TextField>
         <Button
+          aria-label="order"
           variant="contained"
           color="primary"
           onClick={handleOrder}
