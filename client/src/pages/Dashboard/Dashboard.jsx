@@ -50,6 +50,7 @@ function Dashboard() {
   const [viewDialog, setViewDialog] = useState(false);
 
   let currentSort = useRef('creationDate');
+  let reverseSort = useRef(false);
   let duplicateDialog = useRef(false);
 
   const toggleViewDialog = (event, reason) => {
@@ -80,7 +81,7 @@ function Dashboard() {
     getAllCoffeeData().then((coffees) => {
       clearSearch();
       setAllCoffeeData(coffees);
-      setVisibleCoffeeData(sortCoffees(coffees, currentSort.current));
+      setVisibleCoffeeData(sortCoffees(coffees, currentSort.current, reverseSort.current));
       setIsLoadingData(false);
     });
   }, [clearSearch, currentSort]);
@@ -132,6 +133,7 @@ function Dashboard() {
             visibleCoffeeData={visibleCoffeeData}
             setVisibleCoffeeData={setVisibleCoffeeData}
             currentSort={currentSort}
+            reverseSort={reverseSort}
             sortCoffees={sortCoffees}
           />
           {isLoadingData ? (
