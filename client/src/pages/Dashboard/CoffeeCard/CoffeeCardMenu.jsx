@@ -67,12 +67,14 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData }) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleFrozen}>
-          <ListItemIcon>
-            <AcUnit fontSize="small" />
-          </ListItemIcon>
-          {coffeeData.frozenStart ? 'Unfreeze' : 'Freeze'}
-        </MenuItem>
+        {coffeeData.frozenStart && coffeeData.frozenEnd ? null : (
+          <MenuItem onClick={handleFrozen}>
+            <ListItemIcon>
+              <AcUnit fontSize="small" />
+            </ListItemIcon>
+            {coffeeData.frozenStart ? 'Unfreeze' : 'Freeze'}
+          </MenuItem>
+        )}
         <MenuItem onClick={handlePin}>
           <ListItemIcon>
             <PushPinOutlined fontSize="small" />
