@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { MoreVert, PushPinOutlined, ContentCopy, DeleteOutline } from '@mui/icons-material';
+import { MoreVert, AcUnit, PushPinOutlined, ContentCopy, DeleteOutline } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem, ListItemIcon } from '@mui/material';
-import { toggleCoffeePin, deleteCoffeeData } from 'helpers';
+import { toggleCoffeePin, toggleCoffeeFrozen, deleteCoffeeData } from 'helpers';
 
 function CoffeeCardMenu({ coffeeData, updateData, duplicateData }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -12,6 +12,13 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData }) {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleFrozen = () => {
+    toggleCoffeeFrozen(coffeeData._id, coffeeData.frozenStart, coffeeData.frozenEnd).then(() => {
+      updateData();
+    });
+    handleClose();
   };
 
   const handlePin = () => {
@@ -60,6 +67,12 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData }) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        <MenuItem onClick={handleFrozen}>
+          <ListItemIcon>
+            <AcUnit fontSize="small" />
+          </ListItemIcon>
+          {coffeeData.frozenStart ? 'Unfreeze' : 'Freeze'}
+        </MenuItem>
         <MenuItem onClick={handlePin}>
           <ListItemIcon>
             <PushPinOutlined fontSize="small" />
