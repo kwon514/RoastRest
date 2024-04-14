@@ -11,6 +11,7 @@ export { default as deleteCoffeeData } from './Coffee/deleteCoffeeData';
 export { default as calcRemainingDoses } from './Coffee/calcRemainingDoses';
 export { default as useCoffeeDose } from './Coffee/useCoffeeDose';
 export { default as isFrozen } from './Coffee/isFrozen';
+export { default as toggleCoffeeFrozen } from './Coffee/toggleCoffeeFrozen';
 export { default as toggleCoffeePin } from './Coffee/toggleCoffeePin';
 export { default as parseDateToISO } from './Miscellaneous/parseDateToISO';
 export { default as toTitleCase } from './Miscellaneous/toTitleCase';
