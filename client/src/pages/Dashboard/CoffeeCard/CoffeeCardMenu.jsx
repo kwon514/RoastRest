@@ -67,6 +67,12 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData }) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        <MenuItem onClick={handlePin}>
+          <ListItemIcon>
+            <PushPinOutlined fontSize="small" />
+          </ListItemIcon>
+          {coffeeData.isPinned ? 'Unpin' : 'Pin'}
+        </MenuItem>
         {coffeeData.frozenStart && coffeeData.frozenEnd ? null : (
           <MenuItem onClick={handleFrozen}>
             <ListItemIcon>
@@ -75,12 +81,6 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData }) {
             {coffeeData.frozenStart ? 'Unfreeze' : 'Freeze'}
           </MenuItem>
         )}
-        <MenuItem onClick={handlePin}>
-          <ListItemIcon>
-            <PushPinOutlined fontSize="small" />
-          </ListItemIcon>
-          {coffeeData.isPinned ? 'Unpin' : 'Pin'}
-        </MenuItem>
         <MenuItem onClick={handleDuplicate}>
           <ListItemIcon>
             <ContentCopy fontSize="small" />
