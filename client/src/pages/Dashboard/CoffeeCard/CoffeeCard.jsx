@@ -26,6 +26,11 @@ function CoffeeCard({
   const useDose = () => {
     useCoffeeDose(coffeeData._id, coffeeData.coffeeWeight, coffeeData.coffeeDose).then(() => {
       updateData();
+      if (coffeeData.name) {
+        toastMsg(`Used dose of ${coffeeData.name} (${coffeeData.coffeeName})`);
+      } else {
+        toastMsg(`Used dose of ${coffeeData.coffeeName}`);
+      }
     });
   };
 
