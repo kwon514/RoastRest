@@ -8,7 +8,7 @@ import {
 } from './';
 import { Navbar } from 'components';
 import { isLoggedIn, getAllCoffeeData, getCoffeeData, sortCoffees } from 'helpers';
-import { Fab, createTheme, ThemeProvider } from '@mui/material';
+import { Fab, createTheme, ThemeProvider, Snackbar } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -40,6 +40,8 @@ function Dashboard() {
   const navigate = useNavigate();
   const weightUnit = 'g';
   const [isLoadingData, setIsLoadingData] = useState(true);
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
 
   const [allCoffeeData, setAllCoffeeData] = useState([]);
   const [visibleCoffeeData, setVisibleCoffeeData] = useState([]);
@@ -76,6 +78,11 @@ function Dashboard() {
   const clearSearch = useCallback(() => {
     document.getElementById('search').value = '';
   }, []);
+
+  const handleToast = (message) => {
+    setToastMessage(message);
+    setToastOpen(true);
+  };
 
   const updateAllCoffeeData = useCallback(() => {
     getAllCoffeeData().then((coffees) => {
@@ -191,6 +198,12 @@ function Dashboard() {
             updateData={updateAllCoffeeData}
             coffeeData={targetCoffeeData}
             weightUnit={weightUnit}
+          />
+          <Snackbar
+            open={toastOpen}
+            autoHideDuration={5000}
+            onClose={() => setToastOpen(false)}
+            message={toastMessage}
           />
         </div>
       </ThemeProvider>
