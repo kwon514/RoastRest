@@ -159,6 +159,7 @@ function Dashboard() {
                     editData={editCoffeeData}
                     duplicateData={duplicateCoffeeData}
                     updateData={updateAllCoffeeData}
+                    toastMsg={handleToast}
                   />
                   <h2 className="text-sm text-rr-brown-primary font-bold uppercase ml-2 mb-1">
                     Others
@@ -172,6 +173,7 @@ function Dashboard() {
                 editData={editCoffeeData}
                 duplicateData={duplicateCoffeeData}
                 updateData={updateAllCoffeeData}
+                toastMsg={handleToast}
               />
             </>
           )}

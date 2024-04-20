@@ -3,7 +3,15 @@ import { CoffeeCardMenu } from '..';
 import { calcRemainingDoses, calcRestDays, useCoffeeDose, isFrozen } from 'helpers';
 import { formatDate } from 'date-fns';
 
-function CoffeeCard({ coffeeData, weightUnit, viewData, editData, duplicateData, updateData }) {
+function CoffeeCard({
+  coffeeData,
+  weightUnit,
+  viewData,
+  editData,
+  duplicateData,
+  updateData,
+  toastMsg,
+}) {
   const openViewDialog = () => {
     viewData(coffeeData._id);
   };
