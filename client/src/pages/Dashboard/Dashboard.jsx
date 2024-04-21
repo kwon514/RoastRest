@@ -200,6 +200,7 @@ function Dashboard() {
             updateData={updateAllCoffeeData}
             coffeeData={targetCoffeeData}
             weightUnit={weightUnit}
+            toastMsg={handleToast}
           />
           <Snackbar
             open={toastOpen}

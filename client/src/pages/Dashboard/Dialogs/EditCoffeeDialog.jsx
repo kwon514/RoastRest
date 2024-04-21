@@ -15,7 +15,14 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { editCoffeeData, deleteCoffeeData } from 'helpers';
 
-function EditCoffeeDialog({ open, handleClose, updateData, coffeeData, weightUnit = 'g' }) {
+function EditCoffeeDialog({
+  open,
+  handleClose,
+  updateData,
+  coffeeData,
+  weightUnit = 'g',
+  toastMsg,
+}) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('425'));
 
@@ -23,6 +30,11 @@ function EditCoffeeDialog({ open, handleClose, updateData, coffeeData, weightUni
     deleteCoffeeData(coffeeData._id).then(() => {
       handleClose();
       updateData();
+      if (coffeeData.name) {
+        toastMsg(`Deleted ${coffeeData.name} (${coffeeData.coffeeName})`);
+      } else {
+        toastMsg(`Deleted ${coffeeData.coffeeName}`);
+      }
     });
   };
 
