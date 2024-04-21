@@ -58,6 +58,7 @@ function CoffeeCard({
               coffeeData={coffeeData}
               updateData={updateData}
               duplicateData={duplicateData}
+              toastMsg={toastMsg}
             />
           </Grid>
         </Grid>
