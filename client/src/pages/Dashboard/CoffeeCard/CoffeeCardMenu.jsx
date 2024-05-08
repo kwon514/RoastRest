@@ -17,6 +17,11 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData, toastMsg }) {
   const handleFrozen = () => {
     toggleCoffeeFrozen(coffeeData._id, coffeeData.frozenStart, coffeeData.frozenEnd).then(() => {
       updateData();
+      if (coffeeData.frozenStart) {
+        toastMsg(`Unfroze ${coffeeData.name ? coffeeData.name : coffeeData.coffeeName}`);
+      } else {
+        toastMsg(`Froze ${coffeeData.name ? coffeeData.name : coffeeData.coffeeName}`);
+      }
     });
     handleClose();
   };
