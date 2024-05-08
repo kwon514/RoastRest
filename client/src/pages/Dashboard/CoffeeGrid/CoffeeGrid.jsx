@@ -1,7 +1,15 @@
 import { Grid } from '@mui/material';
 import { CoffeeCard } from '..';
 
-function CoffeeGrid({ coffeeData, weightUnit, viewData, editData, duplicateData, updateData }) {
+function CoffeeGrid({
+  coffeeData,
+  weightUnit,
+  viewData,
+  editData,
+  duplicateData,
+  updateData,
+  toastMsg,
+}) {
   return (
     <Grid container spacing={2} className="mb-6">
       {coffeeData.slice().map((coffee) => {
@@ -14,6 +22,7 @@ function CoffeeGrid({ coffeeData, weightUnit, viewData, editData, duplicateData,
               editData={editData}
               duplicateData={duplicateData}
               updateData={updateData}
+              toastMsg={toastMsg}
             />
           </Grid>
         );

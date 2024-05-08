@@ -21,6 +21,7 @@ function AddCoffeeDialog({
   coffeeData,
   isDuplicate,
   weightUnit = 'g',
+  toastMsg,
 }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('425'));
@@ -45,8 +46,13 @@ function AddCoffeeDialog({
           const formData = new FormData(event.currentTarget);
           const formJson = Object.fromEntries(formData.entries());
           addCoffeeData(formJson).then(() => {
-            updateData();
             handleClose();
+            updateData();
+            if (formJson.name) {
+              toastMsg(`Created ${formJson.name} (${formJson.coffeeName})`);
+            } else {
+              toastMsg(`Created ${formJson.coffeeName}`);
+            }
           });
         },
       }}

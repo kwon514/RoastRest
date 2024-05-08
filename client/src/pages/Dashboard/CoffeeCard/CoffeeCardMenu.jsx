@@ -3,7 +3,7 @@ import { MoreVert, AcUnit, PushPinOutlined, ContentCopy, DeleteOutline } from '@
 import { IconButton, Menu, MenuItem, ListItemIcon } from '@mui/material';
 import { toggleCoffeePin, toggleCoffeeFrozen, deleteCoffeeData } from 'helpers';
 
-function CoffeeCardMenu({ coffeeData, updateData, duplicateData }) {
+function CoffeeCardMenu({ coffeeData, updateData, duplicateData, toastMsg }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -17,6 +17,11 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData }) {
   const handleFrozen = () => {
     toggleCoffeeFrozen(coffeeData._id, coffeeData.frozenStart, coffeeData.frozenEnd).then(() => {
       updateData();
+      if (coffeeData.frozenStart) {
+        toastMsg(`Unfroze ${coffeeData.name ? coffeeData.name : coffeeData.coffeeName}`);
+      } else {
+        toastMsg(`Froze ${coffeeData.name ? coffeeData.name : coffeeData.coffeeName}`);
+      }
     });
     handleClose();
   };
@@ -24,6 +29,11 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData }) {
   const handlePin = () => {
     toggleCoffeePin(coffeeData._id, coffeeData.isPinned).then(() => {
       updateData();
+      if (coffeeData.isPinned) {
+        toastMsg(`Unpinned ${coffeeData.name ? coffeeData.name : coffeeData.coffeeName}`);
+      } else {
+        toastMsg(`Pinned ${coffeeData.name ? coffeeData.name : coffeeData.coffeeName}`);
+      }
     });
     handleClose();
   };
@@ -36,6 +46,11 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData }) {
   const handleDelete = () => {
     deleteCoffeeData(coffeeData._id).then(() => {
       updateData();
+      if (coffeeData.name) {
+        toastMsg(`Deleted ${coffeeData.name} (${coffeeData.coffeeName})`);
+      } else {
+        toastMsg(`Deleted ${coffeeData.coffeeName}`);
+      }
     });
     handleClose();
   };
