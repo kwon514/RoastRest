@@ -60,6 +60,11 @@ function EditCoffeeDialog({
           editCoffeeData(coffeeData._id, formJson).then(() => {
             handleClose();
             updateData();
+            if (formJson.name) {
+              toastMsg(`Changes saved for ${formJson.name} (${formJson.coffeeName})`);
+            } else {
+              toastMsg(`Changes saved for ${formJson.coffeeName}`);
+            }
           });
         },
       }}
