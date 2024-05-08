@@ -187,6 +187,7 @@ function Dashboard() {
             coffeeData={targetCoffeeData}
             isDuplicate={duplicateDialog.current}
             weightUnit={weightUnit}
+            toastMsg={handleToast}
           />
           <ViewCoffeeDialog
             open={viewDialog}
