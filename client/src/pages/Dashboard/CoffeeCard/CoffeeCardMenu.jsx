@@ -41,6 +41,7 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData, toastMsg }) {
   const handleDelete = () => {
     deleteCoffeeData(coffeeData._id).then(() => {
       updateData();
+      toastMsg(`Deleted ${coffeeData.name ? coffeeData.name : coffeeData.coffeeName}`);
     });
     handleClose();
   };
