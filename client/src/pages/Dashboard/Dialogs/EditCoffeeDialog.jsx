@@ -26,6 +26,24 @@ function EditCoffeeDialog({
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('425'));
 
+  const roastLevels = [
+    { value: 'Light', label: 'Light' },
+    { value: 'Medium', label: 'Medium' },
+    { value: 'Dark', label: 'Dark' },
+  ];
+
+  const handleEditCoffeeSubmit = (formJson) => {
+    editCoffeeData(coffeeData._id, formJson).then(() => {
+      handleClose();
+      updateData();
+      if (formJson.name) {
+        toastMsg(`Changes saved for ${formJson.name} (${formJson.coffeeName})`);
+      } else {
+        toastMsg(`Changes saved for ${formJson.coffeeName}`);
+      }
+    });
+  };
+
   const deleteData = () => {
     deleteCoffeeData(coffeeData._id).then(() => {
       handleClose();
@@ -37,12 +55,6 @@ function EditCoffeeDialog({
       }
     });
   };
-
-  const roastLevels = [
-    { value: 'Light', label: 'Light' },
-    { value: 'Medium', label: 'Medium' },
-    { value: 'Dark', label: 'Dark' },
-  ];
 
   return (
     <Dialog
@@ -57,15 +69,7 @@ function EditCoffeeDialog({
           event.preventDefault();
           const formData = new FormData(event.currentTarget);
           const formJson = Object.fromEntries(formData.entries());
-          editCoffeeData(coffeeData._id, formJson).then(() => {
-            handleClose();
-            updateData();
-            if (formJson.name) {
-              toastMsg(`Changes saved for ${formJson.name} (${formJson.coffeeName})`);
-            } else {
-              toastMsg(`Changes saved for ${formJson.coffeeName}`);
-            }
-          });
+          handleEditCoffeeSubmit(formJson);
         },
       }}
     >
