@@ -32,6 +32,18 @@ function AddCoffeeDialog({
     { value: 'Dark', label: 'Dark' },
   ];
 
+  const handleAddCoffeeSubmit = (formJson) => {
+    addCoffeeData(formJson).then(() => {
+      handleClose();
+      updateData();
+      if (formJson.name) {
+        toastMsg(`Created ${formJson.name} (${formJson.coffeeName})`);
+      } else {
+        toastMsg(`Created ${formJson.coffeeName}`);
+      }
+    });
+  };
+
   return (
     <Dialog
       open={open}
@@ -45,15 +57,7 @@ function AddCoffeeDialog({
           event.preventDefault();
           const formData = new FormData(event.currentTarget);
           const formJson = Object.fromEntries(formData.entries());
-          addCoffeeData(formJson).then(() => {
-            handleClose();
-            updateData();
-            if (formJson.name) {
-              toastMsg(`Created ${formJson.name} (${formJson.coffeeName})`);
-            } else {
-              toastMsg(`Created ${formJson.coffeeName}`);
-            }
-          });
+          handleAddCoffeeSubmit(formJson);
         },
       }}
     >
