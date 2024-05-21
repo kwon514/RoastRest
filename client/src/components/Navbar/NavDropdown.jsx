@@ -34,9 +34,21 @@ function NavDropdown() {
   }
 
   const createHandleMenuClick = (menuItem) => {
-    if (menuItem === 'Log out') {
+    if (menuItem === 'Dashboard') {
+      return Dashboard;
+    } else if (menuItem === 'Account') {
+      return Account;
+    } else if (menuItem === 'Log out') {
       return Logout;
     }
+  };
+
+  const Dashboard = () => {
+    navigate('/dashboard');
+  };
+
+  const Account = () => {
+    navigate('/account');
   };
 
   const Logout = () => {
@@ -54,6 +66,8 @@ function NavDropdown() {
         </div>
       </MenuButton>
       <Menu slots={{ listbox: AnimatedListbox }}>
+        <MenuItem onClick={createHandleMenuClick('Dashboard')}>Dashboard</MenuItem>
+        <MenuItem onClick={createHandleMenuClick('Account')}>Account</MenuItem>
         <MenuItem onClick={createHandleMenuClick('Log out')}>Log out</MenuItem>
       </Menu>
     </Dropdown>
