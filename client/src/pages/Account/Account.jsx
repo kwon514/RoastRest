@@ -13,9 +13,12 @@ function Account() {
   return (
     <>
       <Helmet>
-        <title>Account</title>
+        <title>Account | RoastRest</title>
       </Helmet>
       <Navbar showLogoutButton={true} />
+      <div className="max-w-screen-lg mx-auto px-3 mb-24">
+        <h2 className="text-4xl text-rr-brown-primary font-bold text-center py-8">Your Account</h2>
+      </div>
     </>
   );
 }
