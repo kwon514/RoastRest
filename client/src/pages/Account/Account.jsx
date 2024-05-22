@@ -38,19 +38,12 @@ function Account() {
         <h2 className="text-4xl text-rr-brown-primary font-bold text-center py-8">Your Account</h2>
         <Box className="bg-white p-4 rounded-md">
           <h3 className="text-xl font-bold pb-2">Account Details</h3>
-          <TextField
-            id="name"
-            name="name"
-            label="Name"
-            defaultValue="John"
-            margin="dense"
-            fullWidth
-          />
+          <TextField id="name" name="name" label="Name" defaultValue="" margin="dense" fullWidth />
           <TextField
             id="email"
             name="email"
             label="Email"
-            defaultValue="john@doe.com"
+            defaultValue=""
             margin="dense"
             fullWidth
           />
@@ -64,7 +57,7 @@ function Account() {
             id="password"
             name="password"
             label="Current Password"
-            defaultValue="Password"
+            defaultValue=""
             margin="dense"
             fullWidth
           />
