@@ -1,6 +1,6 @@
 import { Box, TextField, Button } from '@mui/material';
 
-function AccountDetails({ userName, userEmail }) {
+function AccountSettings({ userName, userEmail }) {
   const handleAccountUpdate = () => {
     return;
   };
@@ -77,4 +77,4 @@ function AccountDetails({ userName, userEmail }) {
   );
 }
 
-export default AccountDetails;
+export default AccountSettings;
