@@ -76,7 +76,7 @@ module.exports.checkAuth = async (req, res, next) => {
       } else {
         const user = await User.findById(data.id);
         if (user) {
-          return res.status(200).json({ success: true });
+          return res.status(200).json({ name: user.name, email: user.email });
         } else {
           return res.status(401).json({ error: 'Request is not authorized' });
         }
