@@ -86,3 +86,29 @@ module.exports.checkAuth = async (req, res, next) => {
     console.error(error);
   }
 };
+
+module.exports.updateAccountDetails = async (req, res, next) => {
+  try {
+    const { name, email } = req.body;
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
+      if (err) {
+        res.status(401).json({ error: 'Request is not authorized' });
+      } else {
+        const user = await User.findByIdAndUpdate(
+          data.id,
+          { $set: { name, email } },
+          { new: true }
+        );
+        console.log(user);
+        res.status(200).json(user);
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
