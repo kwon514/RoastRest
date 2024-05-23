@@ -1,10 +1,7 @@
 import { Box, TextField, Button } from '@mui/material';
+import { AccountDetailsBox } from './';
 
 function AccountSettings({ userName, userEmail }) {
-  const handleAccountUpdate = () => {
-    return;
-  };
-
   const handlePasswordUpdate = () => {
     return;
   };
@@ -15,28 +12,7 @@ function AccountSettings({ userName, userEmail }) {
 
   return (
     <div className="md:w-3/4 mx-auto">
-      <Box className="bg-white p-4 rounded-md">
-        <h3 className="text-xl font-bold pb-2">Account Details</h3>
-        <TextField
-          id="name"
-          name="name"
-          label="Name"
-          defaultValue={userName}
-          margin="dense"
-          fullWidth
-        />
-        <TextField
-          id="email"
-          name="email"
-          label="Email"
-          defaultValue={userEmail}
-          margin="dense"
-          fullWidth
-        />
-        <Button onClick={handleAccountUpdate} color="primary" sx={{ mt: 1 }}>
-          Update Details
-        </Button>
-      </Box>
+      <AccountDetailsBox userName={userName} userEmail={userEmail} />
       <Box className="bg-white p-4 rounded-md mt-4">
         <h3 className="text-xl font-bold pb-2">Update Password</h3>
         <TextField

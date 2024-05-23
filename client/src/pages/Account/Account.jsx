@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material';
-import AccountSettings from './AccountSettings';
+import { AccountSettings } from './';
 
 const theme = createTheme({
   palette: {
