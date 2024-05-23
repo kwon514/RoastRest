@@ -1,10 +1,30 @@
+import { updateAccountDetails } from 'helpers';
+import { useState } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 
-const handleAccountUpdate = () => {
-  return;
-};
+function AccountDetailsBox({ userName, userEmail, updateData }) {
+  const [inputValue, setInputValue] = useState({
+    name: userName,
+    email: userEmail,
+  });
 
-function AccountDetailsBox({ userName, userEmail }) {
+  const { name, email } = inputValue;
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setInputValue({
+      ...inputValue,
+      [name]: value,
+    });
+  };
+
+  const handleAccountUpdate = () => {
+    updateAccountDetails(name, email).then((res) => {
+      localStorage.setItem('name', name);
+      updateData();
+    });
+  };
+
   return (
     <Box className="bg-white p-4 rounded-md">
       <h3 className="text-xl font-bold pb-2">Account Details</h3>
@@ -13,6 +33,7 @@ function AccountDetailsBox({ userName, userEmail }) {
         name="name"
         label="Name"
         defaultValue={userName}
+        onChange={handleOnChange}
         margin="dense"
         fullWidth
       />
@@ -21,6 +42,7 @@ function AccountDetailsBox({ userName, userEmail }) {
         name="email"
         label="Email"
         defaultValue={userEmail}
+        onChange={handleOnChange}
         margin="dense"
         fullWidth
       />

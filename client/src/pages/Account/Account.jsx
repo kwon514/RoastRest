@@ -20,8 +20,8 @@ const theme = createTheme({
 function Account() {
   const navigate = useNavigate();
   const [isLoadingData, setIsLoadingData] = useState(true);
-  const [userName, setUserName] = useState('asdf');
-  const [userEmail, setUserEmail] = useState('fdsa');
+  const [userName, setUserName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
 
   const getUserData = useCallback(() => {
     isLoggedIn().then((res) => {
@@ -59,7 +59,7 @@ function Account() {
               <p>Loading...</p>
             </div>
           ) : (
-            <AccountSettings userName={userName} userEmail={userEmail} />
+            <AccountSettings userName={userName} userEmail={userEmail} updateData={getUserData} />
           )}
         </div>
       </ThemeProvider>
