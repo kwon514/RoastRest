@@ -32,7 +32,7 @@ function PersonalDetailsBox({ userName, userEmail, updateData, handleToast }) {
   };
 
   return (
-    <Box className="bg-white p-4 rounded-md">
+    <Box className="bg-white p-5 rounded-md">
       <h3 className="text-xl font-bold pb-2">Account details</h3>
       <form onSubmit={handleSubmit}>
         <TextField

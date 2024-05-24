@@ -6,7 +6,7 @@ function AccountMiscBox() {
   };
 
   return (
-    <Box className="bg-white p-4 rounded-md mt-4">
+    <Box className="bg-white p-5 rounded-md mt-4">
       <h3 className="text-xl font-bold pb-2">Danger zone</h3>
       <Button onClick={handleAccountDeletion} color="primary" sx={{ mt: 1 }}>
         Delete account
