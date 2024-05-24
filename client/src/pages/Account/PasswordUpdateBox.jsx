@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Box, Button, TextField } from '@mui/material';
+import { useState } from 'react';
+import { Box, Button } from '@mui/material';
 import { updatePassword } from 'helpers';
+import { PasswordInputField } from './';
 
 function PasswordUpdateBox({ updateData, handleToast }) {
   const [inputValue, setInputValue] = useState({
@@ -44,32 +45,23 @@ function PasswordUpdateBox({ updateData, handleToast }) {
     <Box className="bg-white p-5 rounded-md mt-4">
       <h3 className="text-xl font-bold pb-2">Change your password</h3>
       <form onSubmit={handleSubmit}>
-        <TextField
+        <PasswordInputField
           id="currentPassword"
           name="currentPassword"
           label="Current password"
-          type="password"
-          onChange={handleOnChange}
-          margin="dense"
-          fullWidth
+          handleOnChange={handleOnChange}
         />
-        <TextField
+        <PasswordInputField
           id="newPassword"
           name="newPassword"
           label="New password"
-          type="password"
-          onChange={handleOnChange}
-          margin="dense"
-          fullWidth
+          handleOnChange={handleOnChange}
         />
-        <TextField
+        <PasswordInputField
           id="confirmNewPassword"
           name="confirmNewPassword"
           label="Confirm new password"
-          type="password"
-          onChange={handleOnChange}
-          margin="dense"
-          fullWidth
+          handleOnChange={handleOnChange}
         />
         <Button type="submit" color="primary" sx={{ mt: 1 }}>
           Update password
