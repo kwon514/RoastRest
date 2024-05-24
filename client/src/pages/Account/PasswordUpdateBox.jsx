@@ -47,8 +47,8 @@ function PasswordUpdateBox({ updateData, handleToast }) {
         <TextField
           id="currentPassword"
           name="currentPassword"
-          label="Current Password"
-          defaultValue=""
+          label="Current password"
+          type="password"
           onChange={handleOnChange}
           margin="dense"
           fullWidth
@@ -56,8 +56,8 @@ function PasswordUpdateBox({ updateData, handleToast }) {
         <TextField
           id="newPassword"
           name="newPassword"
-          label="New Password"
-          defaultValue=""
+          label="New password"
+          type="password"
           onChange={handleOnChange}
           margin="dense"
           fullWidth
@@ -65,8 +65,8 @@ function PasswordUpdateBox({ updateData, handleToast }) {
         <TextField
           id="confirmNewPassword"
           name="confirmNewPassword"
-          label="Confirm New Password"
-          defaultValue=""
+          label="Confirm password"
+          type="password"
           onChange={handleOnChange}
           margin="dense"
           fullWidth
