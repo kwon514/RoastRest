@@ -104,8 +104,38 @@ module.exports.updateAccountDetails = async (req, res, next) => {
           { $set: { name, email } },
           { new: true }
         );
-        console.log(user);
-        res.status(200).json(user);
+        res.status(200);
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+module.exports.updatePassword = async (req, res, next) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
+      if (err) {
+        res.status(401).json({ error: 'Request is not authorized' });
+      } else {
+        let user = await User.findById(data.id);
+        const auth = await bcrypt.compare(currentPassword, user.password);
+        if (!auth) {
+          return res.json({ success: false, message: 'Incorrect password.' });
+        }
+        const hashedPassword = await bcrypt.hash(newPassword, 12);
+        user = await User.findByIdAndUpdate(
+          data.id,
+          { $set: { password: hashedPassword } },
+          { new: true }
+        );
+        res.status(200).json({ success: true, message: 'Password updated successfully!' });
       }
     });
   } catch (error) {
