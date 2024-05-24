@@ -42,7 +42,7 @@ function PasswordUpdateBox({ updateData, handleToast }) {
 
   return (
     <Box className="bg-white p-4 rounded-md mt-4">
-      <h3 className="text-xl font-bold pb-2">Update Password</h3>
+      <h3 className="text-xl font-bold pb-2">Change your password</h3>
       <form onSubmit={handleSubmit}>
         <TextField
           id="currentPassword"
@@ -65,14 +65,14 @@ function PasswordUpdateBox({ updateData, handleToast }) {
         <TextField
           id="confirmNewPassword"
           name="confirmNewPassword"
-          label="Confirm password"
+          label="Confirm new password"
           type="password"
           onChange={handleOnChange}
           margin="dense"
           fullWidth
         />
         <Button type="submit" color="primary" sx={{ mt: 1 }}>
-          Update Password
+          Update password
         </Button>
       </form>
     </Box>

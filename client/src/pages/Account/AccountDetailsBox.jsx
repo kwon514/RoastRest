@@ -33,7 +33,7 @@ function AccountDetailsBox({ userName, userEmail, updateData, handleToast }) {
 
   return (
     <Box className="bg-white p-4 rounded-md">
-      <h3 className="text-xl font-bold pb-2">Account Details</h3>
+      <h3 className="text-xl font-bold pb-2">Account details</h3>
       <form onSubmit={handleSubmit}>
         <TextField
           id="name"
@@ -55,7 +55,7 @@ function AccountDetailsBox({ userName, userEmail, updateData, handleToast }) {
           fullWidth
         />
         <Button type="submit" color="primary" sx={{ mt: 1 }}>
-          Update Details
+          Update details
         </Button>
       </form>
     </Box>
