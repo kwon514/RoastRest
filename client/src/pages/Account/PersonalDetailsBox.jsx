@@ -1,8 +1,8 @@
-import { updateAccountDetails } from 'helpers';
+import { updatePersonalDetails } from 'helpers';
 import { useState } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 
-function AccountDetailsBox({ userName, userEmail, updateData, handleToast }) {
+function PersonalDetailsBox({ userName, userEmail, updateData, handleToast }) {
   const [inputValue, setInputValue] = useState({
     name: userName,
     email: userEmail,
@@ -21,7 +21,7 @@ function AccountDetailsBox({ userName, userEmail, updateData, handleToast }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      updateAccountDetails(name, email).then((res) => {
+      updatePersonalDetails(name, email).then((res) => {
         localStorage.setItem('name', name);
         updateData();
         handleToast(res.data.message);
@@ -62,4 +62,4 @@ function AccountDetailsBox({ userName, userEmail, updateData, handleToast }) {
   );
 }
 
-export default AccountDetailsBox;
+export default PersonalDetailsBox;

@@ -87,7 +87,7 @@ module.exports.checkAuth = async (req, res, next) => {
   }
 };
 
-module.exports.updateAccountDetails = async (req, res, next) => {
+module.exports.updatePersonalDetails = async (req, res, next) => {
   try {
     const { name, email } = req.body;
     const token = req.cookies.token;

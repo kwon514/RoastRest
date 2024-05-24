@@ -2,7 +2,7 @@ export { default as isLoggedIn } from './Authentication/isLoggedIn';
 export { default as loginUser } from './Authentication/loginUser';
 export { default as logoutUser } from './Authentication/logoutUser';
 export { default as registerUser } from './Authentication/registerUser';
-export { default as updateAccountDetails } from './Authentication/updateAccountDetails';
+export { default as updatePersonalDetails } from './Authentication/updatePersonalDetails';
 export { default as updatePassword } from './Authentication/updatePassword';
 export { default as calcRestDays } from './Coffee/calcRestDays';
 export { default as getAllCoffeeData } from './Coffee/getAllCoffeeData';

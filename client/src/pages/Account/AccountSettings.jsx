@@ -1,9 +1,9 @@
-import { AccountDetailsBox, PasswordUpdateBox, AccountMiscBox } from './';
+import { PersonalDetailsBox, PasswordUpdateBox, AccountMiscBox } from './';
 
 function AccountSettings({ userName, userEmail, updateData, handleToast }) {
   return (
     <div className="md:w-3/4 mx-auto">
-      <AccountDetailsBox
+      <PersonalDetailsBox
         userName={userName}
         userEmail={userEmail}
         updateData={updateData}
