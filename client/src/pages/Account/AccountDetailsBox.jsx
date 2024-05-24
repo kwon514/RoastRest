@@ -24,7 +24,7 @@ function AccountDetailsBox({ userName, userEmail, updateData, handleToast }) {
       updateAccountDetails(name, email).then((res) => {
         localStorage.setItem('name', name);
         updateData();
-        handleToast('Account details updated successfully!');
+        handleToast(res.data.message);
       });
     } catch (error) {
       console.log(error);
