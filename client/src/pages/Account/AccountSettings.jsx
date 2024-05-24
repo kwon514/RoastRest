@@ -9,7 +9,7 @@ function AccountSettings({ userName, userEmail, updateData, handleToast }) {
         updateData={updateData}
         handleToast={handleToast}
       />
-      <PasswordUpdateBox userName={userName} userEmail={userEmail} />
+      <PasswordUpdateBox updateData={updateData} handleToast={handleToast} />
       <AccountMiscBox />
     </div>
   );
