@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Button } from '@mui/material';
+import { Paper, Button } from '@mui/material';
 import { toastMessage, updatePassword } from 'helpers';
 import { PasswordInputField } from './';
 
@@ -50,7 +50,7 @@ function PasswordUpdateBox({ updateData }) {
   };
 
   return (
-    <Box className="bg-white p-5 rounded-md mt-4">
+    <Paper className="bg-white p-5 mt-4">
       <h3 className="text-xl font-bold pb-2">Change your password</h3>
       <form onSubmit={handleSubmit}>
         <PasswordInputField
@@ -78,7 +78,7 @@ function PasswordUpdateBox({ updateData }) {
           Update password
         </Button>
       </form>
-    </Box>
+    </Paper>
   );
 }
 

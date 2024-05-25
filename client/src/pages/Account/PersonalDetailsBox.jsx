@@ -1,6 +1,6 @@
 import { toastMessage, updatePersonalDetails } from 'helpers';
 import { useState } from 'react';
-import { Box, Button, TextField } from '@mui/material';
+import { Paper, Button, TextField } from '@mui/material';
 
 function PersonalDetailsBox({ userName, userEmail, updateData }) {
   const [inputValue, setInputValue] = useState({
@@ -36,7 +36,7 @@ function PersonalDetailsBox({ userName, userEmail, updateData }) {
   };
 
   return (
-    <Box className="bg-white p-5 rounded-md">
+    <Paper className="bg-white p-5">
       <h3 className="text-xl font-bold pb-2">Personal details</h3>
       <form onSubmit={handleSubmit}>
         <TextField
@@ -62,7 +62,7 @@ function PersonalDetailsBox({ userName, userEmail, updateData }) {
           Update details
         </Button>
       </form>
-    </Box>
+    </Paper>
   );
 }
 
