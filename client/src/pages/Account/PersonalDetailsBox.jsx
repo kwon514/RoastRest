@@ -22,9 +22,12 @@ function PersonalDetailsBox({ userName, userEmail, updateData, handleToast }) {
     e.preventDefault();
     try {
       updatePersonalDetails(name, email).then((res) => {
-        localStorage.setItem('name', name);
         updateData();
-        handleToast(res.data.message);
+        if (res.data.success) {
+          handleToast('success', res.data.message);
+        } else {
+          handleToast('error', res.data.message);
+        }
       });
     } catch (error) {
       console.log(error);

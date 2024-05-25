@@ -31,7 +31,7 @@ function PasswordUpdateBox({ updateData, handleToast }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (newPassword !== confirmNewPassword) {
-      handleToast('Passwords do not match!');
+      handleToast('error', 'Passwords do not match!');
       return;
     }
     try {
@@ -39,9 +39,9 @@ function PasswordUpdateBox({ updateData, handleToast }) {
         updateData();
         if (res.data.success) {
           clearInputs();
-          handleToast(res.data.message);
+          handleToast('success', res.data.message);
         } else {
-          handleToast(res.data.message);
+          handleToast('error', res.data.message);
         }
       });
     } catch (error) {
