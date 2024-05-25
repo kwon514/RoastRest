@@ -99,6 +99,10 @@ module.exports.updatePersonalDetails = async (req, res, next) => {
       if (err) {
         res.status(401).json({ error: 'Request is not authorized' });
       } else {
+        const existingUser = await User.findOne({ email });
+        if (existingUser && existingUser._id.toString() !== data.id) {
+          return res.json({ success: false, message: 'This email is already in use!' });
+        }
         const user = await User.findByIdAndUpdate(
           data.id,
           { $set: { name, email } },
