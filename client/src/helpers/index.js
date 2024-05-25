@@ -18,3 +18,4 @@ export { default as toggleCoffeePin } from './Coffee/toggleCoffeePin';
 export { default as parseDateToISO } from './Miscellaneous/parseDateToISO';
 export { default as toTitleCase } from './Miscellaneous/toTitleCase';
 export { default as sortCoffees } from './Miscellaneous/sortCoffees';
+export { default as toastMessage } from './Miscellaneous/toastMessage';
