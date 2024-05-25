@@ -2,7 +2,7 @@ import { TextField, IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
 
-function PasswordInputField({ id, name, label, handleOnChange }) {
+function PasswordInputField({ id, name, label, value, handleOnChange }) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -25,6 +25,7 @@ function PasswordInputField({ id, name, label, handleOnChange }) {
           </InputAdornment>
         ),
       }}
+      value={value}
       onChange={handleOnChange}
       margin="dense"
       fullWidth

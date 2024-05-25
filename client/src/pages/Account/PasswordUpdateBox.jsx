@@ -12,6 +12,14 @@ function PasswordUpdateBox({ updateData, handleToast }) {
 
   const { currentPassword, newPassword, confirmNewPassword } = inputValue;
 
+  const clearInputs = () => {
+    setInputValue({
+      currentPassword: '',
+      newPassword: '',
+      confirmNewPassword: '',
+    });
+  };
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setInputValue({
@@ -26,11 +34,11 @@ function PasswordUpdateBox({ updateData, handleToast }) {
       handleToast('Passwords do not match!');
       return;
     }
-
     try {
       updatePassword(currentPassword, newPassword).then((res) => {
         updateData();
         if (res.data.success) {
+          clearInputs();
           handleToast(res.data.message);
         } else {
           handleToast(res.data.message);
@@ -49,18 +57,21 @@ function PasswordUpdateBox({ updateData, handleToast }) {
           id="currentPassword"
           name="currentPassword"
           label="Current password"
+          value={currentPassword}
           handleOnChange={handleOnChange}
         />
         <PasswordInputField
           id="newPassword"
           name="newPassword"
           label="New password"
+          value={newPassword}
           handleOnChange={handleOnChange}
         />
         <PasswordInputField
           id="confirmNewPassword"
           name="confirmNewPassword"
           label="Confirm new password"
+          value={confirmNewPassword}
           handleOnChange={handleOnChange}
         />
         <Button type="submit" color="primary" sx={{ mt: 1 }}>
