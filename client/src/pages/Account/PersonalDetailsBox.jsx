@@ -1,8 +1,8 @@
-import { updatePersonalDetails } from 'helpers';
+import { toastMessage, updatePersonalDetails } from 'helpers';
 import { useState } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 
-function PersonalDetailsBox({ userName, userEmail, updateData, handleToast }) {
+function PersonalDetailsBox({ userName, userEmail, updateData }) {
   const [inputValue, setInputValue] = useState({
     name: userName,
     email: userEmail,
@@ -25,9 +25,9 @@ function PersonalDetailsBox({ userName, userEmail, updateData, handleToast }) {
         updateData();
         if (res.data.success) {
           localStorage.setItem('name', name);
-          handleToast('success', res.data.message);
+          toastMessage('success', res.data.message);
         } else {
-          handleToast('error', res.data.message);
+          toastMessage('error', res.data.message);
         }
       });
     } catch (error) {

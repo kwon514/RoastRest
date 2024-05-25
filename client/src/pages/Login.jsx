@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { Navbar } from 'components';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { isLoggedIn, loginUser } from 'helpers';
+import { isLoggedIn, loginUser, toastMessage } from 'helpers';
 
 function Login() {
   const navigate = useNavigate();
@@ -26,11 +26,6 @@ function Login() {
 
   const [visible, setVisible] = useState(false);
 
-  const handleError = (err) =>
-    toast.error(err, {
-      position: 'bottom-left',
-    });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     loginUser(email, password).then((res) => {
@@ -39,7 +34,7 @@ function Login() {
         localStorage.setItem('name', name);
         navigate('/dashboard');
       } else {
-        handleError(message);
+        toastMessage('error', message);
       }
     });
   };

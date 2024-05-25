@@ -1,15 +1,10 @@
 import { PersonalDetailsBox, PasswordUpdateBox, AccountMiscBox } from './';
 
-function AccountSettings({ userName, userEmail, updateData, handleToast }) {
+function AccountSettings({ userName, userEmail, updateData }) {
   return (
     <div className="md:w-3/4 mx-auto">
-      <PersonalDetailsBox
-        userName={userName}
-        userEmail={userEmail}
-        updateData={updateData}
-        handleToast={handleToast}
-      />
-      <PasswordUpdateBox updateData={updateData} handleToast={handleToast} />
+      <PersonalDetailsBox userName={userName} userEmail={userEmail} updateData={updateData} />
+      <PasswordUpdateBox updateData={updateData} />
       <AccountMiscBox />
     </div>
   );

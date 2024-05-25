@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { AccountSettings } from './';
 
 const theme = createTheme({
@@ -34,16 +34,6 @@ function Account() {
     });
   }, []);
 
-  const handleToast = (type, message) => {
-    if (type === 'success') {
-      toast.success(message, { position: 'bottom-left' });
-    } else if (type === 'error') {
-      toast.error(message, { position: 'bottom-left' });
-    } else {
-      toast(message, { position: 'bottom-left' });
-    }
-  };
-
   useEffect(() => {
     isLoggedIn().then((res) => {
       if (res) {
@@ -70,12 +60,7 @@ function Account() {
               <p>Loading...</p>
             </div>
           ) : (
-            <AccountSettings
-              userName={userName}
-              userEmail={userEmail}
-              updateData={getUserData}
-              handleToast={handleToast}
-            />
+            <AccountSettings userName={userName} userEmail={userEmail} updateData={getUserData} />
           )}
           <ToastContainer />
         </div>

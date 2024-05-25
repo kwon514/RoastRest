@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Box, Button } from '@mui/material';
-import { updatePassword } from 'helpers';
+import { toastMessage, updatePassword } from 'helpers';
 import { PasswordInputField } from './';
 
-function PasswordUpdateBox({ updateData, handleToast }) {
+function PasswordUpdateBox({ updateData }) {
   const [inputValue, setInputValue] = useState({
     currentPassword: '',
     newPassword: '',
@@ -31,7 +31,7 @@ function PasswordUpdateBox({ updateData, handleToast }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (newPassword !== confirmNewPassword) {
-      handleToast('error', 'Passwords do not match!');
+      toastMessage('error', 'Passwords do not match!');
       return;
     }
     try {
@@ -39,9 +39,9 @@ function PasswordUpdateBox({ updateData, handleToast }) {
         updateData();
         if (res.data.success) {
           clearInputs();
-          handleToast('success', res.data.message);
+          toastMessage('success', res.data.message);
         } else {
-          handleToast('error', res.data.message);
+          toastMessage('error', res.data.message);
         }
       });
     } catch (error) {
