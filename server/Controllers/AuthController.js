@@ -108,7 +108,7 @@ module.exports.updatePersonalDetails = async (req, res, next) => {
           { $set: { name, email } },
           { new: true }
         );
-        res.status(200).json({ success: true, message: 'Account details updated successfully!' });
+        res.status(200).json({ success: true, message: 'Personal details updated successfully!' });
       }
     });
   } catch (error) {
