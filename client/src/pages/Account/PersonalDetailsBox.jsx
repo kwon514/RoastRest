@@ -58,7 +58,7 @@ function PersonalDetailsBox({ userName, userEmail, updateData, handleToast }) {
           margin="dense"
           fullWidth
         />
-        <Button type="submit" color="primary" sx={{ mt: 1 }}>
+        <Button type="submit" color="primary" sx={{ mt: 2 }}>
           Update details
         </Button>
       </form>

@@ -74,7 +74,7 @@ function PasswordUpdateBox({ updateData, handleToast }) {
           value={confirmNewPassword}
           handleOnChange={handleOnChange}
         />
-        <Button type="submit" color="primary" sx={{ mt: 1 }}>
+        <Button type="submit" color="primary" sx={{ mt: 2 }}>
           Update password
         </Button>
       </form>
