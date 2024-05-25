@@ -1,5 +1,5 @@
 import { TextField, IconButton, InputAdornment } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
 import { useState } from 'react';
 
 function PasswordInputField({ id, name, label, value, handleOnChange }) {
@@ -20,7 +20,7 @@ function PasswordInputField({ id, name, label, value, handleOnChange }) {
               onMouseDown={(e) => e.preventDefault()}
               edge="end"
             >
-              {showPassword ? <Visibility /> : <VisibilityOff />}
+              {showPassword ? <VisibilityOutlined /> : <VisibilityOffOutlined />}
             </IconButton>
           </InputAdornment>
         ),
