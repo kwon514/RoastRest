@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Paper, Button } from '@mui/material';
 import { toastMessage, updatePassword } from 'helpers';
-import { PasswordInputField } from './';
+import { PasswordInputField } from 'components';
 
 function PasswordUpdateBox({ updateData }) {
   const [inputValue, setInputValue] = useState({
