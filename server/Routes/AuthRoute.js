@@ -6,6 +6,7 @@ const {
   checkAuth,
   updatePersonalDetails,
   updatePassword,
+  deleteAccount,
 } = require('../Controllers/AuthController');
 
 router.get('/', checkAuth);
@@ -14,5 +15,6 @@ router.post('/login', Login);
 router.post('/logout', Logout);
 router.put('/', updatePersonalDetails);
 router.put('/password', updatePassword);
+router.delete('/', deleteAccount);
 
 module.exports = router;

@@ -1,4 +1,5 @@
 const User = require('../Models/UserModel');
+const Coffee = require('../Models/CoffeeModel');
 const { createSecretToken } = require('../util/SecretToken');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -140,6 +141,31 @@ module.exports.updatePassword = async (req, res, next) => {
           { new: true }
         );
         res.status(200).json({ success: true, message: 'Password updated successfully!' });
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+module.exports.deleteAccount = async (req, res, next) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
+      if (err) {
+        res.status(401).json({ error: 'Request is not authorized' });
+      } else {
+        const coffee = await Coffee.find({ userId: data.id });
+        if (coffee.length > 0) {
+          await Coffee.deleteMany({ userId: data.id });
+        }
+        await User.findByIdAndDelete(data.id);
+        res.clearCookie('token', { domain: process.env.DOMAIN });
+        res.status(200).json({ success: true, message: 'Account deleted successfully!' });
       }
     });
   } catch (error) {
