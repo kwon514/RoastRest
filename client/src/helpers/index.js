@@ -4,6 +4,7 @@ export { default as logoutUser } from './Authentication/logoutUser';
 export { default as registerUser } from './Authentication/registerUser';
 export { default as updatePersonalDetails } from './Authentication/updatePersonalDetails';
 export { default as updatePassword } from './Authentication/updatePassword';
+export { default as deleteAccount } from './Authentication/deleteAccount';
 export { default as calcRestDays } from './Coffee/calcRestDays';
 export { default as getAllCoffeeData } from './Coffee/getAllCoffeeData';
 export { default as getCoffeeData } from './Coffee/getCoffeeData';
