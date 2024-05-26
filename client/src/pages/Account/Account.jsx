@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { ToastContainer } from 'react-toastify';
-import { AccountSettings } from './';
+import { PersonalDetailsBox, PasswordUpdateBox, DangerZoneBox } from './';
 
 const theme = createTheme({
   palette: {
@@ -60,7 +60,15 @@ function Account() {
               <p>Loading...</p>
             </div>
           ) : (
-            <AccountSettings userName={userName} userEmail={userEmail} updateData={getUserData} />
+            <div className="md:w-3/4 mx-auto">
+              <PersonalDetailsBox
+                userName={userName}
+                userEmail={userEmail}
+                updateData={getUserData}
+              />
+              <PasswordUpdateBox updateData={getUserData} />
+              <DangerZoneBox />
+            </div>
           )}
           <ToastContainer />
         </div>
