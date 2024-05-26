@@ -8,7 +8,7 @@ import {
   PopupContext,
 } from '@mui/base';
 import { styled } from '@mui/system';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { logoutUser } from 'helpers';
 
 function NavDropdown() {
@@ -33,24 +33,6 @@ function NavDropdown() {
     );
   }
 
-  const createHandleMenuClick = (menuItem) => {
-    if (menuItem === 'Dashboard') {
-      return Dashboard;
-    } else if (menuItem === 'Account') {
-      return Account;
-    } else if (menuItem === 'Log out') {
-      return Logout;
-    }
-  };
-
-  const Dashboard = () => {
-    navigate('/dashboard');
-  };
-
-  const Account = () => {
-    navigate('/account');
-  };
-
   const Logout = () => {
     logoutUser().then(() => {
       navigate('/login', { state: { showToast: true, toastMessage: 'Logged out successfully!' } });
@@ -66,9 +48,13 @@ function NavDropdown() {
         </div>
       </MenuButton>
       <Menu slots={{ listbox: AnimatedListbox }}>
-        <MenuItem onClick={createHandleMenuClick('Dashboard')}>Dashboard</MenuItem>
-        <MenuItem onClick={createHandleMenuClick('Account')}>Account</MenuItem>
-        <MenuItem onClick={createHandleMenuClick('Log out')}>Log out</MenuItem>
+        <Link to="/dashboard">
+          <MenuItem>Dashboard</MenuItem>
+        </Link>
+        <Link to="/account">
+          <MenuItem>Account</MenuItem>
+        </Link>
+        <MenuItem onClick={Logout}>Log out</MenuItem>
       </Menu>
     </Dropdown>
   );

@@ -1,19 +1,16 @@
 import { Helmet } from 'react-helmet';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import { Navbar } from 'components';
 import { isLoggedIn } from 'helpers';
 
 function Landing() {
-  const navigate = useNavigate();
-  const ctaPressed = () => {
-    isLoggedIn().then((res) => {
-      if (res) {
-        navigate('/dashboard');
-      } else {
-        navigate('/login');
-      }
-    });
-  };
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+
+  isLoggedIn().then((res) => {
+    res ? setUserLoggedIn(true) : setUserLoggedIn(false);
+  });
+
   return (
     <>
       <Helmet>
@@ -29,12 +26,11 @@ function Landing() {
             Keep tabs on roast dates, rest days, and more with an easy-to-use tracker for your
             coffee beans.
           </p>
-          <button
-            className="bg-rr-brown-buttons hover:bg-rr-brown-hover text-xl text-white font-bold py-4 px-6 rounded-lg mt-12"
-            onClick={ctaPressed}
-          >
-            Start logging ☕
-          </button>
+          <Link to={userLoggedIn ? '/dashboard' : '/login'}>
+            <button className="bg-rr-brown-buttons hover:bg-rr-brown-hover text-xl text-white font-bold py-4 px-6 rounded-lg mt-12">
+              Start logging ☕
+            </button>
+          </Link>
         </header>
       </div>
     </>
