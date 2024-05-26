@@ -71,7 +71,7 @@ function SearchSortPanel({
           select
           fullWidth
           id="searchBy"
-          label="Search"
+          label="Search By"
           variant="outlined"
           color="primary"
           defaultValue="all"
