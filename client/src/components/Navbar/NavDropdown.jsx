@@ -53,7 +53,7 @@ function NavDropdown() {
 
   const Logout = () => {
     logoutUser().then(() => {
-      navigate('/');
+      navigate('/login', { state: { showToast: true, toastMessage: 'Logged out successfully!' } });
     });
   };
 
