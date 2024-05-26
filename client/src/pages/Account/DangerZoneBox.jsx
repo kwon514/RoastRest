@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { toastMessage, deleteAccount } from 'helpers';
 
-function AccountMiscBox() {
+function DangerZoneBox() {
   const navigate = useNavigate();
   const [deleteDialog, setDeleteDialog] = useState(false);
 
@@ -57,4 +57,4 @@ function AccountMiscBox() {
   );
 }
 
-export default AccountMiscBox;
+export default DangerZoneBox;
