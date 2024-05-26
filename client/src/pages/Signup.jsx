@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { Navbar } from 'components';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { registerUser } from 'helpers';
+import { registerUser, toastMessage } from 'helpers';
 
 function Signup() {
   const navigate = useNavigate();
@@ -25,11 +25,6 @@ function Signup() {
 
   const [visible, setVisible] = useState(false);
 
-  const handleError = (err) =>
-    toast.error(err, {
-      position: 'bottom-left',
-    });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -39,7 +34,7 @@ function Signup() {
           localStorage.setItem('name', name);
           navigate('/dashboard', { state: { showToast: true, toastMessage: message } });
         } else {
-          handleError(message);
+          toastMessage('error', message);
         }
       });
     } catch (error) {
