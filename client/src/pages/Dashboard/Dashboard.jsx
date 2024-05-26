@@ -7,11 +7,18 @@ import {
   EditCoffeeDialog,
 } from './';
 import { Navbar } from 'components';
-import { isLoggedIn, getAllCoffeeData, getCoffeeData, sortCoffees } from 'helpers';
+import {
+  isLoggedIn,
+  getAllCoffeeData,
+  getCoffeeData,
+  sortCoffees,
+  toastMessage as universalToast,
+} from 'helpers';
 import { Fab, createTheme, ThemeProvider, Snackbar } from '@mui/material';
+import { ToastContainer } from 'react-toastify';
 import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState, useCallback, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 const theme = createTheme({
@@ -38,7 +45,10 @@ const theme = createTheme({
 
 function Dashboard() {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const weightUnit = 'g';
+
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
@@ -122,7 +132,10 @@ function Dashboard() {
         navigate('/login');
       }
     });
-  }, [updateAllCoffeeData, navigate]);
+    if (location.state?.showToast) {
+      universalToast('success', location.state.toastMessage);
+    }
+  }, [updateAllCoffeeData, navigate, location.state]);
 
   return (
     <>
@@ -209,6 +222,7 @@ function Dashboard() {
             onClose={() => setToastOpen(false)}
             message={toastMessage}
           />
+          <ToastContainer />
         </div>
       </ThemeProvider>
     </>
