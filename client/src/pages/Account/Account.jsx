@@ -5,7 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { ToastContainer } from 'react-toastify';
-import { PersonalDetailsBox, PasswordUpdateBox, DangerZoneBox } from './';
+import {
+  PersonalDetailsBox,
+  PersonalDetailsBoxSkeleton,
+  PasswordUpdateBox,
+  DangerZoneBox,
+} from './';
 
 const theme = createTheme({
   palette: {
@@ -55,21 +60,23 @@ function Account() {
           <h2 className="text-4xl text-rr-brown-primary font-bold text-center py-8">
             Your Account
           </h2>
-          {isLoadingData ? (
-            <div className="w-full flex justify-center items-center">
-              <p>Loading...</p>
-            </div>
-          ) : (
-            <div className="md:w-3/4 mx-auto">
-              <PersonalDetailsBox
-                userName={userName}
-                userEmail={userEmail}
-                updateData={getUserData}
-              />
-              <PasswordUpdateBox updateData={getUserData} />
-              <DangerZoneBox />
-            </div>
-          )}
+          <div className="md:w-3/4 mx-auto">
+            {isLoadingData ? (
+              <>
+                <PersonalDetailsBoxSkeleton />
+              </>
+            ) : (
+              <>
+                <PersonalDetailsBox
+                  userName={userName}
+                  userEmail={userEmail}
+                  updateData={getUserData}
+                />
+              </>
+            )}
+            <PasswordUpdateBox updateData={getUserData} />
+            <DangerZoneBox />
+          </div>
           <ToastContainer />
         </div>
       </ThemeProvider>
