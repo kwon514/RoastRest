@@ -37,7 +37,7 @@ function Signup() {
         const { name, message, success } = res.data;
         if (success) {
           localStorage.setItem('name', name);
-          navigate('/dashboard');
+          navigate('/dashboard', { state: { showToast: true, toastMessage: message } });
         } else {
           handleError(message);
         }
