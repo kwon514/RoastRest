@@ -13,7 +13,7 @@ router.get('/', checkAuth);
 router.post('/signup', Signup);
 router.post('/login', Login);
 router.post('/logout', Logout);
-router.put('/', updatePersonalDetails);
+router.put('/details', updatePersonalDetails);
 router.put('/password', updatePassword);
 router.delete('/', deleteAccount);
 
