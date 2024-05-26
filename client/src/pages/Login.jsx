@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { ToastContainer } from 'react-toastify';
 import { Navbar } from 'components';
@@ -8,6 +8,7 @@ import { isLoggedIn, loginUser, toastMessage } from 'helpers';
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [inputValue, setInputValue] = useState({
     email: '',
@@ -45,7 +46,10 @@ function Login() {
         navigate('/dashboard');
       }
     });
-  }, [navigate]);
+    if (location.state?.showToast) {
+      toastMessage('success', location.state.toastMessage);
+    }
+  }, [navigate, location.state]);
 
   return (
     <>

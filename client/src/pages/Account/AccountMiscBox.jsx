@@ -1,8 +1,18 @@
+import { useNavigate } from 'react-router-dom';
 import { Paper, Button } from '@mui/material';
+import { toastMessage, deleteAccount } from 'helpers';
 
 function AccountMiscBox() {
+  const navigate = useNavigate();
+
   const handleAccountDeletion = () => {
-    return;
+    deleteAccount().then((res) => {
+      if (res.data.success) {
+        navigate('/login', { state: { showToast: true, toastMessage: res.data.message } });
+      } else {
+        toastMessage('error', res.message);
+      }
+    });
   };
 
   return (
