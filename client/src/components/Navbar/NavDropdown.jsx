@@ -1,37 +1,67 @@
-import { forwardRef, useContext } from 'react';
-import {
-  Dropdown,
-  Menu,
-  MenuButton as BaseMenuButton,
-  MenuItem as BaseMenuItem,
-  CssTransition,
-  PopupContext,
-} from '@mui/base';
-import { styled } from '@mui/system';
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
+import { PersonOutlineOutlined, Dashboard, KeyboardArrowDown } from '@mui/icons-material';
+import MenuButton from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Divider from '@mui/material/Divider';
 import { logoutUser } from 'helpers';
+
+const StyledMenuButton = styled((props) => <MenuButton disableRipple {...props} />)(
+  ({ theme }) => ({
+    fontSize: 15,
+    textTransform: 'none',
+    '&:hover': {
+      background: 'transparent',
+    },
+  })
+);
+
+const StyledMenu = styled((props) => (
+  <Menu
+    elevation={0}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'right',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'right',
+    }}
+    {...props}
+  />
+))(({ theme }) => ({
+  '& .MuiPaper-root': {
+    borderRadius: 6,
+    marginTop: theme.spacing(1),
+    minWidth: 180,
+    boxShadow:
+      'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+    '& .MuiMenu-list': {
+      padding: '8px 0',
+    },
+    '& .MuiMenuItem-root': {
+      '& .MuiSvgIcon-root': {
+        fontSize: 18,
+        marginRight: theme.spacing(1.5),
+      },
+    },
+  },
+}));
 
 function NavDropdown() {
   const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
 
-  function ArrowIcon() {
-    return (
-      <svg
-        className="inline"
-        stroke="black"
-        fill="none"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        height="20"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <polyline points="6 9 12 15 18 9"></polyline>
-      </svg>
-    );
-  }
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const Logout = () => {
     logoutUser().then(() => {
@@ -40,103 +70,48 @@ function NavDropdown() {
   };
 
   return (
-    <Dropdown>
-      <MenuButton>
-        <div>
-          <span>Hi, {localStorage.getItem('name')}! </span>
-          <ArrowIcon />
-        </div>
-      </MenuButton>
-      <Menu slots={{ listbox: AnimatedListbox }}>
+    <div>
+      <StyledMenuButton
+        id="navigation-menu-button"
+        aria-controls={open ? 'navigation-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        color="inherit"
+        disableRipple
+        disableElevation
+        onClick={handleClick}
+        endIcon={<KeyboardArrowDown />}
+      >
+        Hi, {localStorage.getItem('name')}!
+      </StyledMenuButton>
+      <StyledMenu
+        id="navigation-menu"
+        MenuListProps={{
+          'aria-labelledby': 'navigation-menu-button',
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      >
         <Link to="/dashboard">
-          <MenuItem>Dashboard</MenuItem>
+          <MenuItem onClick={handleClose} disableRipple>
+            <Dashboard />
+            Dashboard
+          </MenuItem>
         </Link>
         <Link to="/account">
-          <MenuItem>Account</MenuItem>
+          <MenuItem onClick={handleClose} disableRipple>
+            <PersonOutlineOutlined />
+            Account
+          </MenuItem>
         </Link>
-        <MenuItem onClick={Logout}>Log out</MenuItem>
-      </Menu>
-    </Dropdown>
+        <Divider sx={{ my: 1, mx: 1.5 }} />
+        <MenuItem onClick={Logout} disableRipple>
+          Log Out
+        </MenuItem>
+      </StyledMenu>
+    </div>
   );
 }
-
-const Listbox = styled('ul')(
-  ({ theme }) => `
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.95rem;
-  box-sizing: border-box;
-  margin: 12px 0;
-  min-width: 160px;
-  border-radius: 6px;
-  overflow: auto;
-  outline: 0px;
-  background: #fff;
-  border: 1px solid #fff;
-  z-index: 1;
-
-  .closed & {
-    opacity: 0;
-    transform: scale(0.95, 0.8);
-    transition: opacity 200ms ease-in, transform 200ms ease-in;
-  }
-  
-  .open & {
-    opacity: 1;
-    transform: scale(1, 1);
-    transition: opacity 100ms ease-out, transform 100ms cubic-bezier(0.43, 0.29, 0.37, 1.48);
-  }
-
-  .placement-top & {
-    transform-origin: bottom;
-  }
-
-  .placement-bottom & {
-    transform-origin: top;
-  }
-  `
-);
-
-const AnimatedListbox = forwardRef(function AnimatedListbox(props, ref) {
-  const { ownerState, ...other } = props;
-  const popupContext = useContext(PopupContext);
-  const verticalPlacement = popupContext.placement.split('-')[0];
-
-  return (
-    <CssTransition
-      className={`placement-${verticalPlacement}`}
-      enterClassName="open"
-      exitClassName="closed"
-    >
-      <Listbox {...other} ref={ref} />
-    </CssTransition>
-  );
-});
-
-const MenuItem = styled(BaseMenuItem)(
-  ({ theme }) => `
-  list-style: none;
-  padding: 12px 16px;
-  cursor: pointer;
-  user-select: none;
-
-  &:focus {
-    background-color: #faf9f8;
-  }
-  `
-);
-
-const MenuButton = styled(BaseMenuButton)(
-  ({ theme }) => `
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  padding: 8px 16px;
-  color: white;
-  transition: all 150ms ease;
-  cursor: pointer;
-  color: #1C2025;
-  `
-);
 
 export default NavDropdown;
