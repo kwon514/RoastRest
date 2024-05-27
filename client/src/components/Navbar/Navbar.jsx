@@ -18,14 +18,9 @@ function Navbar({ showNavMenu }) {
     <div className="flex items-center justify-between mx-auto max-w-screen-lg px-3 py-6">
       <Link to="/">
         <div className="flex items-center">
-          <span className="inline-flex items-center text-3xl font-medium">
-            <img
-              className="mr-2"
-              src={roastrest_logo}
-              alt="RoastRest logo of coffee beans"
-              width="50px"
-            />
-            <span className="hidden sm:inline-flex">RoastRest</span>
+          <span className="inline-flex items-center">
+            <img className="mr-2" src={roastrest_logo} alt="RoastRest logo" width="50px" />
+            <span className="hidden sm:inline-flex text-2xl font-bold">RoastRest</span>
           </span>
         </div>
       </Link>
