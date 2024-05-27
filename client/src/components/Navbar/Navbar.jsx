@@ -3,7 +3,7 @@ import github_logo from 'assets/github_logo.svg';
 import { Link } from 'react-router-dom';
 import NavDropdown from './NavDropdown';
 
-function Navbar({ showLogoutButton }) {
+function Navbar({ showNavMenu }) {
   function GitHubButton() {
     return (
       <Link to="https://github.com/kwon514/RoastRest" target="_blank" rel="noreferrer">
@@ -29,7 +29,7 @@ function Navbar({ showLogoutButton }) {
           </span>
         </div>
       </Link>
-      <div>{showLogoutButton ? <NavDropdown /> : <GitHubButton />}</div>
+      <div>{showNavMenu ? <NavDropdown /> : <GitHubButton />}</div>
     </div>
   );
 }

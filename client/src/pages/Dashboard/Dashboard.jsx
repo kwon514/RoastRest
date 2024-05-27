@@ -142,7 +142,7 @@ function Dashboard() {
       <Helmet>
         <title>Coffee Dashboard | RoastRest</title>
       </Helmet>
-      <Navbar showLogoutButton={true} />
+      <Navbar showNavMenu={true} />
       <ThemeProvider theme={theme}>
         <div className="max-w-screen-lg mx-auto px-3 mb-24">
           <h2 className="text-4xl text-rr-brown-primary font-bold text-center py-8">
