@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { Grid, TextField, MenuItem, Button } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import { BiSortDown, BiSortUp } from 'react-icons/bi';
 
 function SearchSortPanel({
@@ -92,6 +93,9 @@ function SearchSortPanel({
           variant="outlined"
           color="primary"
           onChange={(e) => handleSearch(e.target.value)}
+          InputProps={{
+            startAdornment: <SearchIcon sx={{ mr: 1 }} />,
+          }}
         />
       </Grid>
       <Grid item xs={12} sm={6} className="inline-flex justify-end">
