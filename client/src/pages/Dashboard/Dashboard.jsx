@@ -128,7 +128,9 @@ function Dashboard() {
     if (isLoggedIn()) {
       updateAllCoffeeData();
     } else {
-      navigate('/login');
+      navigate('/login', {
+        state: { showToast: true, toastMessage: 'Please log in to view your dashboard!' },
+      });
     }
     if (location.state?.showToast) {
       universalToast('success', location.state.toastMessage);
