@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import { Navbar } from 'components';
 import { isLoggedIn } from 'helpers';
 import { Button } from '@mui/material';
