@@ -1,7 +1,7 @@
 import { toggleSkipLanding, toastMessage } from 'helpers';
 import { Paper, Grid, FormControlLabel, Switch } from '@mui/material';
 
-function MiscOptionsBox() {
+function DirectDashboardBox() {
   const initialSkipLanding = localStorage.getItem('skipLanding') === 'true';
 
   const handleSkipLandingToggle = () => {
@@ -40,4 +40,4 @@ function MiscOptionsBox() {
   );
 }
 
-export default MiscOptionsBox;
+export default DirectDashboardBox;
