@@ -55,7 +55,7 @@ function Account() {
       </Helmet>
       <Navbar showNavMenu={true} />
       <ThemeProvider theme={theme}>
-        <div className="max-w-screen-lg mx-auto px-3 mb-24">
+        <div className="max-w-screen-lg mx-auto px-3">
           <h2 className="text-4xl text-rr-brown-primary font-bold text-center py-8">
             Your Account
           </h2>
