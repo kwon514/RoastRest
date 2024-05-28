@@ -1,10 +1,11 @@
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Navbar } from 'components';
 import { isLoggedIn } from 'helpers';
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useEffect } from 'react';
 
 const theme = createTheme({
   palette: {
@@ -27,9 +28,17 @@ const StyledCtaButton = styled((props) => <Button {...props} />)(({ theme }) => 
 }));
 
 function Landing() {
+  const navigate = useNavigate();
   const userLoggedIn = isLoggedIn();
+  const skipLanding = localStorage.getItem('skipLanding') === 'true';
 
-  return (
+  useEffect(() => {
+    if (skipLanding) {
+      navigate('/dashboard');
+    }
+  }, [navigate, userLoggedIn, skipLanding]);
+
+  return skipLanding ? null : (
     <>
       <Helmet>
         <title>RoastRest: Log, Track, & Optimise Your Coffee</title>

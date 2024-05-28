@@ -33,6 +33,7 @@ function Login() {
       const { name, message, success } = res.data;
       if (success) {
         localStorage.setItem('name', name);
+        localStorage.setItem('skipLanding', false);
         navigate('/dashboard', { state: { showToast: true, toastMessage: message } });
       } else {
         toastMessage('error', message);
