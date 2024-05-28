@@ -1,4 +1,5 @@
 export { default as isLoggedIn } from './Authentication/isLoggedIn';
+export { default as getUserData } from './Authentication/getUserData';
 export { default as loginUser } from './Authentication/loginUser';
 export { default as logoutUser } from './Authentication/logoutUser';
 export { default as registerUser } from './Authentication/registerUser';

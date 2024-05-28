@@ -28,11 +28,7 @@ const StyledCtaButton = styled((props) => <Button {...props} />)(({ theme }) => 
 }));
 
 function Landing() {
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
-
-  isLoggedIn().then((res) => {
-    res ? setUserLoggedIn(true) : setUserLoggedIn(false);
-  });
+  const userLoggedIn = isLoggedIn();
 
   return (
     <>

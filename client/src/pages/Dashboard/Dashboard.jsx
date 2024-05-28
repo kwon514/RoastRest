@@ -125,13 +125,11 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    isLoggedIn().then((res) => {
-      if (res) {
-        updateAllCoffeeData();
-      } else {
-        navigate('/login');
-      }
-    });
+    if (isLoggedIn()) {
+      updateAllCoffeeData();
+    } else {
+      navigate('/login');
+    }
     if (location.state?.showToast) {
       universalToast('success', location.state.toastMessage);
     }

@@ -41,11 +41,9 @@ function Login() {
   };
 
   useEffect(() => {
-    isLoggedIn().then((res) => {
-      if (res) {
-        navigate('/dashboard');
-      }
-    });
+    if (isLoggedIn()) {
+      navigate('/dashboard');
+    }
     if (location.state?.showToast) {
       toastMessage('success', location.state.toastMessage);
     }

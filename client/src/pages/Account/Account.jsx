@@ -1,5 +1,5 @@
 import { Navbar } from 'components';
-import { isLoggedIn } from 'helpers';
+import { isLoggedIn, getUserData } from 'helpers';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
@@ -29,25 +29,23 @@ function Account() {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
 
-  const getUserData = useCallback(() => {
-    isLoggedIn().then((res) => {
+  const getPersonalDetails = useCallback(() => {
+    getUserData().then((res) => {
       if (res) {
-        setUserName(res.name);
-        setUserEmail(res.email);
+        setUserName(res.data.name);
+        setUserEmail(res.data.email);
         setIsLoadingData(false);
       }
     });
   }, []);
 
   useEffect(() => {
-    isLoggedIn().then((res) => {
-      if (res) {
-        getUserData();
-      } else {
-        navigate('/login');
-      }
-    });
-  }, [getUserData, navigate]);
+    if (isLoggedIn()) {
+      getPersonalDetails();
+    } else {
+      navigate('/login');
+    }
+  }, [getPersonalDetails, navigate]);
 
   return (
     <>
@@ -70,11 +68,11 @@ function Account() {
                 <PersonalDetailsBox
                   userName={userName}
                   userEmail={userEmail}
-                  updateData={getUserData}
+                  updateData={getPersonalDetails}
                 />
               </>
             )}
-            <PasswordUpdateBox updateData={getUserData} />
+            <PasswordUpdateBox updateData={getPersonalDetails} />
             <DangerZoneBox />
           </div>
           <ToastContainer />
