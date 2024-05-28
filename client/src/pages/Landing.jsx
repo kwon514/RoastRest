@@ -30,15 +30,15 @@ const StyledCtaButton = styled((props) => <Button {...props} />)(({ theme }) => 
 function Landing() {
   const navigate = useNavigate();
   const userLoggedIn = isLoggedIn();
-  const skipLanding = localStorage.getItem('skipLanding');
+  const skipLanding = localStorage.getItem('skipLanding') === 'true';
 
   useEffect(() => {
-    if (skipLanding === 'true') {
+    if (skipLanding) {
       navigate('/dashboard');
     }
   }, [navigate, userLoggedIn, skipLanding]);
 
-  return (
+  return skipLanding ? null : (
     <>
       <Helmet>
         <title>RoastRest: Log, Track, & Optimise Your Coffee</title>
