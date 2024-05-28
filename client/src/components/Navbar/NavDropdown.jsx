@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { PersonOutlineOutlined, Dashboard, KeyboardArrowDown } from '@mui/icons-material';
+import {
+  KeyboardArrowDown,
+  Dashboard,
+  PersonOutlineOutlined,
+  LogoutOutlined,
+} from '@mui/icons-material';
 import MenuButton from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -107,6 +112,7 @@ function NavDropdown() {
         </Link>
         <Divider sx={{ my: 1, mx: 1.5 }} />
         <MenuItem onClick={Logout} disableRipple>
+          <LogoutOutlined />
           Log Out
         </MenuItem>
       </StyledMenu>
