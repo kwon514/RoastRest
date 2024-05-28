@@ -9,6 +9,7 @@ import {
   PersonalDetailsBox,
   PersonalDetailsBoxSkeleton,
   PasswordUpdateBox,
+  MiscOptionsBox,
   DangerZoneBox,
 } from './';
 
@@ -73,6 +74,7 @@ function Account() {
               </>
             )}
             <PasswordUpdateBox updateData={getPersonalDetails} />
+            <MiscOptionsBox />
             <DangerZoneBox />
           </div>
           <ToastContainer />
