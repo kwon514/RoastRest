@@ -66,7 +66,6 @@ function Dashboard() {
   let duplicateDialog = useRef(false);
 
   const toggleViewDialog = (event, reason) => {
-    if (reason && reason === 'backdropClick') return;
     setViewDialog(!viewDialog);
   };
 
