@@ -4,6 +4,14 @@ const { createSecretToken } = require('../util/SecretToken');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const setCookie = (res, name, value, httpOnly) => {
+  res.cookie(name, value, {
+    httpOnly: httpOnly,
+    secure: true,
+    expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30 * 6),
+  });
+};
+
 module.exports.Signup = async (req, res, next) => {
   try {
     const { email, password, name, createdAt } = req.body;
