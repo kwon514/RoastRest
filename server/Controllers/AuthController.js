@@ -98,23 +98,29 @@ module.exports.updatePersonalDetails = async (req, res, next) => {
     const { name, email } = req.body;
     const token = req.cookies.token;
     if (!token) {
-      return res.status(401).json({ message: 'Unauthorized' });
+      return res.status(401).json({ message: 'Unauthorized request.' });
     }
-
     jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
       if (err) {
-        res.status(401).json({ error: 'Request is not authorized' });
+        res.status(401).json({ error: 'Unauthorized request.' });
       } else {
-        const existingUser = await User.findOne({ email });
-        if (existingUser && existingUser._id.toString() !== data.id) {
-          return res.json({ success: false, message: 'This email is already in use!' });
+        const user = await User.findById(data.id);
+        if (user) {
+          const existingUser = await User.findOne({ email });
+          if (existingUser && existingUser._id.toString() !== data.id) {
+            return res.json({ success: false, message: 'This email is already in use!' });
+          }
+          const user = await User.findByIdAndUpdate(
+            data.id,
+            { $set: { name, email } },
+            { new: true }
+          );
+          res
+            .status(200)
+            .json({ success: true, message: 'Personal details updated successfully!' });
+        } else {
+          return res.status(401).json({ error: 'Unauthorized request.' });
         }
-        const user = await User.findByIdAndUpdate(
-          data.id,
-          { $set: { name, email } },
-          { new: true }
-        );
-        res.status(200).json({ success: true, message: 'Personal details updated successfully!' });
       }
     });
   } catch (error) {
