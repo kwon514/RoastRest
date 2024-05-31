@@ -19,6 +19,11 @@ module.exports.Signup = async (req, res, next) => {
       secure: true,
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30 * 6),
     });
+    res.cookie('name', user.name, {
+      domain: process.env.DOMAIN,
+      secure: true,
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30 * 6),
+    });
     res
       .status(201)
       .json({ name: user.name, message: 'Account created successfully!', success: true });
@@ -49,6 +54,11 @@ module.exports.Login = async (req, res, next) => {
       secure: true,
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30 * 6),
     });
+    res.cookie('name', user.name, {
+      domain: process.env.DOMAIN,
+      secure: true,
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30 * 6),
+    });
     res.status(201).json({ name: user.name, message: 'Logged in successfully!', success: true });
     next();
   } catch (error) {
@@ -58,6 +68,7 @@ module.exports.Login = async (req, res, next) => {
 
 module.exports.Logout = async (req, res, next) => {
   try {
+    res.clearCookie('name', { domain: process.env.DOMAIN });
     res.clearCookie('token', { domain: process.env.DOMAIN });
     res.status(200).json({ message: 'Logged out successfully!' });
     next();
