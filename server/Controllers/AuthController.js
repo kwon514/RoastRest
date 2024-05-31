@@ -4,7 +4,7 @@ const { createSecretToken } = require('../util/SecretToken');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const setCookie = (res, name, value, httpOnly) => {
+const setCookie = (res, name, value, httpOnly = true) => {
   res.cookie(name, value, {
     httpOnly: httpOnly,
     secure: true,
@@ -21,7 +21,7 @@ module.exports.Signup = async (req, res) => {
     }
     const user = await User.create({ email, password, name, createdAt });
     const token = createSecretToken(user._id);
-    setCookie(res, 'token', token, true);
+    setCookie(res, 'token', token);
     setCookie(res, 'name', user.name, false);
     res
       .status(201)
@@ -46,7 +46,7 @@ module.exports.Login = async (req, res) => {
       return res.json({ message: 'Incorrect password or email.' });
     }
     const token = createSecretToken(user._id);
-    setCookie(res, 'token', token, true);
+    setCookie(res, 'token', token);
     setCookie(res, 'name', user.name, false);
     res.status(201).json({ name: user.name, message: 'Logged in successfully!', success: true });
   } catch (error) {
@@ -77,7 +77,7 @@ module.exports.getPersonalDetails = async (req, res) => {
         const user = await User.findById(data.id);
         if (user) {
           const token = createSecretToken(user._id);
-          setCookie(res, 'token', token, true);
+          setCookie(res, 'token', token);
           setCookie(res, 'name', user.name, false);
           return res.status(200).json({ name: user.name, email: user.email });
         } else {
