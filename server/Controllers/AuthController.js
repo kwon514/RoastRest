@@ -166,21 +166,25 @@ module.exports.deleteAccount = async (req, res, next) => {
   try {
     const token = req.cookies.token;
     if (!token) {
-      return res.status(401).json({ message: 'Unauthorized' });
+      return res.status(401).json({ message: 'Unauthorized request.' });
     }
-
     jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
       if (err) {
-        res.status(401).json({ error: 'Request is not authorized' });
+        res.status(401).json({ error: 'Unauthorized request.' });
       } else {
-        const coffee = await Coffee.find({ userId: data.id });
-        if (coffee.length > 0) {
-          await Coffee.deleteMany({ userId: data.id });
+        let user = await User.findById(data.id);
+        if (user) {
+          await User.findByIdAndDelete(data.id);
+          const coffee = await Coffee.find({ userId: data.id });
+          if (coffee.length > 0) {
+            await Coffee.deleteMany({ userId: data.id });
+          }
+          res.clearCookie('name', { domain: process.env.DOMAIN });
+          res.clearCookie('token', { domain: process.env.DOMAIN });
+          res.status(200).json({ success: true, message: 'Account deleted successfully!' });
+        } else {
+          return res.status(401).json({ error: 'Unauthorized request.' });
         }
-        await User.findByIdAndDelete(data.id);
-        res.clearCookie('name', { domain: process.env.DOMAIN });
-        res.clearCookie('token', { domain: process.env.DOMAIN });
-        res.status(200).json({ success: true, message: 'Account deleted successfully!' });
       }
     });
   } catch (error) {
