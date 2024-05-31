@@ -90,6 +90,19 @@ module.exports.checkAuth = async (req, res, next) => {
       } else {
         const user = await User.findById(data.id);
         if (user) {
+          const token = createSecretToken(user._id);
+          res.cookie('token', token, {
+            domain: process.env.DOMAIN,
+            httpOnly: true,
+            secure: true,
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30 * 6),
+          });
+          res.cookie('name', user.name, {
+            domain: process.env.DOMAIN,
+            secure: true,
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30 * 6),
+          });
+
           return res.status(200).json({ name: user.name, email: user.email });
         } else {
           return res.status(401).json({ error: 'Request is not authorized' });
