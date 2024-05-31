@@ -67,16 +67,15 @@ module.exports.Logout = async (req, res, next) => {
   }
 };
 
-module.exports.checkAuth = async (req, res, next) => {
+module.exports.getPersonalDetails = async (req, res, next) => {
   try {
     const token = req.cookies.token;
     if (!token) {
-      return res.status(401).json({ message: 'Unauthorized' });
+      return res.status(401).json({ message: 'Unauthorized request.' });
     }
-
     jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
       if (err) {
-        res.status(401).json({ error: 'Request is not authorized' });
+        res.status(401).json({ error: 'Unauthorized request.' });
       } else {
         const user = await User.findById(data.id);
         if (user) {
@@ -85,7 +84,7 @@ module.exports.checkAuth = async (req, res, next) => {
           setCookie(res, 'name', user.name, false);
           return res.status(200).json({ name: user.name, email: user.email });
         } else {
-          return res.status(401).json({ error: 'Request is not authorized' });
+          return res.status(401).json({ error: 'Unauthorized request.' });
         }
       }
     });
