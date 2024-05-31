@@ -133,25 +133,28 @@ module.exports.updatePassword = async (req, res, next) => {
     const { currentPassword, newPassword } = req.body;
     const token = req.cookies.token;
     if (!token) {
-      return res.status(401).json({ message: 'Unauthorized' });
+      return res.status(401).json({ message: 'Unauthorized request.' });
     }
-
     jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
       if (err) {
-        res.status(401).json({ error: 'Request is not authorized' });
+        res.status(401).json({ error: 'Unauthorized request.' });
       } else {
         let user = await User.findById(data.id);
-        const auth = await bcrypt.compare(currentPassword, user.password);
-        if (!auth) {
-          return res.json({ success: false, message: 'Incorrect password.' });
+        if (user) {
+          const auth = await bcrypt.compare(currentPassword, user.password);
+          if (!auth) {
+            return res.json({ success: false, message: 'Incorrect password.' });
+          }
+          const hashedPassword = await bcrypt.hash(newPassword, 12);
+          user = await User.findByIdAndUpdate(
+            data.id,
+            { $set: { password: hashedPassword } },
+            { new: true }
+          );
+          res.status(200).json({ success: true, message: 'Password updated successfully!' });
+        } else {
+          return res.status(401).json({ error: 'Unauthorized request.' });
         }
-        const hashedPassword = await bcrypt.hash(newPassword, 12);
-        user = await User.findByIdAndUpdate(
-          data.id,
-          { $set: { password: hashedPassword } },
-          { new: true }
-        );
-        res.status(200).json({ success: true, message: 'Password updated successfully!' });
       }
     });
   } catch (error) {
