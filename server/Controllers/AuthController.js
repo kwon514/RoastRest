@@ -170,6 +170,7 @@ module.exports.deleteAccount = async (req, res, next) => {
           await Coffee.deleteMany({ userId: data.id });
         }
         await User.findByIdAndDelete(data.id);
+        res.clearCookie('name', { domain: process.env.DOMAIN });
         res.clearCookie('token', { domain: process.env.DOMAIN });
         res.status(200).json({ success: true, message: 'Account deleted successfully!' });
       }
