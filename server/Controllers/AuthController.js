@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 
 const setCookie = (res, name, value, httpOnly = true) => {
   res.cookie(name, value, {
+    domain: process.env.DOMAIN,
     httpOnly: httpOnly,
     secure: true,
     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30 * 6),
