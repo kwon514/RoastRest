@@ -12,7 +12,7 @@ const setCookie = (res, name, value, httpOnly) => {
   });
 };
 
-module.exports.Signup = async (req, res, next) => {
+module.exports.Signup = async (req, res) => {
   try {
     const { email, password, name, createdAt } = req.body;
     const existingUser = await User.findOne({ email });
@@ -26,13 +26,12 @@ module.exports.Signup = async (req, res, next) => {
     res
       .status(201)
       .json({ name: user.name, message: 'Account created successfully!', success: true });
-    next();
   } catch (error) {
     console.error(error);
   }
 };
 
-module.exports.Login = async (req, res, next) => {
+module.exports.Login = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -50,24 +49,22 @@ module.exports.Login = async (req, res, next) => {
     setCookie(res, 'token', token, true);
     setCookie(res, 'name', user.name, false);
     res.status(201).json({ name: user.name, message: 'Logged in successfully!', success: true });
-    next();
   } catch (error) {
     console.error(error);
   }
 };
 
-module.exports.Logout = async (req, res, next) => {
+module.exports.Logout = async (req, res) => {
   try {
     res.clearCookie('name', { domain: process.env.DOMAIN });
     res.clearCookie('token', { domain: process.env.DOMAIN });
     res.status(200).json({ message: 'Logged out successfully!' });
-    next();
   } catch (error) {
     console.error(error);
   }
 };
 
-module.exports.getPersonalDetails = async (req, res, next) => {
+module.exports.getPersonalDetails = async (req, res) => {
   try {
     const token = req.cookies.token;
     if (!token) {
@@ -93,7 +90,7 @@ module.exports.getPersonalDetails = async (req, res, next) => {
   }
 };
 
-module.exports.updatePersonalDetails = async (req, res, next) => {
+module.exports.updatePersonalDetails = async (req, res) => {
   try {
     const { name, email } = req.body;
     const token = req.cookies.token;
@@ -128,7 +125,7 @@ module.exports.updatePersonalDetails = async (req, res, next) => {
   }
 };
 
-module.exports.updatePassword = async (req, res, next) => {
+module.exports.updatePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
     const token = req.cookies.token;
@@ -162,7 +159,7 @@ module.exports.updatePassword = async (req, res, next) => {
   }
 };
 
-module.exports.deleteAccount = async (req, res, next) => {
+module.exports.deleteAccount = async (req, res) => {
   try {
     const token = req.cookies.token;
     if (!token) {
