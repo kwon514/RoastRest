@@ -3,13 +3,13 @@ const {
   Signup,
   Login,
   Logout,
-  checkAuth,
+  getPersonalDetails,
   updatePersonalDetails,
   updatePassword,
   deleteAccount,
 } = require('../Controllers/AuthController');
 
-router.get('/', checkAuth);
+router.get('/', getPersonalDetails);
 router.post('/signup', Signup);
 router.post('/login', Login);
 router.post('/logout', Logout);

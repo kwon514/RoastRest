@@ -1,5 +1,7 @@
+import { getCookie } from 'helpers';
+
 function isLoggedIn() {
-  return localStorage.getItem('name') ? true : false;
+  return getCookie('name') !== null;
 }
 
 export default isLoggedIn;

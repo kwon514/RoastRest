@@ -13,6 +13,7 @@ import {
   getCoffeeData,
   sortCoffees,
   toastMessage as universalToast,
+  getUserData,
 } from 'helpers';
 import { Fab, createTheme, ThemeProvider, Snackbar } from '@mui/material';
 import { ToastContainer } from 'react-toastify';
@@ -126,6 +127,7 @@ function Dashboard() {
   useEffect(() => {
     if (isLoggedIn()) {
       updateAllCoffeeData();
+      getUserData();
     } else {
       navigate('/login', {
         state: { showToast: true, toastMessage: 'Please log in to view your dashboard!' },

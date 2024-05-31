@@ -24,7 +24,6 @@ function PersonalDetailsBox({ userName, userEmail, updateData }) {
       updatePersonalDetails(name, email).then((res) => {
         updateData();
         if (res.data.success) {
-          localStorage.setItem('name', name);
           toastMessage('success', res.data.message);
         } else {
           toastMessage('error', res.data.message);

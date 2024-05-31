@@ -32,7 +32,6 @@ function Login() {
     loginUser(email, password).then((res) => {
       const { name, message, success } = res.data;
       if (success) {
-        localStorage.setItem('name', name);
         localStorage.setItem('skipLanding', false);
         navigate('/dashboard', { state: { showToast: true, toastMessage: message } });
       } else {
