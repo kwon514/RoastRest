@@ -11,7 +11,7 @@ import MenuButton from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
-import { logoutUser } from 'helpers';
+import { getCookie, logoutUser } from 'helpers';
 
 const StyledMenuButton = styled((props) => <MenuButton disableRipple {...props} />)(
   ({ theme }) => ({
@@ -60,6 +60,8 @@ function NavDropdown() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
+  const userName = getCookie('name');
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -87,7 +89,7 @@ function NavDropdown() {
         onClick={handleClick}
         endIcon={<KeyboardArrowDown />}
       >
-        Hi, {localStorage.getItem('name')}!
+        Hi, {userName}!
       </StyledMenuButton>
       <StyledMenu
         id="navigation-menu"
