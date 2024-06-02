@@ -40,6 +40,10 @@ const coffeeSchema = new mongoose.Schema({
   websiteUrl: {
     type: String,
   },
+  lastModifiedDate: {
+    type: Date,
+    required: [true, 'Last Modified Date is required'],
+  },
   creationDate: {
     type: Date,
     required: [true, 'Creation Date is required'],

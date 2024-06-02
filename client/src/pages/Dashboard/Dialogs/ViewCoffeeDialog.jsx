@@ -4,12 +4,13 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
+  Grid,
   DialogActions,
   Button,
 } from '@mui/material';
 import { formatDate } from 'date-fns';
 import DataViewField from './DataViewField';
-import { calcRemainingDoses, calcRestDays } from 'helpers';
+import { calcRemainingDoses, calcRestDays, formatModifiedDate } from 'helpers';
 
 function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
   const theme = useTheme();
@@ -17,6 +18,7 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
 
   const restDays = calcRestDays(coffeeData.roastDate, coffeeData.frozenStart, coffeeData.frozenEnd);
   const remainingDoses = calcRemainingDoses(coffeeData.coffeeWeight, coffeeData.coffeeDose);
+  const lastModifiedDate = formatModifiedDate(coffeeData.lastModifiedDate);
 
   return (
     <Dialog
@@ -71,9 +73,16 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
           }
         />
       </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose}>Close</Button>
-      </DialogActions>
+      <Grid container>
+        <Grid item xs={6} className="flex items-center pl-6">
+          <span className="text-sm text-gray-600">Last modified {lastModifiedDate}</span>
+        </Grid>
+        <Grid item xs={6}>
+          <DialogActions>
+            <Button onClick={handleClose}>Close</Button>
+          </DialogActions>
+        </Grid>
+      </Grid>
     </Dialog>
   );
 }
