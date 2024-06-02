@@ -46,6 +46,7 @@ function Login() {
     }
     if (location.state?.showToast) {
       toastMessage('success', location.state.toastMessage);
+      window.history.replaceState({}, '');
     }
   }, [navigate, location.state]);
 

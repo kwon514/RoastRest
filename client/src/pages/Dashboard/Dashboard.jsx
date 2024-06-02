@@ -135,6 +135,7 @@ function Dashboard() {
     }
     if (location.state?.showToast) {
       universalToast('success', location.state.toastMessage);
+      window.history.replaceState({}, '');
     }
   }, [updateAllCoffeeData, navigate, location.state]);
 
