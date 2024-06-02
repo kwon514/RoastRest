@@ -2,9 +2,15 @@ import { parseDateToISO } from '..';
 import axios from 'axios';
 
 function editCoffeeData(coffeeId, data) {
-  data.roastDate = parseDateToISO(data.roastDate);
-  data.frozenStart = parseDateToISO(data.frozenStart);
-  data.frozenEnd = parseDateToISO(data.frozenEnd);
+  if (data.roastDate) {
+    data.roastDate = parseDateToISO(data.roastDate);
+  }
+  if (data.frozenStart) {
+    data.frozenStart = parseDateToISO(data.frozenStart);
+  }
+  if (data.frozenEnd) {
+    data.frozenEnd = parseDateToISO(data.frozenEnd);
+  }
   return axios.put(
     `/coffee/${coffeeId}`,
     { ...data, lastModifiedDate: new Date() },
