@@ -23,3 +23,4 @@ export { default as sortCoffees } from './Miscellaneous/sortCoffees';
 export { default as toastMessage } from './Miscellaneous/toastMessage';
 export { default as toggleSkipLanding } from './Miscellaneous/toggleSkipLanding';
 export { default as getCookie } from './Miscellaneous/getCookie';
+export { default as formatModifiedDate } from './Miscellaneous/formatModifiedDate';
