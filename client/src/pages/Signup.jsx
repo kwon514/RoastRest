@@ -31,7 +31,6 @@ function Signup() {
       registerUser(email, password, name).then((res) => {
         const { name, message, success } = res.data;
         if (success) {
-          localStorage.setItem('name', name);
           navigate('/dashboard', { state: { showToast: true, toastMessage: message } });
         } else {
           toastMessage('error', message);
