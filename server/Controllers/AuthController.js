@@ -24,9 +24,7 @@ module.exports.Signup = async (req, res) => {
     const token = createSecretToken(user._id);
     setCookie(res, 'token', token);
     setCookie(res, 'name', user.name, false);
-    res
-      .status(201)
-      .json({ name: user.name, message: 'Account created successfully!', success: true });
+    res.status(201).json({ message: 'Account created successfully!', success: true });
   } catch (error) {
     console.error(error);
   }
@@ -49,7 +47,7 @@ module.exports.Login = async (req, res) => {
     const token = createSecretToken(user._id);
     setCookie(res, 'token', token);
     setCookie(res, 'name', user.name, false);
-    res.status(201).json({ name: user.name, message: 'Logged in successfully!', success: true });
+    res.status(201).json({ message: 'Logged in successfully!', success: true });
   } catch (error) {
     console.error(error);
   }
