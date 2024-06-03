@@ -30,7 +30,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     loginUser(email, password).then((res) => {
-      const { name, message, success } = res.data;
+      const { message, success } = res.data;
       if (success) {
         localStorage.setItem('skipLanding', false);
         navigate('/dashboard', { state: { showToast: true, toastMessage: message } });

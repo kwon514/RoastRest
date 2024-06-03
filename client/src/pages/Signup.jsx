@@ -29,7 +29,7 @@ function Signup() {
     e.preventDefault();
     try {
       registerUser(email, password, name).then((res) => {
-        const { name, message, success } = res.data;
+        const { message, success } = res.data;
         if (success) {
           navigate('/dashboard', { state: { showToast: true, toastMessage: message } });
         } else {
