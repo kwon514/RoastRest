@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { ToastContainer } from 'react-toastify';
 import { Navbar, PasswordInputField } from 'components';
 import { registerUser, toastMessage } from 'helpers';
-import { TextField } from '@mui/material';
+import { Paper, TextField } from '@mui/material';
 
 function Signup() {
   const navigate = useNavigate();
@@ -51,12 +51,12 @@ function Signup() {
         <title>Sign Up | RoastRest</title>
       </Helmet>
       <Navbar />
-      <div className="mx-auto max-w-screen-lg px-3 py-8">
-        <div className="mx-auto max-w-screen-sm">
-          <h2 className="text-4xl text-rr-brown-primary font-bold text-center">
-            Create your account
-          </h2>
-          <form className="my-5" onSubmit={handleSubmit}>
+      <div className="max-w-screen-lg mx-auto px-3">
+        <h2 className="text-4xl text-rr-brown-primary font-bold text-center py-8">
+          Create your account
+        </h2>
+        <Paper className="mx-auto bg-white p-5 sm:w-2/3">
+          <form onSubmit={handleSubmit}>
             <TextField
               id="name"
               name="name"
@@ -105,8 +105,8 @@ function Signup() {
               </Link>
             </p>
           </form>
-          <ToastContainer />
-        </div>
+        </Paper>
+        <ToastContainer />
       </div>
     </>
   );
