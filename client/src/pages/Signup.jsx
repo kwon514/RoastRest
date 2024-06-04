@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { ToastContainer } from 'react-toastify';
 import { Navbar, PasswordInputField } from 'components';
 import { registerUser, toastMessage } from 'helpers';
+import { TextField } from '@mui/material';
 
 function Signup() {
   const navigate = useNavigate();
@@ -56,38 +57,32 @@ function Signup() {
             Create your account
           </h2>
           <form className="my-5" onSubmit={handleSubmit}>
-            <label className="font-bold" htmlFor="email">
-              Name
-            </label>
-            <div className="mb-5">
-              <input
-                className="w-full p-3 rounded border-2 border-rr-brown-buttons"
-                type="text"
-                name="name"
-                value={name}
-                placeholder="Enter your name"
-                onChange={handleOnChange}
-              />
-            </div>
-            <label className="font-bold" htmlFor="email">
-              Email
-            </label>
-            <div className="mb-5">
-              <input
-                className="w-full p-3 rounded border-2 border-rr-brown-buttons"
-                type="email"
-                name="email"
-                value={email}
-                placeholder="Enter your email"
-                onChange={handleOnChange}
-              />
-            </div>
+            <TextField
+              id="name"
+              name="name"
+              label="Name"
+              value={name}
+              onChange={handleOnChange}
+              margin="normal"
+              fullWidth
+            />
+            <TextField
+              id="email"
+              name="email"
+              label="Email"
+              type="email"
+              value={email}
+              onChange={handleOnChange}
+              margin="normal"
+              fullWidth
+            />
             <PasswordInputField
               id="password"
               name="password"
               label="Password"
               value={password}
               handleOnChange={handleOnChange}
+              margin="normal"
             />
             <PasswordInputField
               id="confirmPassword"
@@ -95,6 +90,7 @@ function Signup() {
               label="Confirm password"
               value={confirmPassword}
               handleOnChange={handleOnChange}
+              margin="normal"
             />
             <button
               type="submit"
