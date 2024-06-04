@@ -2,19 +2,20 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { ToastContainer } from 'react-toastify';
-import { Navbar } from 'components';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Navbar, PasswordInputField } from 'components';
 import { registerUser, toastMessage } from 'helpers';
 
 function Signup() {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
+    name: '',
     email: '',
     password: '',
-    name: '',
+    confirmPassword: '',
   });
 
-  const { email, password, name } = inputValue;
+  const { name, email, password, confirmPassword } = inputValue;
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setInputValue({
@@ -23,10 +24,12 @@ function Signup() {
     });
   };
 
-  const [visible, setVisible] = useState(false);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      toastMessage('error', 'Passwords do not match!');
+      return;
+    }
     try {
       registerUser(email, password, name).then((res) => {
         const { message, success } = res.data;
@@ -79,25 +82,20 @@ function Signup() {
                 onChange={handleOnChange}
               />
             </div>
-            <label className="font-bold" htmlFor="password">
-              Password
-            </label>
-            <div className="flex justify-between items-center mb-5">
-              <div className="flex w-full rounded bg-white border-rr-brown-buttons border-2 focus-within:border-black">
-                <input
-                  className="w-full p-3 border-none outline-none"
-                  type={visible ? 'text' : 'password'}
-                  name="password"
-                  value={password}
-                  placeholder="Enter your password"
-                  onChange={handleOnChange}
-                  autoComplete="new-password"
-                />
-                <div className="p-3 cursor-pointer" onClick={() => setVisible(!visible)}>
-                  {visible ? <Visibility /> : <VisibilityOff />}
-                </div>
-              </div>
-            </div>
+            <PasswordInputField
+              id="password"
+              name="password"
+              label="Password"
+              value={password}
+              handleOnChange={handleOnChange}
+            />
+            <PasswordInputField
+              id="confirmPassword"
+              name="confirmPassword"
+              label="Confirm password"
+              value={confirmPassword}
+              handleOnChange={handleOnChange}
+            />
             <button
               type="submit"
               className="bg-rr-brown-buttons hover:bg-rr-brown-hover text-xl text-white p-3 rounded-md w-full mb-3"
