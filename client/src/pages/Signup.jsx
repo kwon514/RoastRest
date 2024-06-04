@@ -54,7 +54,7 @@ function Signup() {
           </h2>
           <form className="my-5" onSubmit={handleSubmit}>
             <label className="font-bold" htmlFor="email">
-              First Name
+              Name
             </label>
             <div className="mb-5">
               <input
