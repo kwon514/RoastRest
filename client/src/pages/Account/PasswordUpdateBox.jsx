@@ -59,6 +59,7 @@ function PasswordUpdateBox({ updateData }) {
           label="Current password"
           value={currentPassword}
           handleOnChange={handleOnChange}
+          margin="dense"
         />
         <PasswordInputField
           id="newPassword"
@@ -66,6 +67,7 @@ function PasswordUpdateBox({ updateData }) {
           label="New password"
           value={newPassword}
           handleOnChange={handleOnChange}
+          margin="dense"
         />
         <PasswordInputField
           id="confirmNewPassword"
@@ -73,6 +75,7 @@ function PasswordUpdateBox({ updateData }) {
           label="Confirm new password"
           value={confirmNewPassword}
           handleOnChange={handleOnChange}
+          margin="dense"
         />
         <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
           Update password
