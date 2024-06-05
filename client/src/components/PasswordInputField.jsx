@@ -7,6 +7,7 @@ function PasswordInputField({ id, name, label, value, handleOnChange, margin }) 
 
   return (
     <TextField
+      required
       id={id}
       name={name}
       label={label}
