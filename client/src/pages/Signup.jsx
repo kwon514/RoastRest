@@ -77,13 +77,14 @@ function Signup() {
           <Paper className="mx-auto mt-20 bg-white p-5 sm:w-2/3">
             <h2 className="text-2xl font-bold pb-2">Welcome to RoastRest!</h2>
             <p className="text-md pb-2">Create an account and keep track of your coffee.</p>
-            <form onSubmit={handleSubmit}>
+            <form autoComplete="off" onSubmit={handleSubmit}>
               <TextField
                 required
                 id="name"
                 name="name"
                 label="Name"
                 value={name}
+                autoComplete="given-name"
                 onChange={handleOnChange}
                 margin="normal"
                 fullWidth
@@ -95,6 +96,7 @@ function Signup() {
                 label="Email"
                 type="email"
                 value={email}
+                autoComplete="email"
                 onChange={handleOnChange}
                 margin="normal"
                 fullWidth
@@ -104,6 +106,7 @@ function Signup() {
                 name="password"
                 label="Password"
                 value={password}
+                autoComplete="password"
                 handleOnChange={handleOnChange}
                 margin="normal"
               />
@@ -112,6 +115,7 @@ function Signup() {
                 name="confirmPassword"
                 label="Confirm password"
                 value={confirmPassword}
+                autoComplete="new-password"
                 handleOnChange={handleOnChange}
                 margin="normal"
               />
