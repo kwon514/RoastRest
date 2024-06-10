@@ -79,6 +79,7 @@ function Signup() {
             <p className="text-md pb-2">Create an account and keep track of your coffee.</p>
             <form onSubmit={handleSubmit}>
               <TextField
+                required
                 id="name"
                 name="name"
                 label="Name"
@@ -88,6 +89,7 @@ function Signup() {
                 fullWidth
               />
               <TextField
+                required
                 id="email"
                 name="email"
                 label="Email"
