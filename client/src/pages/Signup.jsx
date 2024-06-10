@@ -4,7 +4,28 @@ import { Helmet } from 'react-helmet';
 import { ToastContainer } from 'react-toastify';
 import { Navbar, PasswordInputField } from 'components';
 import { registerUser, toastMessage } from 'helpers';
-import { Paper, TextField } from '@mui/material';
+import { createTheme, ThemeProvider, Button, Paper, TextField } from '@mui/material';
+import { styled } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#634832',
+    },
+    secondary: {
+      main: '#553E2B',
+    },
+  },
+});
+
+const SignupButton = styled((props) => <Button {...props} />)(({ theme }) => ({
+  fontSize: 18,
+  fontWeight: 'normal',
+  textTransform: 'none',
+  padding: '10px 0',
+  margin: '0.5rem 0',
+  borderRadius: 4,
+}));
 
 function Signup() {
   const navigate = useNavigate();
@@ -51,63 +72,61 @@ function Signup() {
         <title>Sign Up | RoastRest</title>
       </Helmet>
       <Navbar />
-      <div className="max-w-screen-lg mx-auto px-3">
-        <h2 className="text-4xl text-rr-brown-primary font-bold text-center py-8">
-          Create your account
-        </h2>
-        <Paper className="mx-auto bg-white p-5 sm:w-2/3">
-          <form onSubmit={handleSubmit}>
-            <TextField
-              id="name"
-              name="name"
-              label="Name"
-              value={name}
-              onChange={handleOnChange}
-              margin="normal"
-              fullWidth
-            />
-            <TextField
-              id="email"
-              name="email"
-              label="Email"
-              type="email"
-              value={email}
-              onChange={handleOnChange}
-              margin="normal"
-              fullWidth
-            />
-            <PasswordInputField
-              id="password"
-              name="password"
-              label="Password"
-              value={password}
-              handleOnChange={handleOnChange}
-              margin="normal"
-            />
-            <PasswordInputField
-              id="confirmPassword"
-              name="confirmPassword"
-              label="Confirm password"
-              value={confirmPassword}
-              handleOnChange={handleOnChange}
-              margin="normal"
-            />
-            <button
-              type="submit"
-              className="bg-rr-brown-buttons hover:bg-rr-brown-hover text-xl text-white p-3 rounded-md w-full mb-3"
-            >
-              Submit
-            </button>
-            <p>
-              Already have an account?{' '}
-              <Link className="underline" to={'/login'}>
-                Login
-              </Link>
-            </p>
-          </form>
-        </Paper>
-        <ToastContainer />
-      </div>
+      <ThemeProvider theme={theme}>
+        <div className="max-w-screen-lg mx-auto px-3">
+          <Paper className="mx-auto mt-20 bg-white p-5 sm:w-2/3">
+            <h2 className="text-2xl font-bold pb-2">Welcome to RoastRest!</h2>
+            <p className="text-md pb-2">Create an account and keep track of your coffee.</p>
+            <form onSubmit={handleSubmit}>
+              <TextField
+                id="name"
+                name="name"
+                label="Name"
+                value={name}
+                onChange={handleOnChange}
+                margin="normal"
+                fullWidth
+              />
+              <TextField
+                id="email"
+                name="email"
+                label="Email"
+                type="email"
+                value={email}
+                onChange={handleOnChange}
+                margin="normal"
+                fullWidth
+              />
+              <PasswordInputField
+                id="password"
+                name="password"
+                label="Password"
+                value={password}
+                handleOnChange={handleOnChange}
+                margin="normal"
+              />
+              <PasswordInputField
+                id="confirmPassword"
+                name="confirmPassword"
+                label="Confirm password"
+                value={confirmPassword}
+                handleOnChange={handleOnChange}
+                margin="normal"
+              />
+              <SignupButton type="submit" variant="contained" color="primary" fullWidth>
+                Sign Up
+              </SignupButton>
+              <p className="mt-2">
+                Already have an account?{' '}
+                <Link className="font-bold no-underline text-rr-brown-primary" to={'/login'}>
+                  Sign in
+                </Link>
+              </p>
+            </form>
+          </Paper>
+          <ToastContainer />
+        </div>
+      </ThemeProvider>
     </>
   );
 }
