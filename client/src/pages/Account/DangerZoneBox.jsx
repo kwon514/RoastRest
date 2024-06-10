@@ -33,7 +33,12 @@ function DangerZoneBox() {
     <>
       <Paper className="bg-white p-5 my-4">
         <h3 className="text-xl font-bold pb-2">Danger zone</h3>
-        <Button onClick={toggleDeleteDialog} variant="contained" color="error" sx={{ mt: 2 }}>
+        <Button
+          onClick={toggleDeleteDialog}
+          variant="contained"
+          color="error"
+          sx={{ mt: 2, textTransform: 'none' }}
+        >
           Delete account
         </Button>
       </Paper>

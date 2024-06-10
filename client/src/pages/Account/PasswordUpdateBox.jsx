@@ -77,7 +77,12 @@ function PasswordUpdateBox({ updateData }) {
           handleOnChange={handleOnChange}
           margin="dense"
         />
-        <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ mt: 2, textTransform: 'none' }}
+        >
           Update password
         </Button>
       </form>

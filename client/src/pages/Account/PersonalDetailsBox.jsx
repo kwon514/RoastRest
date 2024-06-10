@@ -57,7 +57,12 @@ function PersonalDetailsBox({ userName, userEmail, updateData }) {
           margin="dense"
           fullWidth
         />
-        <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ mt: 2, textTransform: 'none' }}
+        >
           Update details
         </Button>
       </form>
