@@ -106,7 +106,7 @@ function Signup() {
                 name="password"
                 label="Password"
                 value={password}
-                autoComplete="password"
+                autoComplete="new-password"
                 handleOnChange={handleOnChange}
                 margin="normal"
               />
