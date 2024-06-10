@@ -43,6 +43,7 @@ function PersonalDetailsBox({ userName, userEmail, updateData }) {
           name="name"
           label="Name"
           defaultValue={userName}
+          autoComplete="given-name"
           onChange={handleOnChange}
           margin="dense"
           fullWidth
@@ -53,6 +54,7 @@ function PersonalDetailsBox({ userName, userEmail, updateData }) {
           label="Email"
           type="email"
           defaultValue={userEmail}
+          autoComplete="email"
           onChange={handleOnChange}
           margin="dense"
           fullWidth
