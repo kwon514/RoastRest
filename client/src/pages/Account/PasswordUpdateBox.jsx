@@ -58,7 +58,7 @@ function PasswordUpdateBox({ updateData }) {
           name="currentPassword"
           label="Current password"
           value={currentPassword}
-          autoComplete="current-password"
+          autoComplete="password"
           handleOnChange={handleOnChange}
           margin="dense"
         />
