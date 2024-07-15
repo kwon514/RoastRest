@@ -2,19 +2,42 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { ToastContainer } from 'react-toastify';
-import { Navbar } from 'components';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Navbar, PasswordInputField } from 'components';
 import { registerUser, toastMessage } from 'helpers';
+import { createTheme, ThemeProvider, Button, Paper, TextField } from '@mui/material';
+import { styled } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#634832',
+    },
+    secondary: {
+      main: '#553E2B',
+    },
+  },
+});
+
+const SignupButton = styled((props) => <Button {...props} />)(({ theme }) => ({
+  fontSize: 18,
+  fontWeight: 'normal',
+  textTransform: 'none',
+  padding: '10px 0',
+  margin: '0.5rem 0',
+  borderRadius: 4,
+}));
 
 function Signup() {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
+    name: '',
     email: '',
     password: '',
-    name: '',
+    confirmPassword: '',
   });
 
-  const { email, password, name } = inputValue;
+  const { name, email, password, confirmPassword } = inputValue;
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setInputValue({
@@ -23,10 +46,12 @@ function Signup() {
     });
   };
 
-  const [visible, setVisible] = useState(false);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      toastMessage('error', 'Passwords do not match!');
+      return;
+    }
     try {
       registerUser(email, password, name).then((res) => {
         const { message, success } = res.data;
@@ -47,73 +72,67 @@ function Signup() {
         <title>Sign Up | RoastRest</title>
       </Helmet>
       <Navbar />
-      <div className="mx-auto max-w-screen-lg px-3 py-8">
-        <div className="mx-auto max-w-screen-sm">
-          <h2 className="text-4xl text-rr-brown-primary font-bold text-center">
-            Create your account
-          </h2>
-          <form className="my-5" onSubmit={handleSubmit}>
-            <label className="font-bold" htmlFor="email">
-              Name
-            </label>
-            <div className="mb-5">
-              <input
-                className="w-full p-3 rounded border-2 border-rr-brown-buttons"
-                type="text"
+      <ThemeProvider theme={theme}>
+        <div className="max-w-screen-lg mx-auto px-3">
+          <Paper className="mx-auto mt-20 bg-white p-5 sm:w-2/3">
+            <h2 className="text-2xl font-bold pb-2">Welcome to RoastRest!</h2>
+            <p className="text-md pb-2">Create an account and keep track of your coffee.</p>
+            <form autoComplete="off" onSubmit={handleSubmit}>
+              <TextField
+                required
+                id="name"
                 name="name"
+                label="Name"
                 value={name}
-                placeholder="Enter your name"
+                autoComplete="given-name"
                 onChange={handleOnChange}
+                margin="normal"
+                fullWidth
               />
-            </div>
-            <label className="font-bold" htmlFor="email">
-              Email
-            </label>
-            <div className="mb-5">
-              <input
-                className="w-full p-3 rounded border-2 border-rr-brown-buttons"
-                type="email"
+              <TextField
+                required
+                id="email"
                 name="email"
+                label="Email"
+                type="email"
                 value={email}
-                placeholder="Enter your email"
+                autoComplete="email"
                 onChange={handleOnChange}
+                margin="normal"
+                fullWidth
               />
-            </div>
-            <label className="font-bold" htmlFor="password">
-              Password
-            </label>
-            <div className="flex justify-between items-center mb-5">
-              <div className="flex w-full rounded bg-white border-rr-brown-buttons border-2 focus-within:border-black">
-                <input
-                  className="w-full p-3 border-none outline-none"
-                  type={visible ? 'text' : 'password'}
-                  name="password"
-                  value={password}
-                  placeholder="Enter your password"
-                  onChange={handleOnChange}
-                  autoComplete="new-password"
-                />
-                <div className="p-3 cursor-pointer" onClick={() => setVisible(!visible)}>
-                  {visible ? <Visibility /> : <VisibilityOff />}
-                </div>
-              </div>
-            </div>
-            <button
-              type="submit"
-              className="bg-rr-brown-buttons hover:bg-rr-brown-hover text-xl text-white p-3 rounded-md w-full mb-3"
-            >
-              Submit
-            </button>
-            <p>
-              Already have an account?{' '}
-              <Link className="underline" to={'/login'}>
-                Login
-              </Link>
-            </p>
-          </form>
+              <PasswordInputField
+                id="password"
+                name="password"
+                label="Password"
+                value={password}
+                autoComplete="new-password"
+                handleOnChange={handleOnChange}
+                margin="normal"
+              />
+              <PasswordInputField
+                id="confirmPassword"
+                name="confirmPassword"
+                label="Confirm password"
+                value={confirmPassword}
+                autoComplete="new-password"
+                handleOnChange={handleOnChange}
+                margin="normal"
+              />
+              <SignupButton type="submit" variant="contained" color="primary" fullWidth>
+                Sign Up
+              </SignupButton>
+              <p className="mt-2">
+                Already have an account?{' '}
+                <Link className="font-bold no-underline text-rr-brown-primary" to={'/login'}>
+                  Sign in
+                </Link>
+              </p>
+            </form>
+          </Paper>
           <ToastContainer />
         </div>
-      </div>
+      </ThemeProvider>
     </>
   );
 }

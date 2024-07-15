@@ -2,11 +2,12 @@ import { TextField, IconButton, InputAdornment } from '@mui/material';
 import { VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
 import { useState } from 'react';
 
-function PasswordInputField({ id, name, label, value, handleOnChange }) {
+function PasswordInputField({ id, name, label, value, handleOnChange, autoComplete, margin }) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <TextField
+      required
       id={id}
       name={name}
       label={label}
@@ -26,8 +27,9 @@ function PasswordInputField({ id, name, label, value, handleOnChange }) {
         ),
       }}
       value={value}
+      autoComplete={autoComplete}
       onChange={handleOnChange}
-      margin="dense"
+      margin={margin}
       fullWidth
     />
   );

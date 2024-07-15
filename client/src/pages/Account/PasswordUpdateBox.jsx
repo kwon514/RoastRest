@@ -58,23 +58,34 @@ function PasswordUpdateBox({ updateData }) {
           name="currentPassword"
           label="Current password"
           value={currentPassword}
+          autoComplete="password"
           handleOnChange={handleOnChange}
+          margin="dense"
         />
         <PasswordInputField
           id="newPassword"
           name="newPassword"
           label="New password"
           value={newPassword}
+          autoComplete="new-password"
           handleOnChange={handleOnChange}
+          margin="dense"
         />
         <PasswordInputField
           id="confirmNewPassword"
           name="confirmNewPassword"
           label="Confirm new password"
           value={confirmNewPassword}
+          autoComplete="new-password"
           handleOnChange={handleOnChange}
+          margin="dense"
         />
-        <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ mt: 2, textTransform: 'none' }}
+        >
           Update password
         </Button>
       </form>
