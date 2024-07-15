@@ -3,7 +3,6 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { ToastContainer } from 'react-toastify';
 import { Navbar, PasswordInputField } from 'components';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { isLoggedIn, loginUser, toastMessage } from 'helpers';
 import { createTheme, ThemeProvider, Button, Paper, TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -46,8 +45,6 @@ function Login() {
       [name]: value,
     });
   };
-
-  const [visible, setVisible] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
