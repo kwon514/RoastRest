@@ -204,12 +204,12 @@ function EditCoffeeDialog({
       </DialogContent>
       <DialogActions>
         <Grid container>
-          <Grid item xs={4} className="pl-4">
+          <Grid size={4} className="pl-4">
             <Button onClick={deleteData} color="primary">
               Delete
             </Button>
           </Grid>
-          <Grid item xs={8} className="inline-flex items-center justify-end pr-4">
+          <Grid size={8} className="inline-flex items-center justify-end pr-4">
             <Button onClick={handleClose} color="primary">
               Cancel
             </Button>

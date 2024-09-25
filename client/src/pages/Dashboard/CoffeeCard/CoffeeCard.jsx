@@ -39,7 +39,7 @@ function CoffeeCard({
     <Card>
       <CardContent sx={{ padding: '8px 0 8px 16px' }}>
         <Grid container>
-          <Grid item xs={11}>
+          <Grid size={11}>
             <h2 className="text-xl font-bold mt-2">
               {coffeeData.name ? coffeeData.name : coffeeData.coffeeName}
             </h2>
@@ -54,7 +54,7 @@ function CoffeeCard({
               </h3>
             )}
           </Grid>
-          <Grid item xs={1} className="inline-flex justify-end">
+          <Grid size={1} className="inline-flex justify-end">
             <CoffeeCardMenu
               coffeeData={coffeeData}
               updateData={updateData}
@@ -64,11 +64,11 @@ function CoffeeCard({
           </Grid>
         </Grid>
         <Grid container spacing={1}>
-          <Grid item xs={6}>
+          <Grid size={6}>
             <h3 className="text-sm">Roast date:</h3>
             <p>{coffeeData.roastDate ? formatDate(coffeeData.roastDate, 'dd MMM yyyy') : '-'}</p>
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={6}>
             <h3 className="text-sm">Days of rest:</h3>
             <p>
               {restDays + ' days'}{' '}
@@ -77,11 +77,11 @@ function CoffeeCard({
               ) : null}
             </p>
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={6}>
             <h3 className="text-sm">Weight:</h3>
             <p>{coffeeData.coffeeWeight ? coffeeData.coffeeWeight + weightUnit : '-'}</p>
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={6}>
             <h3 className="text-sm">Remaining doses:</h3>
             <p>
               {coffeeData.coffeeWeight &&
@@ -94,8 +94,8 @@ function CoffeeCard({
         </Grid>
       </CardContent>
       <CardActions>
-        <Grid container>
-          <Grid item xs={6}>
+        <Grid size={12} container>
+          <Grid size={6}>
             <Button size="large" sx={{ minWidth: 0 }} onClick={openViewDialog}>
               View
             </Button>
@@ -103,7 +103,7 @@ function CoffeeCard({
               Edit
             </Button>
           </Grid>
-          <Grid item xs={6} className="inline-flex justify-end">
+          <Grid size={6} className="inline-flex justify-end">
             <Button size="large" sx={{ minWidth: 0 }} onClick={useDose}>
               Use Dose
             </Button>

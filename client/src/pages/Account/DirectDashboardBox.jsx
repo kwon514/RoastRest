@@ -15,10 +15,10 @@ function DirectDashboardBox() {
   return (
     <Paper className="bg-white p-5 mt-4">
       <Grid container spacing={0}>
-        <Grid item xs={10} sm={11} className="items-center flex">
+        <Grid size={{ xs: 10, sm: 11 }} className="items-center flex">
           <h3 className="text-xl font-bold">Direct dashboard</h3>
         </Grid>
-        <Grid item xs={2} sm={1}>
+        <Grid size={{ xs: 2, sm: 1 }}>
           <FormControlLabel
             control={
               <Switch
@@ -29,7 +29,7 @@ function DirectDashboardBox() {
             }
           />
         </Grid>
-        <Grid item xs={11} sm={12}>
+        <Grid size={{ xs: 11, sm: 12 }}>
           <p>
             Skip the landing page when you visit RoastRest and go directly to your dashboard for
             convenience.

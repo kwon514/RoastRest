@@ -74,12 +74,12 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
         />
       </DialogContent>
       <Grid container>
-        <Grid item xs={6} className="flex items-center pl-6">
+        <Grid size={6} className="flex items-center pl-6">
           {lastModifiedDate ? (
             <span className="text-sm text-gray-600">Last modified {lastModifiedDate}</span>
           ) : null}
         </Grid>
-        <Grid item xs={6}>
+        <Grid size={6}>
           <DialogActions>
             <Button onClick={handleClose}>Close</Button>
           </DialogActions>

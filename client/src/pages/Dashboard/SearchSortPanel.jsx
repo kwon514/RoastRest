@@ -67,7 +67,7 @@ function SearchSortPanel({
 
   return (
     <Grid container spacing={1} className="mb-4">
-      <Grid item xs={3} sm={2}>
+      <Grid size={{ xs: 3, sm: 2 }}>
         <TextField
           select
           fullWidth
@@ -85,7 +85,7 @@ function SearchSortPanel({
           ))}
         </TextField>
       </Grid>
-      <Grid item xs={9} sm={4}>
+      <Grid size={{ xs: 9, sm: 4 }}>
         <TextField
           fullWidth
           id="search"
@@ -98,7 +98,7 @@ function SearchSortPanel({
           }}
         />
       </Grid>
-      <Grid item xs={12} sm={6} className="inline-flex justify-end">
+      <Grid size={{ xs: 12, sm: 6 }} className="inline-flex justify-end">
         <TextField
           select
           className="w-full sm:w-40"
