@@ -1,4 +1,4 @@
-import { Card, CardContent, CardActions, Button, Grid } from '@mui/material';
+import { Card, CardContent, CardActions, Button, Grid2 as Grid } from '@mui/material';
 import { CoffeeCardMenu } from '..';
 import { calcRemainingDoses, calcRestDays, useCoffeeDose, isFrozen } from 'helpers';
 import { formatDate } from 'date-fns';

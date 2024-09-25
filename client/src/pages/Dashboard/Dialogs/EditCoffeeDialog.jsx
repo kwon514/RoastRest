@@ -8,7 +8,7 @@ import {
   InputAdornment,
   MenuItem,
   DialogActions,
-  Grid,
+  Grid2 as Grid,
   Button,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';

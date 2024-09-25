@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Grid, TextField, MenuItem, Button } from '@mui/material';
+import { Grid2 as Grid, TextField, MenuItem, Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { BiSortDown, BiSortUp } from 'react-icons/bi';
 

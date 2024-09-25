@@ -1,5 +1,5 @@
 import { toggleSkipLanding, toastMessage } from 'helpers';
-import { Paper, Grid, FormControlLabel, Switch } from '@mui/material';
+import { Paper, Grid2 as Grid, FormControlLabel, Switch } from '@mui/material';
 
 function DirectDashboardBox() {
   const initialSkipLanding = localStorage.getItem('skipLanding') === 'true';

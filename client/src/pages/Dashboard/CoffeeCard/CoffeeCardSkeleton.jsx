@@ -1,4 +1,4 @@
-import { Skeleton, Card, CardContent, Grid } from '@mui/material';
+import { Skeleton, Card, CardContent, Grid2 as Grid } from '@mui/material';
 
 function CoffeeCardSkeleton() {
   return (

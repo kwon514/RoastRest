@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Grid2 as Grid } from '@mui/material';
 import { CoffeeCard } from '..';
 
 function CoffeeGrid({

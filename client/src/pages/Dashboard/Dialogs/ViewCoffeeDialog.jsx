@@ -4,7 +4,7 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  Grid,
+  Grid2 as Grid,
   DialogActions,
   Button,
 } from '@mui/material';
