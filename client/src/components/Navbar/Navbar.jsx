@@ -15,12 +15,12 @@ function Navbar({ showNavMenu }) {
   }
 
   return (
-    <div className="flex items-center justify-between mx-auto max-w-screen-lg px-3 py-6">
+    <div className="flex items-center justify-between mx-auto px-10 py-4">
       <Link to="/">
         <div className="flex items-center">
           <span className="inline-flex items-center">
-            <img className="mr-2" src={roastrest_logo} alt="RoastRest logo" width="50px" />
-            <span className="hidden sm:inline-flex text-2xl font-bold">RoastRest</span>
+            <img className="mr-2" src={roastrest_logo} alt="RoastRest logo" width="45px" />
+            <span className="hidden sm:inline-flex text-2xl font-semibold">RoastRest</span>
           </span>
         </div>
       </Link>

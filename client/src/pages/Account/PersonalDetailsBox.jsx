@@ -36,7 +36,7 @@ function PersonalDetailsBox({ userName, userEmail, updateData }) {
 
   return (
     <Paper className="bg-white p-5">
-      <h3 className="text-xl font-bold pb-2">Personal details</h3>
+      <h3 className="text-xl font-semibold pb-2">Personal details</h3>
       <form onSubmit={handleSubmit}>
         <TextField
           id="name"

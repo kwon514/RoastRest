@@ -56,7 +56,7 @@ function Account() {
       <Navbar showNavMenu={true} />
       <ThemeProvider theme={theme}>
         <div className="max-w-screen-lg mx-auto px-3">
-          <h2 className="text-4xl text-rr-brown-primary font-bold text-center py-8">
+          <h2 className="text-4xl text-rr-brown-primary font-semibold text-center py-8">
             Your Account
           </h2>
           <div className="md:w-3/4 mx-auto">

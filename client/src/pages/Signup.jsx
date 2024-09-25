@@ -75,7 +75,7 @@ function Signup() {
       <ThemeProvider theme={theme}>
         <div className="max-w-screen-lg mx-auto px-3">
           <Paper className="mx-auto mt-20 bg-white p-5 sm:w-2/3">
-            <h2 className="text-2xl font-bold pb-2">Welcome to RoastRest!</h2>
+            <h2 className="text-2xl font-semibold pb-2">Welcome to RoastRest!</h2>
             <p className="text-md pb-2">Create an account and keep track of your coffee.</p>
             <form autoComplete="off" onSubmit={handleSubmit}>
               <TextField
@@ -124,7 +124,7 @@ function Signup() {
               </SignupButton>
               <p className="mt-2">
                 Already have an account?{' '}
-                <Link className="font-bold no-underline text-rr-brown-primary" to={'/login'}>
+                <Link className="font-semibold no-underline text-rr-brown-primary" to={'/login'}>
                   Sign in
                 </Link>
               </p>

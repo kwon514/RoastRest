@@ -16,7 +16,7 @@ function DirectDashboardBox() {
     <Paper className="bg-white p-5 mt-4">
       <Grid container spacing={0}>
         <Grid size={{ xs: 10, sm: 11 }} className="items-center flex">
-          <h3 className="text-xl font-bold">Direct dashboard</h3>
+          <h3 className="text-xl font-semibold">Direct dashboard</h3>
         </Grid>
         <Grid size={{ xs: 2, sm: 1 }}>
           <FormControlLabel

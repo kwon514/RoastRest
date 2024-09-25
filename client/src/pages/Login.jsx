@@ -82,7 +82,7 @@ function Login() {
       <ThemeProvider theme={theme}>
         <div className="max-w-screen-lg mx-auto px-3">
           <Paper className="mx-auto mt-20 bg-white p-5 sm:w-2/3">
-            <h2 className="text-2xl font-bold pb-2">Welcome to RoastRest!</h2>
+            <h2 className="text-2xl font-semibold pb-2">Welcome to RoastRest!</h2>
             <p className="text-md pb-2">Log back in to continue tracking your coffee beans.</p>
             <form onSubmit={handleSubmit}>
               <TextField
@@ -111,7 +111,7 @@ function Login() {
               </LoginButton>
               <p className="mt-2">
                 Don't an account?{' '}
-                <Link className="font-bold no-underline text-rr-brown-primary" to={'/signup'}>
+                <Link className="font-semibold no-underline text-rr-brown-primary" to={'/signup'}>
                   Sign up
                 </Link>
               </p>

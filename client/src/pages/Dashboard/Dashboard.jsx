@@ -147,7 +147,7 @@ function Dashboard() {
       <Navbar showNavMenu={true} />
       <ThemeProvider theme={theme}>
         <div className="max-w-screen-lg mx-auto px-3 mb-24">
-          <h2 className="text-4xl text-rr-brown-primary font-bold text-center py-8">
+          <h2 className="text-4xl text-rr-brown-primary font-semibold text-center py-8">
             Coffee Dashboard
           </h2>
           <SearchSortPanel
@@ -164,7 +164,7 @@ function Dashboard() {
             <>
               {visibleCoffeeData.some((coffee) => coffee.isPinned) && (
                 <>
-                  <h2 className="text-sm text-rr-brown-primary font-bold uppercase ml-2 mb-1">
+                  <h2 className="text-sm text-rr-brown-primary font-semibold uppercase ml-2 mb-1">
                     Pinned
                   </h2>
                   <CoffeeGrid
@@ -176,7 +176,7 @@ function Dashboard() {
                     updateData={updateAllCoffeeData}
                     toastMsg={handleToast}
                   />
-                  <h2 className="text-sm text-rr-brown-primary font-bold uppercase ml-2 mb-1">
+                  <h2 className="text-sm text-rr-brown-primary font-semibold uppercase ml-2 mb-1">
                     Others
                   </h2>
                 </>
