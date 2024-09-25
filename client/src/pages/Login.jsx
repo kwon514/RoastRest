@@ -52,7 +52,7 @@ function Login() {
       loginUser(email, password).then((res) => {
         const { message, success } = res.data;
         if (success) {
-          localStorage.setItem('skipLanding', false);
+          localStorage.setItem('skipLanding', true);
           navigate('/dashboard', { state: { showToast: true, toastMessage: message } });
         } else {
           toastMessage('error', message);
