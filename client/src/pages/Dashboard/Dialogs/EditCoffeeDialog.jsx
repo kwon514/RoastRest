@@ -155,7 +155,7 @@ function EditCoffeeDialog({
             name="roastDate"
             label="Roast date"
             format="dd/MM/yyyy"
-            defaultValue={coffeeData.roastDate}
+            defaultValue={new Date(coffeeData.roastDate)}
             slotProps={{ textField: { fullWidth: true, margin: 'dense', required: true } }}
           />
           <DatePicker
@@ -163,7 +163,7 @@ function EditCoffeeDialog({
             name="frozenStart"
             label="Frozen start date"
             format="dd/MM/yyyy"
-            defaultValue={coffeeData.frozenStart}
+            defaultValue={new Date(coffeeData.frozenStart)}
             slotProps={{
               field: { clearable: true },
               textField: { fullWidth: true, margin: 'dense' },
@@ -174,7 +174,7 @@ function EditCoffeeDialog({
             name="frozenEnd"
             label="Frozen end date (leave blank if frozen)"
             format="dd/MM/yyyy"
-            defaultValue={coffeeData.frozenEnd}
+            defaultValue={new Date(coffeeData.frozenEnd)}
             slotProps={{
               field: { clearable: true },
               textField: { fullWidth: true, margin: 'dense' },
