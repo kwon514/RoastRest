@@ -19,6 +19,7 @@ function Navbar({ showNavMenu }) {
     <AppBar
       position="sticky"
       sx={{
+        zIndex: 1250,
         bgcolor: 'white',
         color: 'black',
         padding: '12px',
@@ -37,8 +38,7 @@ function Navbar({ showNavMenu }) {
             </div>
           </Link>
         </Grid>
-        <Grid size={8}></Grid>
-        <Grid size={2} className="flex justify-end">
+        <Grid size={2} offset="auto" className="flex justify-end">
           <div className="mr-4 mt-1">{showNavMenu ? <NavDropdown /> : <GitHubButton />}</div>
         </Grid>
       </Grid>

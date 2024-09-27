@@ -1,4 +1,4 @@
-import { Navbar } from 'components';
+import { Navbar, Sidebar } from 'components';
 import { isLoggedIn, getUserData } from 'helpers';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
@@ -54,6 +54,7 @@ function Account() {
         <title>Account | RoastRest</title>
       </Helmet>
       <Navbar showNavMenu={true} />
+      <Sidebar />
       <ThemeProvider theme={theme}>
         <div className="max-w-screen-lg mx-auto px-3">
           <h2 className="text-4xl text-rr-brown-primary font-semibold text-center py-8">
