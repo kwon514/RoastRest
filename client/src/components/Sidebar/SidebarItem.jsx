@@ -7,10 +7,10 @@ function SidebarItem({ icon, label, link }) {
 
   return (
     <Link to={link}>
-      <div className={'px-4 py-3 rounded-xl ' + (active ? 'bg-slate-200' : 'hover:bg-slate-200')}>
+      <div className={'px-4 py-3 rounded-r-2xl ' + (active ? 'bg-[#EADDCA]' : 'hover:bg-slate-50')}>
         <Grid container>
-          <Grid size={2}>{icon}</Grid>
-          <Grid size={10}>{label}</Grid>
+          <Grid size={3}>{icon}</Grid>
+          <Grid size={9}>{label}</Grid>
         </Grid>
       </div>
     </Link>

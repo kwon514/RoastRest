@@ -11,7 +11,7 @@ function Sidebar() {
           sx: { width: '255px' },
         }}
       >
-        <div className="mt-24">
+        <div className="mt-24 pr-2">
           <SidebarItem icon={<Dashboard />} label={'Dashboard'} link={'/dashboard'} />
           <SidebarItem icon={<PersonOutlineOutlined />} label={'Account'} link={'/account'} />
         </div>
