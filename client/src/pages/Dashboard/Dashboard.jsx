@@ -147,10 +147,7 @@ function Dashboard() {
       <Navbar showNavMenu={true} />
       <Sidebar />
       <ThemeProvider theme={theme}>
-        <div className="max-w-screen-lg mx-auto px-3 mb-24">
-          <h2 className="text-4xl text-rr-brown-primary font-semibold text-center py-8">
-            Coffee Dashboard
-          </h2>
+        <div className="max-w-screen-lg mx-auto px-3 pt-12 mb-24">
           <SearchSortPanel
             allCoffeeData={allCoffeeData}
             visibleCoffeeData={visibleCoffeeData}
