@@ -29,7 +29,7 @@ function Navbar({ showNavMenu }) {
       <Grid container>
         <Grid size={2}>
           <Link to="/">
-            <div className="flex items-center">
+            <div className="flex items-center ml-4">
               <span className="inline-flex items-center">
                 <img className="mr-2" src={roastrest_logo} alt="RoastRest logo" width="45px" />
                 <span className="hidden sm:inline-flex text-2xl font-semibold">RoastRest</span>
