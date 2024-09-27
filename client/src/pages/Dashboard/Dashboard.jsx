@@ -147,7 +147,7 @@ function Dashboard() {
       <Navbar showNavMenu={true} />
       <Sidebar />
       <ThemeProvider theme={theme}>
-        <div className="max-w-screen-lg mx-auto px-3 pt-12 mb-24">
+        <div className="mx-auto pl-72 pr-8 pt-12 mb-24">
           <SearchSortPanel
             allCoffeeData={allCoffeeData}
             visibleCoffeeData={visibleCoffeeData}
