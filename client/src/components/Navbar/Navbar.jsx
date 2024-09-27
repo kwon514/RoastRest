@@ -2,6 +2,7 @@ import roastrest_logo from 'assets/roastrest_icon.png';
 import github_logo from 'assets/github_logo.svg';
 import { Link } from 'react-router-dom';
 import NavDropdown from './NavDropdown';
+import { AppBar, Grid2 as Grid } from '@mui/material';
 
 function Navbar({ showNavMenu }) {
   function GitHubButton() {
@@ -15,17 +16,33 @@ function Navbar({ showNavMenu }) {
   }
 
   return (
-    <div className="flex items-center justify-between mx-auto px-10 py-4">
-      <Link to="/">
-        <div className="flex items-center">
-          <span className="inline-flex items-center">
-            <img className="mr-2" src={roastrest_logo} alt="RoastRest logo" width="45px" />
-            <span className="hidden sm:inline-flex text-2xl font-semibold">RoastRest</span>
-          </span>
-        </div>
-      </Link>
-      <div>{showNavMenu ? <NavDropdown /> : <GitHubButton />}</div>
-    </div>
+    <AppBar
+      position="sticky"
+      sx={{
+        bgcolor: 'white',
+        color: 'black',
+        padding: '12px',
+        boxShadow: 0,
+        borderBottom: '1px rgb(229, 231, 235) solid',
+      }}
+    >
+      <Grid container>
+        <Grid size={2}>
+          <Link to="/">
+            <div className="flex items-center">
+              <span className="inline-flex items-center">
+                <img className="mr-2" src={roastrest_logo} alt="RoastRest logo" width="45px" />
+                <span className="hidden sm:inline-flex text-2xl font-semibold">RoastRest</span>
+              </span>
+            </div>
+          </Link>
+        </Grid>
+        <Grid size={8}></Grid>
+        <Grid size={2} className="flex justify-end">
+          <div className="mr-4 mt-1">{showNavMenu ? <NavDropdown /> : <GitHubButton />}</div>
+        </Grid>
+      </Grid>
+    </AppBar>
   );
 }
 
