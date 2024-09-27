@@ -56,8 +56,8 @@ function Account() {
       <Navbar showNavMenu={true} />
       <Sidebar />
       <ThemeProvider theme={theme}>
-        <div className="max-w-screen-lg mx-auto px-3 pt-12">
-          <div className="md:w-3/4 mx-auto">
+        <div className="mx-auto w- pl-72 pr-8 pt-12">
+          <div className="sm:w-12/12 xl:w-10/12 2xl:w-6/12 max-w-screen-lg mx-auto">
             {isLoadingData ? (
               <>
                 <PersonalDetailsBoxSkeleton />
