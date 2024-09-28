@@ -5,7 +5,7 @@ function CoffeeGridSkeleton() {
   return (
     <Grid container spacing={2}>
       {[...Array(6)].map((_, index) => (
-        <Grid key={index} size={{ xs: 12, sm: 6 }}>
+        <Grid key={index} size={{ xs: 12, md: 6, xl: 4 }}>
           <CoffeeCardSkeleton />
         </Grid>
       ))}
