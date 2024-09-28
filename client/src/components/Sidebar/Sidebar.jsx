@@ -1,14 +1,15 @@
 import { Drawer } from '@mui/material';
 import { Dashboard, PersonOutlineOutlined } from '@mui/icons-material';
 import { SidebarItem } from 'components';
+
 function Sidebar() {
   return (
     <>
       <Drawer
         open={true}
         variant="permanent"
-        PaperProps={{
-          sx: { width: '255px' },
+        sx={{
+          display: { xs: 'none', sm: 'block' },
         }}
       >
         <div className="mt-24 pr-2">
