@@ -3,7 +3,6 @@ import { isLoggedIn, getUserData } from 'helpers';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
-import { createTheme, ThemeProvider } from '@mui/material';
 import { ToastContainer } from 'react-toastify';
 import {
   PersonalDetailsBox,
@@ -12,17 +11,6 @@ import {
   DirectDashboardBox,
   DangerZoneBox,
 } from './';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#896345',
-    },
-    secondary: {
-      main: '#f0eee7',
-    },
-  },
-});
 
 function Account() {
   const navigate = useNavigate();
@@ -55,29 +43,27 @@ function Account() {
       </Helmet>
       <Navbar showNavMenu={true} />
       <Sidebar />
-      <ThemeProvider theme={theme}>
-        <div className="mx-auto w- pl-72 pr-8 pt-12">
-          <div className="sm:w-12/12 xl:w-10/12 2xl:w-6/12 max-w-screen-lg mx-auto">
-            {isLoadingData ? (
-              <>
-                <PersonalDetailsBoxSkeleton />
-              </>
-            ) : (
-              <>
-                <PersonalDetailsBox
-                  userName={userName}
-                  userEmail={userEmail}
-                  updateData={getPersonalDetails}
-                />
-              </>
-            )}
-            <PasswordUpdateBox updateData={getPersonalDetails} />
-            <DirectDashboardBox />
-            <DangerZoneBox />
-          </div>
-          <ToastContainer />
+      <div className="mx-auto w- pl-72 pr-8 pt-12">
+        <div className="sm:w-12/12 xl:w-10/12 2xl:w-6/12 max-w-screen-lg mx-auto">
+          {isLoadingData ? (
+            <>
+              <PersonalDetailsBoxSkeleton />
+            </>
+          ) : (
+            <>
+              <PersonalDetailsBox
+                userName={userName}
+                userEmail={userEmail}
+                updateData={getPersonalDetails}
+              />
+            </>
+          )}
+          <PasswordUpdateBox updateData={getPersonalDetails} />
+          <DirectDashboardBox />
+          <DangerZoneBox />
         </div>
-      </ThemeProvider>
+        <ToastContainer />
+      </div>
     </>
   );
 }
