@@ -124,7 +124,7 @@ function Dashboard() {
       </Helmet>
       <Navbar showNavMenu={true} />
       <Sidebar />
-      <div className="mx-auto pl-72 pr-8 pt-12 mb-24">
+      <div className="mx-auto pl-4 sm:pl-24 lg:pl-72 pr-4 sm:pr-8 pt-12 mb-24">
         <SearchSortPanel
           allCoffeeData={allCoffeeData}
           visibleCoffeeData={visibleCoffeeData}

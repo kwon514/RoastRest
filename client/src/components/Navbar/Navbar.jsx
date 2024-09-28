@@ -28,7 +28,7 @@ function Navbar({ showNavMenu }) {
       }}
     >
       <Grid container>
-        <Grid size={2}>
+        <Grid size={6}>
           <Link to="/">
             <div className="flex items-center ml-4">
               <span className="inline-flex items-center">
@@ -38,7 +38,7 @@ function Navbar({ showNavMenu }) {
             </div>
           </Link>
         </Grid>
-        <Grid size={2} offset="auto" className="flex justify-end">
+        <Grid size={6} offset="auto" className="flex justify-end">
           <div className="mr-4 mt-1">{showNavMenu ? <NavDropdown /> : <GitHubButton />}</div>
         </Grid>
       </Grid>
