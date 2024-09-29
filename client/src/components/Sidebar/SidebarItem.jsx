@@ -11,7 +11,7 @@ function SidebarItem({ icon, label, link, responsiveLabel = true }) {
         className={
           'px-4 py-3 rounded-r-2xl lg:w-64 ' +
           (active ? 'bg-[#EADDCA] ' : 'hover:bg-slate-50 ') +
-          (responsiveLabel ? '' : 'w-52')
+          (responsiveLabel ? '' : 'w-60')
         }
       >
         <Grid container>
