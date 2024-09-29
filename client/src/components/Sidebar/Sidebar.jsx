@@ -2,7 +2,7 @@ import { Drawer } from '@mui/material';
 import { Dashboard, PersonOutlineOutlined } from '@mui/icons-material';
 import { SidebarItem } from 'components';
 
-function Sidebar() {
+function Sidebar({ mobileSidebar, setMobileSidebar }) {
   return (
     <>
       <Drawer
@@ -10,6 +10,18 @@ function Sidebar() {
         variant="permanent"
         sx={{
           display: { xs: 'none', sm: 'block' },
+        }}
+      >
+        <div className="mt-24 pr-2">
+          <SidebarItem icon={<Dashboard />} label={'Dashboard'} link={'/dashboard'} />
+          <SidebarItem icon={<PersonOutlineOutlined />} label={'Account'} link={'/account'} />
+        </div>
+      </Drawer>
+      <Drawer
+        open={mobileSidebar}
+        variant="temporary"
+        sx={{
+          display: { sm: 'none' },
         }}
       >
         <div className="mt-24 pr-2">
