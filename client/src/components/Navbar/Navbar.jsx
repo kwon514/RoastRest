@@ -31,9 +31,11 @@ function Navbar({ showNavMenu, mobileSidebar, setMobileSidebar }) {
       <Grid container>
         <Grid size={6}>
           <Grid container>
-            <Grid size={6}>
-              <MenuButton mobileSidebar={mobileSidebar} setMobileSidebar={setMobileSidebar} />
-            </Grid>
+            {showNavMenu ? (
+              <Grid size={6}>
+                <MenuButton mobileSidebar={mobileSidebar} setMobileSidebar={setMobileSidebar} />
+              </Grid>
+            ) : null}
             <Grid size={6}>
               <Link to="/">
                 <div className="flex items-center ml-1 sm:ml-4">
