@@ -3,10 +3,13 @@ import { Dashboard, PersonOutlineOutlined } from '@mui/icons-material';
 import { SidebarItem } from 'components';
 
 function Sidebar({ mobileSidebar, setMobileSidebar }) {
+  const closeMobileSidebar = () => {
+    setMobileSidebar(false);
+  };
+
   return (
     <>
       <Drawer
-        open={true}
         variant="permanent"
         sx={{
           display: { xs: 'none', sm: 'block' },
@@ -18,8 +21,9 @@ function Sidebar({ mobileSidebar, setMobileSidebar }) {
         </div>
       </Drawer>
       <Drawer
-        open={mobileSidebar}
         variant="temporary"
+        open={mobileSidebar}
+        onClose={closeMobileSidebar}
         sx={{
           display: { sm: 'none' },
         }}
