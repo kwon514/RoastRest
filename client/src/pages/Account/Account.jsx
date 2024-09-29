@@ -15,6 +15,8 @@ import {
 function Account() {
   const navigate = useNavigate();
   const [isLoadingData, setIsLoadingData] = useState(true);
+  const [mobileSidebar, setMobileSidebar] = useState(false);
+
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
 
@@ -41,8 +43,12 @@ function Account() {
       <Helmet>
         <title>Account | RoastRest</title>
       </Helmet>
-      <Navbar showNavMenu={true} />
-      <Sidebar />
+      <Navbar
+        showNavMenu={true}
+        mobileSidebar={mobileSidebar}
+        setMobileSidebar={setMobileSidebar}
+      />
+      <Sidebar mobileSidebar={mobileSidebar} setMobileSidebar={setMobileSidebar} />
       <div className="mx-auto pl-4 sm:pl-24 lg:pl-72 pr-4 sm:pr-8 pt-12 mb-24">
         <div className="sm:w-12/12 xl:w-10/12 2xl:w-6/12 max-w-screen-lg mx-auto">
           {isLoadingData ? (

@@ -40,6 +40,8 @@ function Dashboard() {
   const [editDialog, setEditDialog] = useState(false);
   const [viewDialog, setViewDialog] = useState(false);
 
+  const [mobileSidebar, setMobileSidebar] = useState(false);
+
   let currentSort = useRef('creationDate');
   let reverseSort = useRef(false);
   let duplicateDialog = useRef(false);
@@ -122,8 +124,12 @@ function Dashboard() {
       <Helmet>
         <title>Coffee Dashboard | RoastRest</title>
       </Helmet>
-      <Navbar showNavMenu={true} />
-      <Sidebar />
+      <Navbar
+        showNavMenu={true}
+        mobileSidebar={mobileSidebar}
+        setMobileSidebar={setMobileSidebar}
+      />
+      <Sidebar mobileSidebar={mobileSidebar} setMobileSidebar={setMobileSidebar} />
       <div className="mx-auto pl-4 sm:pl-24 lg:pl-72 pr-4 sm:pr-8 pt-12 mb-24">
         <SearchSortPanel
           allCoffeeData={allCoffeeData}
