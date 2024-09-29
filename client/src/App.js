@@ -14,6 +14,9 @@ const theme = createTheme({
       main: '#f0eee7',
     },
   },
+  typography: {
+    fontFamily: ['Poppins', 'serif'].join(','),
+  },
   breakpoints: {
     values: {
       xs: 0,
