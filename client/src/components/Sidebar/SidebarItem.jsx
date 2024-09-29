@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Grid2 as Grid } from '@mui/material';
 
-function SidebarItem({ icon, label, link }) {
+function SidebarItem({ icon, label, link, responsiveLabel = true }) {
   const location = useLocation();
   const active = location.pathname === link;
 
@@ -9,12 +9,14 @@ function SidebarItem({ icon, label, link }) {
     <Link to={link}>
       <div
         className={
-          'px-4 py-3 rounded-r-2xl lg:w-64 ' + (active ? 'bg-[#EADDCA]' : 'hover:bg-slate-50')
+          'px-4 py-3 rounded-r-2xl lg:w-64 ' +
+          (active ? 'bg-[#EADDCA] ' : 'hover:bg-slate-50 ') +
+          (responsiveLabel ? '' : 'w-52')
         }
       >
         <Grid container>
           <Grid size={3}>{icon}</Grid>
-          <Grid size={9} className="hidden lg:block">
+          <Grid size={9} className={responsiveLabel ? 'hidden lg:block' : ''}>
             {label}
           </Grid>
         </Grid>

@@ -24,13 +24,26 @@ function Sidebar({ mobileSidebar, setMobileSidebar }) {
         variant="temporary"
         open={mobileSidebar}
         onClose={closeMobileSidebar}
+        ModalProps={{
+          keepMounted: true,
+        }}
         sx={{
           display: { sm: 'none' },
         }}
       >
         <div className="mt-24 pr-2">
-          <SidebarItem icon={<Dashboard />} label={'Dashboard'} link={'/dashboard'} />
-          <SidebarItem icon={<PersonOutlineOutlined />} label={'Account'} link={'/account'} />
+          <SidebarItem
+            icon={<Dashboard />}
+            label={'Dashboard'}
+            link={'/dashboard'}
+            responsiveLabel={false}
+          />
+          <SidebarItem
+            icon={<PersonOutlineOutlined />}
+            label={'Account'}
+            link={'/account'}
+            responsiveLabel={false}
+          />
         </div>
       </Drawer>
     </>
