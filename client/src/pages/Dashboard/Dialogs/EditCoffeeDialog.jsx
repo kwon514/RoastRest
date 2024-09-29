@@ -26,6 +26,10 @@ function EditCoffeeDialog({
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('425'));
 
+  const roastDate = new Date(coffeeData.roastDate);
+  const frozenStart = coffeeData.frozenStart ? new Date(coffeeData.frozenStart) : null;
+  const frozenEnd = coffeeData.frozenEnd ? new Date(coffeeData.frozenEnd) : null;
+
   const roastLevels = [
     { value: 'Light', label: 'Light' },
     { value: 'Medium', label: 'Medium' },
@@ -155,7 +159,7 @@ function EditCoffeeDialog({
             name="roastDate"
             label="Roast date"
             format="dd/MM/yyyy"
-            defaultValue={new Date(coffeeData.roastDate)}
+            defaultValue={roastDate}
             slotProps={{ textField: { fullWidth: true, margin: 'dense', required: true } }}
           />
           <DatePicker
@@ -163,7 +167,7 @@ function EditCoffeeDialog({
             name="frozenStart"
             label="Frozen start date"
             format="dd/MM/yyyy"
-            defaultValue={new Date(coffeeData.frozenStart)}
+            defaultValue={frozenStart}
             slotProps={{
               field: { clearable: true },
               textField: { fullWidth: true, margin: 'dense' },
@@ -174,7 +178,7 @@ function EditCoffeeDialog({
             name="frozenEnd"
             label="Frozen end date (leave blank if frozen)"
             format="dd/MM/yyyy"
-            defaultValue={new Date(coffeeData.frozenEnd)}
+            defaultValue={frozenEnd}
             slotProps={{
               field: { clearable: true },
               textField: { fullWidth: true, margin: 'dense' },
