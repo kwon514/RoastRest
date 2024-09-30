@@ -93,8 +93,10 @@ function SearchSortPanel({
           variant="outlined"
           color="primary"
           onChange={(e) => handleSearch(e.target.value)}
-          InputProps={{
-            startAdornment: <SearchIcon sx={{ mr: 1 }} />,
+          slotProps={{
+            input: {
+              startAdornment: <SearchIcon sx={{ mr: 1 }} />,
+            },
           }}
         />
       </Grid>
