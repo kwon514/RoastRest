@@ -122,7 +122,7 @@ function Dashboard() {
   return (
     <>
       <Helmet>
-        <title>Coffee Dashboard | RoastRest</title>
+        <title>Dashboard | RoastRest</title>
       </Helmet>
       <Navbar
         showNavMenu={true}
