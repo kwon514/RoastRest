@@ -6,7 +6,7 @@ import {
   ViewCoffeeDialog,
   EditCoffeeDialog,
 } from './';
-import { Navbar } from 'components';
+import { Navbar, Sidebar } from 'components';
 import {
   isLoggedIn,
   getAllCoffeeData,
@@ -15,34 +15,12 @@ import {
   toastMessage as universalToast,
   getUserData,
 } from 'helpers';
-import { Fab, createTheme, ThemeProvider, Snackbar } from '@mui/material';
+import { Fab, Snackbar } from '@mui/material';
 import { ToastContainer } from 'react-toastify';
 import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#896345',
-    },
-    secondary: {
-      main: '#f0eee7',
-    },
-  },
-  components: {
-    MuiFab: {
-      styleOverrides: {
-        root: {
-          position: 'fixed',
-          bottom: '20px',
-          right: '20px',
-        },
-      },
-    },
-  },
-});
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -61,6 +39,8 @@ function Dashboard() {
   const [addDialog, setAddDialog] = useState(false);
   const [editDialog, setEditDialog] = useState(false);
   const [viewDialog, setViewDialog] = useState(false);
+
+  const [mobileSidebar, setMobileSidebar] = useState(false);
 
   let currentSort = useRef('creationDate');
   let reverseSort = useRef(false);
@@ -144,89 +124,89 @@ function Dashboard() {
       <Helmet>
         <title>Coffee Dashboard | RoastRest</title>
       </Helmet>
-      <Navbar showNavMenu={true} />
-      <ThemeProvider theme={theme}>
-        <div className="max-w-screen-lg mx-auto px-3 mb-24">
-          <h2 className="text-4xl text-rr-brown-primary font-bold text-center py-8">
-            Coffee Dashboard
-          </h2>
-          <SearchSortPanel
-            allCoffeeData={allCoffeeData}
-            visibleCoffeeData={visibleCoffeeData}
-            setVisibleCoffeeData={setVisibleCoffeeData}
-            currentSort={currentSort}
-            reverseSort={reverseSort}
-            sortCoffees={sortCoffees}
-          />
-          {isLoadingData ? (
-            <CoffeeGridSkeleton />
-          ) : (
-            <>
-              {visibleCoffeeData.some((coffee) => coffee.isPinned) && (
-                <>
-                  <h2 className="text-sm text-rr-brown-primary font-bold uppercase ml-2 mb-1">
-                    Pinned
-                  </h2>
-                  <CoffeeGrid
-                    coffeeData={visibleCoffeeData.filter((coffee) => coffee.isPinned)}
-                    weightUnit={weightUnit}
-                    viewData={viewCoffeeData}
-                    editData={editCoffeeData}
-                    duplicateData={duplicateCoffeeData}
-                    updateData={updateAllCoffeeData}
-                    toastMsg={handleToast}
-                  />
-                  <h2 className="text-sm text-rr-brown-primary font-bold uppercase ml-2 mb-1">
-                    Others
-                  </h2>
-                </>
-              )}
-              <CoffeeGrid
-                coffeeData={visibleCoffeeData.filter((coffee) => !coffee.isPinned)}
-                weightUnit={weightUnit}
-                viewData={viewCoffeeData}
-                editData={editCoffeeData}
-                duplicateData={duplicateCoffeeData}
-                updateData={updateAllCoffeeData}
-                toastMsg={handleToast}
-              />
-            </>
-          )}
-          <Fab color="primary" aria-label="add" onClick={toggleAddDialog}>
-            <AddIcon color="secondary" />
-          </Fab>
-          <AddCoffeeDialog
-            open={addDialog}
-            handleClose={toggleAddDialog}
-            updateData={updateAllCoffeeData}
-            coffeeData={targetCoffeeData}
-            isDuplicate={duplicateDialog.current}
-            weightUnit={weightUnit}
-            toastMsg={handleToast}
-          />
-          <ViewCoffeeDialog
-            open={viewDialog}
-            handleClose={toggleViewDialog}
-            coffeeData={targetCoffeeData}
-            weightUnit={weightUnit}
-          />
-          <EditCoffeeDialog
-            open={editDialog}
-            handleClose={toggleEditDialog}
-            updateData={updateAllCoffeeData}
-            coffeeData={targetCoffeeData}
-            weightUnit={weightUnit}
-            toastMsg={handleToast}
-          />
-          <Snackbar
-            open={toastOpen}
-            autoHideDuration={5000}
-            onClose={() => setToastOpen(false)}
-            message={toastMessage}
-          />
-          <ToastContainer />
-        </div>
-      </ThemeProvider>
+      <Navbar
+        showNavMenu={true}
+        mobileSidebar={mobileSidebar}
+        setMobileSidebar={setMobileSidebar}
+      />
+      <Sidebar mobileSidebar={mobileSidebar} setMobileSidebar={setMobileSidebar} />
+      <div className="mx-auto pl-4 sm:pl-24 lg:pl-72 pr-4 sm:pr-8 pt-12 mb-24">
+        <SearchSortPanel
+          allCoffeeData={allCoffeeData}
+          visibleCoffeeData={visibleCoffeeData}
+          setVisibleCoffeeData={setVisibleCoffeeData}
+          currentSort={currentSort}
+          reverseSort={reverseSort}
+          sortCoffees={sortCoffees}
+        />
+        {isLoadingData ? (
+          <CoffeeGridSkeleton />
+        ) : (
+          <>
+            {visibleCoffeeData.some((coffee) => coffee.isPinned) && (
+              <>
+                <h2 className="text-sm text-rr-brown-primary font-semibold uppercase ml-2 mb-1">
+                  Pinned
+                </h2>
+                <CoffeeGrid
+                  coffeeData={visibleCoffeeData.filter((coffee) => coffee.isPinned)}
+                  weightUnit={weightUnit}
+                  viewData={viewCoffeeData}
+                  editData={editCoffeeData}
+                  duplicateData={duplicateCoffeeData}
+                  updateData={updateAllCoffeeData}
+                  toastMsg={handleToast}
+                />
+                <h2 className="text-sm text-rr-brown-primary font-semibold uppercase ml-2 mb-1">
+                  Others
+                </h2>
+              </>
+            )}
+            <CoffeeGrid
+              coffeeData={visibleCoffeeData.filter((coffee) => !coffee.isPinned)}
+              weightUnit={weightUnit}
+              viewData={viewCoffeeData}
+              editData={editCoffeeData}
+              duplicateData={duplicateCoffeeData}
+              updateData={updateAllCoffeeData}
+              toastMsg={handleToast}
+            />
+          </>
+        )}
+        <Fab color="primary" aria-label="add" onClick={toggleAddDialog}>
+          <AddIcon color="secondary" />
+        </Fab>
+        <AddCoffeeDialog
+          open={addDialog}
+          handleClose={toggleAddDialog}
+          updateData={updateAllCoffeeData}
+          coffeeData={targetCoffeeData}
+          isDuplicate={duplicateDialog.current}
+          weightUnit={weightUnit}
+          toastMsg={handleToast}
+        />
+        <ViewCoffeeDialog
+          open={viewDialog}
+          handleClose={toggleViewDialog}
+          coffeeData={targetCoffeeData}
+          weightUnit={weightUnit}
+        />
+        <EditCoffeeDialog
+          open={editDialog}
+          handleClose={toggleEditDialog}
+          updateData={updateAllCoffeeData}
+          coffeeData={targetCoffeeData}
+          weightUnit={weightUnit}
+          toastMsg={handleToast}
+        />
+        <Snackbar
+          open={toastOpen}
+          autoHideDuration={5000}
+          onClose={() => setToastOpen(false)}
+          message={toastMessage}
+        />
+        <ToastContainer />
+      </div>
     </>
   );
 }

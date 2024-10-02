@@ -51,7 +51,7 @@ function PasswordUpdateBox({ updateData }) {
 
   return (
     <Paper className="bg-white p-5 mt-4">
-      <h3 className="text-xl font-bold pb-2">Change your password</h3>
+      <h3 className="text-xl font-semibold pb-2">Change your password</h3>
       <form onSubmit={handleSubmit}>
         <PasswordInputField
           id="currentPassword"

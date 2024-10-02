@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Grid2 as Grid, TextField, MenuItem, Button } from '@mui/material';
+import { Grid2 as Grid, TextField, MenuItem, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { BiSortDown, BiSortUp } from 'react-icons/bi';
 
@@ -67,14 +67,23 @@ function SearchSortPanel({
 
   return (
     <Grid container spacing={1} className="mb-4">
-      <Grid size={{ xs: 3, sm: 2 }}>
+      <Grid size={{ xs: 4, sm: 3.5, md: 2.8, lg: 2.4, xl: 1.5 }}>
         <TextField
           select
           fullWidth
           id="searchBy"
-          label="Search By"
           variant="outlined"
           color="primary"
+          sx={{
+            backgroundColor: 'white',
+            borderRadius: '50px',
+            '& fieldset': { border: 'none' },
+            input: {
+              '&::placeholder': {
+                opacity: 0.75,
+              },
+            },
+          }}
           defaultValue="all"
           onChange={(e) => handleSetSearchBy(e.target.value)}
         >
@@ -85,27 +94,64 @@ function SearchSortPanel({
           ))}
         </TextField>
       </Grid>
-      <Grid size={{ xs: 9, sm: 4 }}>
+      <Grid size={{ xs: 8, sm: 4.5, md: 5.2, lg: 5.6, xl: 6.5 }}>
         <TextField
           fullWidth
           id="search"
-          label="Search"
+          placeholder="Search"
           variant="outlined"
           color="primary"
+          sx={{
+            backgroundColor: 'white',
+            borderRadius: '50px',
+            maxWidth: '500px',
+            '& fieldset': { border: 'none' },
+            input: {
+              '&::placeholder': {
+                opacity: 0.75,
+              },
+            },
+          }}
           onChange={(e) => handleSearch(e.target.value)}
-          InputProps={{
-            startAdornment: <SearchIcon sx={{ mr: 1 }} />,
+          slotProps={{
+            input: {
+              startAdornment: <SearchIcon sx={{ mr: 3 }} />,
+            },
+            inputLabel: {
+              shrink: false,
+            },
           }}
         />
       </Grid>
-      <Grid size={{ xs: 12, sm: 6 }} className="inline-flex justify-end">
+      <Grid size={{ xs: 12, sm: 4 }} className="inline-flex justify-end">
+        <IconButton
+          aria-label="order"
+          color="primary"
+          onClick={handleOrder}
+          sx={{
+            width: '56px',
+          }}
+        >
+          {reverseSort.current ? <BiSortDown size={24} /> : <BiSortUp size={24} />}
+        </IconButton>
         <TextField
           select
-          className="w-full sm:w-40"
+          className="w-full sm:w-auto"
           id="sortBy"
-          label="Sort"
           variant="outlined"
           color="primary"
+          sx={{
+            borderRadius: '50px',
+            '&:hover': {
+              backgroundColor: '#f6f2ec',
+            },
+            '& fieldset': { border: 'none' },
+            input: {
+              '&::placeholder': {
+                opacity: 0.75,
+              },
+            },
+          }}
           defaultValue="creationDate"
           onChange={(e) => handleSort(e.target.value)}
         >
@@ -115,17 +161,6 @@ function SearchSortPanel({
             </MenuItem>
           ))}
         </TextField>
-        <Button
-          aria-label="order"
-          variant="contained"
-          color="primary"
-          onClick={handleOrder}
-          sx={{
-            margin: '0 0 0 0.5rem',
-          }}
-        >
-          {reverseSort.current ? <BiSortDown size={24} /> : <BiSortUp size={24} />}
-        </Button>
       </Grid>
     </Grid>
   );

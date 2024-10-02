@@ -40,16 +40,16 @@ function CoffeeCard({
       <CardContent sx={{ padding: '8px 0 8px 16px' }}>
         <Grid container>
           <Grid size={11}>
-            <h2 className="text-xl font-bold mt-2">
+            <h2 className="text-xl font-semibold mt-2">
               {coffeeData.name ? coffeeData.name : coffeeData.coffeeName}
             </h2>
             {coffeeData.name ? (
-              <h3 className="text-md font-bold mb-1">
+              <h3 className="text-md font-semibold mb-1">
                 {coffeeData.coffeeName}{' '}
                 {coffeeData.coffeeRoaster ? ' - ' + coffeeData.coffeeRoaster : ''}
               </h3>
             ) : (
-              <h3 className="text-md font-bold mb-1">
+              <h3 className="text-md font-semibold mb-1">
                 {coffeeData.coffeeRoaster ? coffeeData.coffeeRoaster : '-'}
               </h3>
             )}

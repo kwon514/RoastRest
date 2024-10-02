@@ -14,7 +14,7 @@ function CoffeeGrid({
     <Grid container spacing={2} className="mb-6">
       {coffeeData.slice().map((coffee) => {
         return (
-          <Grid size={{ xs: 12, sm: 6 }} key={coffee._id}>
+          <Grid size={{ xs: 12, md: 6, xl: 4 }} key={coffee._id}>
             <CoffeeCard
               coffeeData={coffee}
               weightUnit={weightUnit}

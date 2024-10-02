@@ -100,12 +100,6 @@ function NavDropdown() {
         open={open}
         onClose={handleClose}
       >
-        <Link to="/dashboard">
-          <MenuItem onClick={handleClose} disableRipple>
-            <Dashboard />
-            Dashboard
-          </MenuItem>
-        </Link>
         <Link to="/account">
           <MenuItem onClick={handleClose} disableRipple>
             <PersonOutlineOutlined />
