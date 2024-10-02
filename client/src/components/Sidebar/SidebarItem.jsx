@@ -10,7 +10,7 @@ function SidebarItem({ icon, label, link, responsiveLabel = true }) {
       <div
         className={
           'px-4 py-3 rounded-r-2xl lg:w-64 ' +
-          (active ? 'bg-[#EADDCA] ' : 'hover:bg-slate-50 ') +
+          (active ? 'bg-[#eaddca] ' : 'hover:bg-slate-50 ') +
           (responsiveLabel ? '' : 'w-60')
         }
       >
