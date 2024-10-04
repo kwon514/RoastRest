@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
-import { editCoffeeData, deleteCoffeeData } from 'helpers';
+import { editCoffeeData, binCoffeeData } from 'helpers';
 
 function EditCoffeeDialog({
   open,
@@ -48,14 +48,14 @@ function EditCoffeeDialog({
     });
   };
 
-  const deleteData = () => {
-    deleteCoffeeData(coffeeData._id).then(() => {
+  const binData = () => {
+    binCoffeeData(coffeeData._id).then(() => {
       handleClose();
       updateData();
       if (coffeeData.name) {
-        toastMsg(`Deleted ${coffeeData.name} (${coffeeData.coffeeName})`);
+        toastMsg(`${coffeeData.name} (${coffeeData.coffeeName}) moved to bin`);
       } else {
-        toastMsg(`Deleted ${coffeeData.coffeeName}`);
+        toastMsg(`${coffeeData.coffeeName} moved to bin`);
       }
     });
   };
@@ -209,7 +209,7 @@ function EditCoffeeDialog({
       <DialogActions>
         <Grid container>
           <Grid size={4} className="pl-4">
-            <Button onClick={deleteData} color="primary">
+            <Button onClick={binData} color="primary">
               Delete
             </Button>
           </Grid>
