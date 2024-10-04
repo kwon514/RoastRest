@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { MoreVert, AcUnit, PushPinOutlined, ContentCopy, DeleteOutline } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem, ListItemIcon } from '@mui/material';
-import { toggleCoffeePin, toggleCoffeeFrozen, deleteCoffeeData } from 'helpers';
+import { toggleCoffeePin, toggleCoffeeFrozen, binCoffeeData } from 'helpers';
 
 function CoffeeCardMenu({ coffeeData, updateData, duplicateData, toastMsg }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -43,13 +43,13 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData, toastMsg }) {
     handleClose();
   };
 
-  const handleDelete = () => {
-    deleteCoffeeData(coffeeData._id).then(() => {
+  const handleBin = () => {
+    binCoffeeData(coffeeData._id).then(() => {
       updateData();
       if (coffeeData.name) {
-        toastMsg(`Deleted ${coffeeData.name} (${coffeeData.coffeeName})`);
+        toastMsg(`${coffeeData.name} (${coffeeData.coffeeName}) moved to bin`);
       } else {
-        toastMsg(`Deleted ${coffeeData.coffeeName}`);
+        toastMsg(`${coffeeData.coffeeName} moved to bin`);
       }
     });
     handleClose();
@@ -102,7 +102,7 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData, toastMsg }) {
           </ListItemIcon>
           Duplicate
         </MenuItem>
-        <MenuItem onClick={handleDelete}>
+        <MenuItem onClick={handleBin}>
           <ListItemIcon>
             <DeleteOutline fontSize="medium" />
           </ListItemIcon>
