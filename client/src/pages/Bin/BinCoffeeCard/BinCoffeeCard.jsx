@@ -1,6 +1,6 @@
 import { Card, CardContent, CardActions, Button, Grid2 as Grid } from '@mui/material';
 import { BinCoffeeCardMenu } from '..';
-import { calcRemainingDoses, calcRestDays, isFrozen } from 'helpers';
+import { calcRemainingDoses, calcRestDays, isFrozen, deleteCoffeeData } from 'helpers';
 import { formatDate } from 'date-fns';
 import { FaRegSnowflake } from 'react-icons/fa';
 
@@ -11,8 +11,16 @@ function BinCoffeeCard({ coffeeData, weightUnit, viewData, duplicateData, update
 
   const restoreData = () => {};
 
-  const deleteData = () => {};
-
+  const handleDelete = () => {
+    deleteCoffeeData(coffeeData._id).then(() => {
+      updateData();
+      if (coffeeData.name) {
+        toastMsg(`${coffeeData.name} (${coffeeData.coffeeName}) deleted forever`);
+      } else {
+        toastMsg(`${coffeeData.coffeeName} deleted forever`);
+      }
+    });
+  };
   const restDays = calcRestDays(coffeeData.roastDate, coffeeData.frozenStart, coffeeData.frozenEnd);
   const remainingDoses = calcRemainingDoses(coffeeData.coffeeWeight, coffeeData.coffeeDose);
 
@@ -85,7 +93,7 @@ function BinCoffeeCard({ coffeeData, weightUnit, viewData, duplicateData, update
             </Button>
           </Grid>
           <Grid size={6} className="inline-flex justify-end">
-            <Button size="large" sx={{ minWidth: 0 }} onClick={deleteData}>
+            <Button size="large" sx={{ minWidth: 0 }} onClick={handleDelete}>
               Delete forever
             </Button>
           </Grid>
