@@ -1,4 +1,10 @@
-import { BinSearchSortPanel, BinCoffeeGrid, BinCoffeeGridSkeleton, BinViewCoffeeDialog } from '.';
+import {
+  BinSearchSortPanel,
+  BinCoffeeGrid,
+  BinCoffeeGridSkeleton,
+  BinViewCoffeeDialog,
+  BinAddCoffeeDialog,
+} from '.';
 import { Navbar, Sidebar } from 'components';
 import {
   isLoggedIn,
@@ -135,6 +141,15 @@ function Bin() {
           handleClose={toggleViewDialog}
           coffeeData={targetCoffeeData}
           weightUnit={weightUnit}
+        />
+        <BinAddCoffeeDialog
+          open={addDialog}
+          handleClose={toggleAddDialog}
+          updateData={updateAllCoffeeData}
+          coffeeData={targetCoffeeData}
+          isDuplicate={duplicateDialog.current}
+          weightUnit={weightUnit}
+          toastMsg={handleToast}
         />
         <Snackbar
           open={toastOpen}

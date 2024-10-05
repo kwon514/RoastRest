@@ -5,4 +5,5 @@ export { default as BinCoffeeCard } from './BinCoffeeCard/BinCoffeeCard';
 export { default as BinCoffeeCardSkeleton } from './BinCoffeeCard/BinCoffeeCardSkeleton';
 export { default as BinCoffeeCardMenu } from './BinCoffeeCard/BinCoffeeCardMenu';
 export { default as BinViewCoffeeDialog } from './BinDialogs/BinViewCoffeeDialog';
+export { default as BinAddCoffeeDialog } from './BinDialogs/BinAddCoffeeDialog';
 export { default as DataViewField } from './BinDialogs/DataViewField';
