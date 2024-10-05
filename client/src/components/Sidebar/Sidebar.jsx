@@ -47,6 +47,12 @@ function Sidebar({ mobileSidebar, setMobileSidebar }) {
             responsiveLabel={false}
           />
           <SidebarItem
+            icon={<DeleteOutline />}
+            label={'Bin'}
+            link={'/bin'}
+            responsiveLabel={false}
+          />
+          <SidebarItem
             icon={<PersonOutlineOutlined />}
             label={'Account'}
             link={'/account'}
