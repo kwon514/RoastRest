@@ -19,7 +19,9 @@ function Sidebar({ mobileSidebar, setMobileSidebar }) {
         <div className="mt-24 pr-2">
           <SidebarItem icon={<Dashboard />} label={'Dashboard'} link={'/dashboard'} />
           <SidebarItem icon={<DeleteOutline />} label={'Bin'} link={'/bin'} />
-          <SidebarItem icon={<PersonOutlineOutlined />} label={'Account'} link={'/account'} />
+          <div className="absolute bottom-6">
+            <SidebarItem icon={<PersonOutlineOutlined />} label={'Account'} link={'/account'} />
+          </div>
         </div>
       </Drawer>
       <Drawer
@@ -52,12 +54,14 @@ function Sidebar({ mobileSidebar, setMobileSidebar }) {
             link={'/bin'}
             responsiveLabel={false}
           />
-          <SidebarItem
-            icon={<PersonOutlineOutlined />}
-            label={'Account'}
-            link={'/account'}
-            responsiveLabel={false}
-          />
+          <div className="absolute bottom-6">
+            <SidebarItem
+              icon={<PersonOutlineOutlined />}
+              label={'Account'}
+              link={'/account'}
+              responsiveLabel={false}
+            />
+          </div>
         </div>
       </Drawer>
     </>
