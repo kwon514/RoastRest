@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { MoreVert, ContentCopy, DeleteForeverOutlined } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem, ListItemIcon } from '@mui/material';
+import { deleteCoffeeData } from 'helpers';
 
 function BinCoffeeCardMenu({ coffeeData, updateData, duplicateData, toastMsg }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -19,11 +20,14 @@ function BinCoffeeCardMenu({ coffeeData, updateData, duplicateData, toastMsg }) 
   };
 
   const handleDelete = () => {
-    if (coffeeData.name) {
-      toastMsg(`${coffeeData.name} (${coffeeData.coffeeName}) deleted forever`);
-    } else {
-      toastMsg(`${coffeeData.coffeeName} deleted forever`);
-    }
+    deleteCoffeeData(coffeeData._id).then(() => {
+      updateData();
+      if (coffeeData.name) {
+        toastMsg(`${coffeeData.name} (${coffeeData.coffeeName}) deleted forever`);
+      } else {
+        toastMsg(`${coffeeData.coffeeName} deleted forever`);
+      }
+    });
     handleClose();
   };
 
