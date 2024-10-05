@@ -26,6 +26,10 @@ function AddCoffeeDialog({
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('425'));
 
+  const roastDate = new Date(coffeeData.roastDate);
+  const frozenStart = coffeeData.frozenStart ? new Date(coffeeData.frozenStart) : null;
+  const frozenEnd = coffeeData.frozenEnd ? new Date(coffeeData.frozenEnd) : null;
+
   const roastLevels = [
     { value: 'Light', label: 'Light' },
     { value: 'Medium', label: 'Medium' },
@@ -139,9 +143,7 @@ function AddCoffeeDialog({
             name="roastDate"
             label="Roast date"
             format="dd/MM/yyyy"
-            {...(isDuplicate
-              ? { defaultValue: coffeeData.roastDate }
-              : { defaultValue: new Date() })}
+            {...(isDuplicate ? { defaultValue: roastDate } : { defaultValue: new Date() })}
             slotProps={{ textField: { fullWidth: true, margin: 'dense', required: true } }}
           />
           <DatePicker
@@ -149,7 +151,7 @@ function AddCoffeeDialog({
             name="frozenStart"
             label="Frozen start date"
             format="dd/MM/yyyy"
-            {...(isDuplicate ? { defaultValue: coffeeData.frozenStart } : {})}
+            {...(isDuplicate ? { defaultValue: frozenStart } : {})}
             slotProps={{ textField: { fullWidth: true, margin: 'dense' } }}
           />
           <DatePicker
@@ -157,7 +159,7 @@ function AddCoffeeDialog({
             name="frozenEnd"
             label="Frozen end date (leave blank if frozen)"
             format="dd/MM/yyyy"
-            {...(isDuplicate ? { defaultValue: coffeeData.frozenEnd } : {})}
+            {...(isDuplicate ? { defaultValue: frozenEnd } : {})}
             slotProps={{ textField: { fullWidth: true, margin: 'dense' } }}
           />
           <TextField
