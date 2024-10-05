@@ -15,7 +15,9 @@ module.exports.addCoffee = async (req, res) => {
 module.exports.getCoffee = async (req, res) => {
   try {
     const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
-    const coffee = await Coffee.find({ userId, isBinned: false });
+    const filters = req.query;
+    filters.userId = userId;
+    const coffee = await Coffee.find(filters);
     res.status(200).json(coffee);
   } catch (error) {
     console.error(error);
