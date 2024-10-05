@@ -1,12 +1,6 @@
 import { Card, CardContent, CardActions, Button, Grid2 as Grid } from '@mui/material';
 import { BinCoffeeCardMenu } from '..';
-import {
-  calcRemainingDoses,
-  calcRestDays,
-  isFrozen,
-  unbinCoffeeData,
-  deleteCoffeeData,
-} from 'helpers';
+import { calcRemainingDoses, calcRestDays, isFrozen, unbinCoffeeData } from 'helpers';
 import { formatDate } from 'date-fns';
 import { FaRegSnowflake } from 'react-icons/fa';
 
@@ -26,16 +20,6 @@ function BinCoffeeCard({ coffeeData, weightUnit, viewData, duplicateData, update
     });
   };
 
-  const handleDelete = () => {
-    deleteCoffeeData(coffeeData._id).then(() => {
-      updateData();
-      if (coffeeData.name) {
-        toastMsg(`${coffeeData.name} (${coffeeData.coffeeName}) deleted forever`);
-      } else {
-        toastMsg(`${coffeeData.coffeeName} deleted forever`);
-      }
-    });
-  };
   const restDays = calcRestDays(coffeeData.roastDate, coffeeData.frozenStart, coffeeData.frozenEnd);
   const remainingDoses = calcRemainingDoses(coffeeData.coffeeWeight, coffeeData.coffeeDose);
 
@@ -98,21 +82,12 @@ function BinCoffeeCard({ coffeeData, weightUnit, viewData, duplicateData, update
         </Grid>
       </CardContent>
       <CardActions>
-        <Grid size={12} container>
-          <Grid size={6}>
-            <Button size="large" sx={{ minWidth: 0 }} onClick={openViewDialog}>
-              View
-            </Button>
-            <Button size="large" sx={{ minWidth: 0 }} onClick={handleRestore}>
-              Restore
-            </Button>
-          </Grid>
-          <Grid size={6} className="inline-flex justify-end">
-            <Button size="large" sx={{ minWidth: 0 }} onClick={handleDelete}>
-              Delete forever
-            </Button>
-          </Grid>
-        </Grid>
+        <Button size="large" sx={{ minWidth: 0 }} onClick={openViewDialog}>
+          View
+        </Button>
+        <Button size="large" sx={{ minWidth: 0 }} onClick={handleRestore}>
+          Restore
+        </Button>
       </CardActions>
     </Card>
   );
