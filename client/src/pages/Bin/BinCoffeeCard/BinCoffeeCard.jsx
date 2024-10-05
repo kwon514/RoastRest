@@ -1,6 +1,12 @@
 import { Card, CardContent, CardActions, Button, Grid2 as Grid } from '@mui/material';
 import { BinCoffeeCardMenu } from '..';
-import { calcRemainingDoses, calcRestDays, isFrozen, deleteCoffeeData } from 'helpers';
+import {
+  calcRemainingDoses,
+  calcRestDays,
+  isFrozen,
+  unbinCoffeeData,
+  deleteCoffeeData,
+} from 'helpers';
 import { formatDate } from 'date-fns';
 import { FaRegSnowflake } from 'react-icons/fa';
 
@@ -9,7 +15,16 @@ function BinCoffeeCard({ coffeeData, weightUnit, viewData, duplicateData, update
     viewData(coffeeData._id);
   };
 
-  const restoreData = () => {};
+  const handleRestore = () => {
+    unbinCoffeeData(coffeeData._id).then(() => {
+      updateData();
+      if (coffeeData.name) {
+        toastMsg(`Restored ${coffeeData.name} (${coffeeData.coffeeName})`);
+      } else {
+        toastMsg(`Restored ${coffeeData.coffeeName}`);
+      }
+    });
+  };
 
   const handleDelete = () => {
     deleteCoffeeData(coffeeData._id).then(() => {
@@ -88,7 +103,7 @@ function BinCoffeeCard({ coffeeData, weightUnit, viewData, duplicateData, update
             <Button size="large" sx={{ minWidth: 0 }} onClick={openViewDialog}>
               View
             </Button>
-            <Button size="large" sx={{ minWidth: 0 }} onClick={restoreData}>
+            <Button size="large" sx={{ minWidth: 0 }} onClick={handleRestore}>
               Restore
             </Button>
           </Grid>
