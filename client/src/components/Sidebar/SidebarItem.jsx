@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Grid2 as Grid } from '@mui/material';
 
-function SidebarItem({ icon, label, link, responsiveLabel = true }) {
+function SidebarItem({ icon, activeIcon, label, link, responsiveLabel = true }) {
   const location = useLocation();
   const active = location.pathname === link;
 
@@ -15,7 +15,7 @@ function SidebarItem({ icon, label, link, responsiveLabel = true }) {
         }
       >
         <Grid container>
-          <Grid size={3}>{icon}</Grid>
+          <Grid size={3}>{active ? activeIcon : icon}</Grid>
           <Grid size={9} className={responsiveLabel ? 'hidden lg:block' : ''}>
             {label}
           </Grid>

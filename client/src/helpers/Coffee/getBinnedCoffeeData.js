@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-function getAllCoffeeData() {
+function getBinnedCoffeeData() {
   return axios
     .get(`/coffee`, {
       withCredentials: true,
       params: {
-        isBinned: false,
+        isBinned: true,
       },
     })
     .then((res) => {
@@ -13,4 +13,4 @@ function getAllCoffeeData() {
     });
 }
 
-export default getAllCoffeeData;
+export default getBinnedCoffeeData;

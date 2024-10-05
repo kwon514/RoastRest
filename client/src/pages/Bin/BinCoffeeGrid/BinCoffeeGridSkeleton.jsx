@@ -1,18 +1,18 @@
 import { Grid2 as Grid } from '@mui/material';
-import { CoffeeCardSkeleton } from '..';
+import { BinCoffeeCardSkeleton } from '..';
 
-function CoffeeGridSkeleton() {
+function BinCoffeeGridSkeleton() {
   const cardCount = window.innerWidth > 1280 ? 9 : 6;
 
   return (
     <Grid container spacing={2}>
       {[...Array(cardCount)].map((_, index) => (
         <Grid key={index} size={{ xs: 12, md: 6, xl: 4 }}>
-          <CoffeeCardSkeleton />
+          <BinCoffeeCardSkeleton />
         </Grid>
       ))}
     </Grid>
   );
 }
 
-export default CoffeeGridSkeleton;
+export default BinCoffeeGridSkeleton;

@@ -8,18 +8,18 @@ import {
   InputAdornment,
   MenuItem,
   DialogActions,
-  Grid2 as Grid,
   Button,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
-import { editCoffeeData, binCoffeeData } from 'helpers';
+import { addCoffeeData } from 'helpers';
 
-function EditCoffeeDialog({
+function BinAddCoffeeDialog({
   open,
   handleClose,
   updateData,
   coffeeData,
+  isDuplicate,
   weightUnit = 'g',
   toastMsg,
 }) {
@@ -36,26 +36,14 @@ function EditCoffeeDialog({
     { value: 'Dark', label: 'Dark' },
   ];
 
-  const handleEditCoffeeSubmit = (formJson) => {
-    editCoffeeData(coffeeData._id, formJson).then(() => {
+  const handleAddCoffeeSubmit = (formJson) => {
+    addCoffeeData(formJson).then(() => {
       handleClose();
       updateData();
       if (formJson.name) {
-        toastMsg(`Changes saved for ${formJson.name} (${formJson.coffeeName})`);
+        toastMsg(`Created ${formJson.name} (${formJson.coffeeName})`);
       } else {
-        toastMsg(`Changes saved for ${formJson.coffeeName}`);
-      }
-    });
-  };
-
-  const binData = () => {
-    binCoffeeData(coffeeData._id).then(() => {
-      handleClose();
-      updateData();
-      if (coffeeData.name) {
-        toastMsg(`${coffeeData.name} (${coffeeData.coffeeName}) moved to bin`);
-      } else {
-        toastMsg(`${coffeeData.coffeeName} moved to bin`);
+        toastMsg(`Created ${formJson.coffeeName}`);
       }
     });
   };
@@ -73,16 +61,12 @@ function EditCoffeeDialog({
           event.preventDefault();
           const formData = new FormData(event.currentTarget);
           const formJson = Object.fromEntries(formData.entries());
-          handleEditCoffeeSubmit(formJson);
+          handleAddCoffeeSubmit(formJson);
         },
       }}
     >
-      <DialogTitle>Edit Coffee Log</DialogTitle>
-      <DialogContent
-        sx={{
-          paddingBottom: '0px',
-        }}
-      >
+      <DialogTitle>New Coffee Log</DialogTitle>
+      <DialogContent>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <TextField
             margin="dense"
@@ -90,7 +74,7 @@ function EditCoffeeDialog({
             name="name"
             label="Log name"
             type="text"
-            defaultValue={coffeeData.name}
+            {...(isDuplicate ? { defaultValue: coffeeData.name } : {})}
             fullWidth
           />
           <TextField
@@ -100,7 +84,7 @@ function EditCoffeeDialog({
             name="coffeeName"
             label="Coffee name"
             type="text"
-            defaultValue={coffeeData.coffeeName}
+            {...(isDuplicate ? { defaultValue: coffeeData.coffeeName } : {})}
             fullWidth
           />
           <TextField
@@ -109,7 +93,7 @@ function EditCoffeeDialog({
             name="coffeeRoaster"
             label="Roaster name"
             type="text"
-            defaultValue={coffeeData.coffeeRoaster}
+            {...(isDuplicate ? { defaultValue: coffeeData.coffeeRoaster } : {})}
             fullWidth
           />
           <TextField
@@ -118,11 +102,11 @@ function EditCoffeeDialog({
             name="coffeeWeight"
             label="Weight"
             type="number"
-            defaultValue={coffeeData.coffeeWeight}
             InputProps={{
               inputProps: { step: '0.1', min: '0' },
               endAdornment: <InputAdornment position="end">{weightUnit}</InputAdornment>,
             }}
+            {...(isDuplicate ? { defaultValue: coffeeData.coffeeWeight } : {})}
             fullWidth
           />
           <TextField
@@ -131,11 +115,11 @@ function EditCoffeeDialog({
             name="coffeeDose"
             label="Dose"
             type="number"
-            defaultValue={coffeeData.coffeeDose}
             InputProps={{
               inputProps: { step: '0.1', min: '0' },
               endAdornment: <InputAdornment position="end">{weightUnit}</InputAdornment>,
             }}
+            {...(isDuplicate ? { defaultValue: coffeeData.coffeeDose } : {})}
             fullWidth
           />
           <TextField
@@ -145,7 +129,7 @@ function EditCoffeeDialog({
             name="roastLevel"
             label="Roast level"
             type="text"
-            defaultValue={coffeeData.roastLevel}
+            {...(isDuplicate ? { defaultValue: coffeeData.roastLevel } : { defaultValue: '' })}
             fullWidth
           >
             {roastLevels.map((option) => (
@@ -159,7 +143,7 @@ function EditCoffeeDialog({
             name="roastDate"
             label="Roast date"
             format="dd/MM/yyyy"
-            defaultValue={roastDate}
+            {...(isDuplicate ? { defaultValue: roastDate } : { defaultValue: new Date() })}
             slotProps={{ textField: { fullWidth: true, margin: 'dense', required: true } }}
           />
           <DatePicker
@@ -167,22 +151,16 @@ function EditCoffeeDialog({
             name="frozenStart"
             label="Frozen start date"
             format="dd/MM/yyyy"
-            defaultValue={frozenStart}
-            slotProps={{
-              field: { clearable: true },
-              textField: { fullWidth: true, margin: 'dense' },
-            }}
+            {...(isDuplicate ? { defaultValue: frozenStart } : {})}
+            slotProps={{ textField: { fullWidth: true, margin: 'dense' } }}
           />
           <DatePicker
             id="frozenEnd"
             name="frozenEnd"
             label="Frozen end date (leave blank if frozen)"
             format="dd/MM/yyyy"
-            defaultValue={frozenEnd}
-            slotProps={{
-              field: { clearable: true },
-              textField: { fullWidth: true, margin: 'dense' },
-            }}
+            {...(isDuplicate ? { defaultValue: frozenEnd } : {})}
+            slotProps={{ textField: { fullWidth: true, margin: 'dense' } }}
           />
           <TextField
             margin="dense"
@@ -190,7 +168,7 @@ function EditCoffeeDialog({
             name="notes"
             label="Notes"
             type="text"
-            defaultValue={coffeeData.notes}
+            {...(isDuplicate ? { defaultValue: coffeeData.notes } : {})}
             fullWidth
             multiline
             rows={4}
@@ -201,30 +179,21 @@ function EditCoffeeDialog({
             name="websiteUrl"
             label="Website"
             type="text"
-            defaultValue={coffeeData.websiteUrl}
+            {...(isDuplicate ? { defaultValue: coffeeData.websiteUrl } : {})}
             fullWidth
           />
         </LocalizationProvider>
       </DialogContent>
       <DialogActions>
-        <Grid container>
-          <Grid size={4} className="pl-4">
-            <Button onClick={binData} color="primary">
-              Delete
-            </Button>
-          </Grid>
-          <Grid size={8} className="inline-flex items-center justify-end pr-4">
-            <Button onClick={handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button type="submit" color="primary">
-              Confirm
-            </Button>
-          </Grid>
-        </Grid>
+        <Button onClick={handleClose} color="primary">
+          Cancel
+        </Button>
+        <Button type="submit" color="primary">
+          Confirm
+        </Button>
       </DialogActions>
     </Dialog>
   );
 }
 
-export default EditCoffeeDialog;
+export default BinAddCoffeeDialog;
