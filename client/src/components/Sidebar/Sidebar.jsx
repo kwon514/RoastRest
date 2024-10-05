@@ -1,5 +1,12 @@
 import { Drawer } from '@mui/material';
-import { Dashboard, DeleteOutline, PersonOutlineOutlined } from '@mui/icons-material';
+import {
+  Dashboard,
+  DashboardOutlined,
+  Delete,
+  DeleteOutline,
+  Person,
+  PersonOutline,
+} from '@mui/icons-material';
 import roastrest_logo from 'assets/roastrest_icon.png';
 import { SidebarItem } from 'components';
 
@@ -17,10 +24,25 @@ function Sidebar({ mobileSidebar, setMobileSidebar }) {
         }}
       >
         <div className="mt-24 pr-2">
-          <SidebarItem icon={<Dashboard />} label={'Dashboard'} link={'/dashboard'} />
-          <SidebarItem icon={<DeleteOutline />} label={'Bin'} link={'/bin'} />
+          <SidebarItem
+            icon={<DashboardOutlined />}
+            activeIcon={<Dashboard />}
+            label={'Dashboard'}
+            link={'/dashboard'}
+          />
+          <SidebarItem
+            icon={<DeleteOutline />}
+            activeIcon={<Delete />}
+            label={'Bin'}
+            link={'/bin'}
+          />
           <div className="absolute bottom-6">
-            <SidebarItem icon={<PersonOutlineOutlined />} label={'Account'} link={'/account'} />
+            <SidebarItem
+              icon={<PersonOutline />}
+              activeIcon={<Person />}
+              label={'Account'}
+              link={'/account'}
+            />
           </div>
         </div>
       </Drawer>
@@ -56,7 +78,7 @@ function Sidebar({ mobileSidebar, setMobileSidebar }) {
           />
           <div className="absolute bottom-6">
             <SidebarItem
-              icon={<PersonOutlineOutlined />}
+              icon={<PersonOutline />}
               label={'Account'}
               link={'/account'}
               responsiveLabel={false}
