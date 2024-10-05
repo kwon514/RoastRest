@@ -13,6 +13,7 @@ export { default as getCoffeeData } from './Coffee/getCoffeeData';
 export { default as addCoffeeData } from './Coffee/addCoffeeData';
 export { default as editCoffeeData } from './Coffee/editCoffeeData';
 export { default as binCoffeeData } from './Coffee/binCoffeeData';
+export { default as unbinCoffeeData } from './Coffee/unbinCoffeeData';
 export { default as deleteCoffeeData } from './Coffee/deleteCoffeeData';
 export { default as calcRemainingDoses } from './Coffee/calcRemainingDoses';
 export { default as useCoffeeDose } from './Coffee/useCoffeeDose';
