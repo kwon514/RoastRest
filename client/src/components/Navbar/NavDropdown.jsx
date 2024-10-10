@@ -60,7 +60,7 @@ function NavDropdown() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  const userName = getCookie('name');
+  const userName = decodeURI(getCookie('name'));
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
