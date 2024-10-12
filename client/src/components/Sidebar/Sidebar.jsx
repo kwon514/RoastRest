@@ -65,13 +65,15 @@ function Sidebar({ mobileSidebar, setMobileSidebar }) {
         </div>
         <div className="mt-4 pr-2">
           <SidebarItem
-            icon={<Dashboard />}
+            icon={<DashboardOutlined />}
+            activeIcon={<Dashboard />}
             label={'Dashboard'}
             link={'/dashboard'}
             responsiveLabel={false}
           />
           <SidebarItem
             icon={<DeleteOutline />}
+            activeIcon={<Delete />}
             label={'Bin'}
             link={'/bin'}
             responsiveLabel={false}
@@ -79,6 +81,7 @@ function Sidebar({ mobileSidebar, setMobileSidebar }) {
           <div className="absolute bottom-6">
             <SidebarItem
               icon={<PersonOutline />}
+              activeIcon={<Person />}
               label={'Account'}
               link={'/account'}
               responsiveLabel={false}
