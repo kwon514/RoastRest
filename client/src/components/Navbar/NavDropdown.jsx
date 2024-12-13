@@ -89,7 +89,7 @@ function NavDropdown() {
         onClick={handleClick}
         endIcon={<KeyboardArrowDown />}
       >
-        Hi, {userName}!
+        <span className="whitespace-nowrap">Hi, {userName}!</span>
       </StyledMenuButton>
       <StyledMenu
         id="navigation-menu"
