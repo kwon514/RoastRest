@@ -1,12 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import {
-  KeyboardArrowDown,
-  Dashboard,
-  PersonOutlineOutlined,
-  LogoutOutlined,
-} from '@mui/icons-material';
+import { KeyboardArrowDown, PersonOutlineOutlined, LogoutOutlined } from '@mui/icons-material';
 import MenuButton from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';

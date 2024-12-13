@@ -1,12 +1,5 @@
 import { Drawer } from '@mui/material';
-import {
-  Dashboard,
-  DashboardOutlined,
-  Delete,
-  DeleteOutline,
-  Person,
-  PersonOutline,
-} from '@mui/icons-material';
+import { Dashboard, DashboardOutlined, Delete, DeleteOutline } from '@mui/icons-material';
 import roastrest_logo from 'assets/roastrest_icon.png';
 import { SidebarItem } from 'components';
 
@@ -36,14 +29,6 @@ function Sidebar({ mobileSidebar, setMobileSidebar }) {
             label={'Bin'}
             link={'/bin'}
           />
-          <div className="absolute bottom-6">
-            <SidebarItem
-              icon={<PersonOutline />}
-              activeIcon={<Person />}
-              label={'Account'}
-              link={'/account'}
-            />
-          </div>
         </div>
       </Drawer>
       <Drawer
@@ -78,15 +63,6 @@ function Sidebar({ mobileSidebar, setMobileSidebar }) {
             link={'/bin'}
             responsiveLabel={false}
           />
-          <div className="absolute bottom-6">
-            <SidebarItem
-              icon={<PersonOutline />}
-              activeIcon={<Person />}
-              label={'Account'}
-              link={'/account'}
-              responsiveLabel={false}
-            />
-          </div>
         </div>
       </Drawer>
     </>
