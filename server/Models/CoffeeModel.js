@@ -44,6 +44,9 @@ const coffeeSchema = new mongoose.Schema({
     type: Date,
     required: [true, 'Last Modified Date is required'],
   },
+  modifiedDates: {
+    type: [Date],
+  },
   creationDate: {
     type: Date,
     required: [true, 'Creation Date is required'],
