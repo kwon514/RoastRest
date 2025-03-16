@@ -4,7 +4,12 @@ const Coffee = require('../Models/CoffeeModel');
 module.exports.addCoffee = async (req, res) => {
   try {
     const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
-    const coffee = new Coffee({ ...req.body, userId });
+    const coffee = new Coffee({
+      ...req.body,
+      userId,
+      modifiedDates: [new Date()],
+      modifiedLog: ['Coffee log created'],
+    });
     const savedCoffee = await coffee.save();
     res.status(201).json(savedCoffee);
   } catch (error) {
@@ -37,9 +42,14 @@ module.exports.getCoffeeById = async (req, res) => {
 module.exports.updateCoffeeById = async (req, res) => {
   try {
     const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
-    const coffee = await Coffee.findOneAndUpdate({ _id: req.params.id, userId }, req.body, {
-      new: true,
-    });
+    const coffee = await Coffee.findOneAndUpdate(
+      { _id: req.params.id, userId },
+      {
+        $set: req.body,
+        $push: { modifiedDates: new Date() },
+      },
+      { new: true }
+    );
     res.status(200).json(coffee);
   } catch (error) {
     console.error(error);
