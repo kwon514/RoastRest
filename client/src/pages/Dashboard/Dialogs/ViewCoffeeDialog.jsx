@@ -8,6 +8,16 @@ import {
   DialogActions,
   Button,
 } from '@mui/material';
+import {
+  Timeline,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineDot,
+  TimelineConnector,
+  TimelineContent,
+  TimelineOppositeContent,
+  timelineOppositeContentClasses,
+} from '@mui/lab';
 import { formatDate } from 'date-fns';
 import DataViewField from './DataViewField';
 import { calcRemainingDoses, calcRestDays, formatModifiedDate } from 'helpers';
@@ -72,6 +82,27 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
             coffeeData.creationDate ? formatDate(coffeeData.creationDate, 'dd MMM yyyy') : null
           }
         />
+        <Timeline
+          sx={{
+            [`& .${timelineOppositeContentClasses.root}`]: { flex: 0.1 },
+            paddingLeft: 0,
+            marginTop: 2,
+          }}
+        >
+          {coffeeData.modifiedDates &&
+            coffeeData.modifiedDates.map((date, index) => (
+              <TimelineItem key={index} title={formatDate(date, 'dd MMM yyyy, h:mma')}>
+                <TimelineOppositeContent sx={{ paddingLeft: 0, textAlign: 'left' }}>
+                  {formatDate(date, 'dd MMM')}
+                </TimelineOppositeContent>
+                <TimelineSeparator>
+                  <TimelineDot />
+                  <TimelineConnector />
+                </TimelineSeparator>
+                <TimelineContent>{coffeeData.modifiedLog[index]}</TimelineContent>
+              </TimelineItem>
+            ))}
+        </Timeline>
       </DialogContent>
       <Grid container>
         <Grid size={6} className="flex items-center pl-6">
