@@ -42,11 +42,16 @@ module.exports.getCoffeeById = async (req, res) => {
 module.exports.updateCoffeeById = async (req, res) => {
   try {
     const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
+    const modifiedLogReason = req.body.modifiedLogReason;
+    delete req.body.modifiedLog;
     const coffee = await Coffee.findOneAndUpdate(
       { _id: req.params.id, userId },
       {
         $set: req.body,
-        $push: { modifiedDates: new Date() },
+        $push: {
+          modifiedDates: new Date(),
+          modifiedLog: modifiedLogReason ? modifiedLogReason : 'Coffee log updated',
+        },
       },
       { new: true }
     );
