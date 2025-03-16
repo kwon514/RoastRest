@@ -8,7 +8,7 @@ module.exports.addCoffee = async (req, res) => {
       ...req.body,
       userId,
       modifiedDates: [new Date()],
-      modifiedLog: ['Coffee log created'],
+      modifiedLog: ['Log created'],
     });
     const savedCoffee = await coffee.save();
     res.status(201).json(savedCoffee);
@@ -50,7 +50,7 @@ module.exports.updateCoffeeById = async (req, res) => {
         $set: req.body,
         $push: {
           modifiedDates: new Date(),
-          modifiedLog: modifiedLogReason ? modifiedLogReason : 'Coffee log updated',
+          modifiedLog: modifiedLogReason ? modifiedLogReason : 'Log updated',
         },
       },
       { new: true }
