@@ -32,20 +32,16 @@ function Navbar({ showNavMenu, mobileSidebar, setMobileSidebar }) {
         <Grid size={6}>
           <Grid container>
             {showNavMenu ? (
-              <Grid size={6}>
-                <MenuButton mobileSidebar={mobileSidebar} setMobileSidebar={setMobileSidebar} />
-              </Grid>
+              <MenuButton mobileSidebar={mobileSidebar} setMobileSidebar={setMobileSidebar} />
             ) : null}
-            <Grid size={6}>
-              <Link to="/">
-                <div className="flex items-center ml-1 sm:ml-4">
-                  <span className="inline-flex items-center">
-                    <img className="mr-2" src={roastrest_logo} alt="RoastRest logo" width="45px" />
-                    <span className="hidden sm:inline-flex text-2xl font-semibold">RoastRest</span>
-                  </span>
-                </div>
-              </Link>
-            </Grid>
+            <Link to="/">
+              <div className="flex items-center ml-1 sm:ml-4">
+                <span className="inline-flex items-center">
+                  <img className="mr-2" src={roastrest_logo} alt="RoastRest logo" width="45px" />
+                  <span className="hidden sm:inline-flex text-2xl font-semibold">RoastRest</span>
+                </span>
+              </div>
+            </Link>
           </Grid>
         </Grid>
         <Grid size={6} offset="auto" className="flex justify-end">
