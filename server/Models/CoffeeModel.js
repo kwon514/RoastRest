@@ -54,6 +54,10 @@ const coffeeSchema = new mongoose.Schema({
     type: Date,
     required: [true, 'Creation Date is required'],
   },
+  isFrozen: {
+    type: Boolean,
+    default: false,
+  },
   isPinned: {
     type: Boolean,
     default: false,

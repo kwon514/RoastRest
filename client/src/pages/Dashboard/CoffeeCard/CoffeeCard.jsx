@@ -72,7 +72,7 @@ function CoffeeCard({
             <h3 className="text-sm">Days of rest:</h3>
             <p>
               {restDays + ' days'}{' '}
-              {isFrozen(coffeeData.frozenStart, coffeeData.frozenEnd) ? (
+              {coffeeData.isFrozen ? (
                 <FaRegSnowflake size={14} className="inline text-cyan-400" />
               ) : null}
             </p>
