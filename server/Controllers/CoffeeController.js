@@ -7,8 +7,6 @@ module.exports.addCoffee = async (req, res) => {
     const coffee = new Coffee({
       ...req.body,
       userId,
-      modifiedDates: [new Date()],
-      modifiedLog: ['Log created'],
     });
     const savedCoffee = await coffee.save();
     res.status(201).json(savedCoffee);
@@ -33,6 +31,29 @@ module.exports.getCoffeeById = async (req, res) => {
   try {
     const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
     const coffee = await Coffee.findOne({ _id: req.params.id, userId });
+
+    coffee.modifiedDates = coffee.modifiedDates.concat(
+      coffee.creationDate,
+      coffee.roastDate,
+      coffee.frozenStart ? [coffee.frozenStart] : [],
+      coffee.frozenEnd ? [coffee.frozenEnd] : []
+    );
+
+    coffee.modifiedLog = coffee.modifiedLog.concat(
+      'Log created',
+      'Roasted',
+      coffee.frozenStart ? ['Frozen'] : [],
+      coffee.frozenEnd ? ['Thawed'] : []
+    );
+
+    const sortedIndices = coffee.modifiedDates
+      .map((date, index) => ({ date, index }))
+      .sort((a, b) => new Date(a.date) - new Date(b.date))
+      .map(({ index }) => index);
+
+    coffee.modifiedDates = sortedIndices.map((index) => coffee.modifiedDates[index]);
+    coffee.modifiedLog = sortedIndices.map((index) => coffee.modifiedLog[index]);
+
     res.status(200).json(coffee);
   } catch (error) {
     console.error(error);

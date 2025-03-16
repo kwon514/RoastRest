@@ -84,24 +84,25 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
         />
         <Timeline
           sx={{
-            [`& .${timelineOppositeContentClasses.root}`]: { flex: 0.1 },
+            [`& .${timelineOppositeContentClasses.root}`]: { flex: 0.15 },
             paddingLeft: 0,
             marginTop: 2,
           }}
         >
-          {coffeeData.modifiedDates &&
-            coffeeData.modifiedDates.map((date, index) => (
-              <TimelineItem key={index} title={formatDate(date, 'dd MMM yyyy, h:mma')}>
-                <TimelineOppositeContent sx={{ paddingLeft: 0, textAlign: 'left' }}>
-                  {formatDate(date, 'dd MMM')}
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                  <TimelineDot />
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>{coffeeData.modifiedLog[index]}</TimelineContent>
-              </TimelineItem>
-            ))}
+          {coffeeData.modifiedDates
+            ? coffeeData.modifiedDates.map((item, index) => (
+                <TimelineItem key={index} title={formatDate(item, 'dd MMM yyyy, h:mma')}>
+                  <TimelineOppositeContent sx={{ paddingLeft: 0, textAlign: 'left' }}>
+                    {formatDate(item, 'dd MMM')}
+                  </TimelineOppositeContent>
+                  <TimelineSeparator>
+                    <TimelineDot />
+                    <TimelineConnector />
+                  </TimelineSeparator>
+                  <TimelineContent>{coffeeData.modifiedLog[index]}</TimelineContent>
+                </TimelineItem>
+              ))
+            : null}
         </Timeline>
       </DialogContent>
       <Grid container>
