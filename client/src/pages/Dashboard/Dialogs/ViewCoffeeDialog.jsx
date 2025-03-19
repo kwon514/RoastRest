@@ -62,29 +62,17 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
           }
         />
         <DataViewField label="Roast level" value={coffeeData.roastLevel} />
-        <DataViewField
-          label="Roast date"
-          value={coffeeData.roastDate ? formatDate(coffeeData.roastDate, 'dd MMM yyyy') : null}
-        />
-        <DataViewField
-          label="Frozen start date"
-          value={coffeeData.frozenStart ? formatDate(coffeeData.frozenStart, 'dd MMM yyyy') : null}
-        />
-        <DataViewField
-          label="Frozen end date"
-          value={coffeeData.frozenEnd ? formatDate(coffeeData.frozenEnd, 'dd MMM yyyy') : null}
-        />
         <DataViewField label="Notes" value={coffeeData.notes} />
         <DataViewField label="Website" value={coffeeData.websiteUrl} link={true} />
-        <DataViewField
-          label="Log date"
-          value={
-            coffeeData.creationDate ? formatDate(coffeeData.creationDate, 'dd MMM yyyy') : null
-          }
-        />
         <Timeline
           sx={{
-            [`& .${timelineOppositeContentClasses.root}`]: { flex: 0.15 },
+            [`& .${timelineOppositeContentClasses.root}`]: {
+              flex: {
+                xs: 0.35,
+                sm: 0.2,
+                md: 0.15,
+              },
+            },
             paddingLeft: 0,
             marginTop: 2,
           }}
@@ -92,7 +80,7 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
           {coffeeData.modifiedDates
             ? coffeeData.modifiedDates.map((item, index) => (
                 <TimelineItem key={index} title={formatDate(item, 'dd MMM yyyy, h:mma')}>
-                  <TimelineOppositeContent sx={{ paddingLeft: 0, textAlign: 'left' }}>
+                  <TimelineOppositeContent sx={{ paddingLeft: 0, textAlign: 'right' }}>
                     {formatDate(item, 'dd MMM')}
                   </TimelineOppositeContent>
                   <TimelineSeparator>
