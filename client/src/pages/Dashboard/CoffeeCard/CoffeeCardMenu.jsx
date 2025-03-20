@@ -15,12 +15,12 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData, toastMsg }) {
   };
 
   const handleFrozen = () => {
-    toggleCoffeeFrozen(coffeeData._id, coffeeData.frozenStart, coffeeData.frozenEnd).then(() => {
+    toggleCoffeeFrozen(coffeeData._id, coffeeData.isFrozen).then(() => {
       updateData();
-      if (coffeeData.frozenStart) {
-        toastMsg(`Unfroze ${coffeeData.name ? coffeeData.name : coffeeData.coffeeName}`);
-      } else {
+      if (coffeeData.isFrozen) {
         toastMsg(`Froze ${coffeeData.name ? coffeeData.name : coffeeData.coffeeName}`);
+      } else {
+        toastMsg(`Unfroze ${coffeeData.name ? coffeeData.name : coffeeData.coffeeName}`);
       }
     });
     handleClose();

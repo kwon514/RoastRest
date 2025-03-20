@@ -44,9 +44,19 @@ const coffeeSchema = new mongoose.Schema({
     type: Date,
     required: [true, 'Last Modified Date is required'],
   },
+  modifiedDates: {
+    type: [Date],
+  },
+  modifiedLog: {
+    type: [String],
+  },
   creationDate: {
     type: Date,
     required: [true, 'Creation Date is required'],
+  },
+  isFrozen: {
+    type: Boolean,
+    default: false,
   },
   isPinned: {
     type: Boolean,

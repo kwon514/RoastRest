@@ -4,7 +4,10 @@ const Coffee = require('../Models/CoffeeModel');
 module.exports.addCoffee = async (req, res) => {
   try {
     const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
-    const coffee = new Coffee({ ...req.body, userId });
+    const coffee = new Coffee({
+      ...req.body,
+      userId,
+    });
     const savedCoffee = await coffee.save();
     res.status(201).json(savedCoffee);
   } catch (error) {
@@ -28,6 +31,29 @@ module.exports.getCoffeeById = async (req, res) => {
   try {
     const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
     const coffee = await Coffee.findOne({ _id: req.params.id, userId });
+
+    coffee.modifiedDates = coffee.modifiedDates.concat(
+      coffee.creationDate,
+      coffee.roastDate,
+      coffee.frozenStart ? [coffee.frozenStart] : [],
+      coffee.frozenEnd ? [coffee.frozenEnd] : []
+    );
+
+    coffee.modifiedLog = coffee.modifiedLog.concat(
+      'Log created',
+      'Roasted',
+      coffee.frozenStart ? ['Frozen'] : [],
+      coffee.frozenEnd ? ['Thawed'] : []
+    );
+
+    const sortedIndices = coffee.modifiedDates
+      .map((date, index) => ({ date, index }))
+      .sort((a, b) => new Date(a.date) - new Date(b.date))
+      .map(({ index }) => index);
+
+    coffee.modifiedDates = sortedIndices.map((index) => coffee.modifiedDates[index]);
+    coffee.modifiedLog = sortedIndices.map((index) => coffee.modifiedLog[index]);
+
     res.status(200).json(coffee);
   } catch (error) {
     console.error(error);
@@ -37,9 +63,19 @@ module.exports.getCoffeeById = async (req, res) => {
 module.exports.updateCoffeeById = async (req, res) => {
   try {
     const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
-    const coffee = await Coffee.findOneAndUpdate({ _id: req.params.id, userId }, req.body, {
-      new: true,
-    });
+    const modifiedLogReason = req.body.modifiedLogReason;
+    delete req.body.modifiedLog;
+    const coffee = await Coffee.findOneAndUpdate(
+      { _id: req.params.id, userId },
+      {
+        $set: req.body,
+        $push: {
+          modifiedDates: new Date(),
+          modifiedLog: modifiedLogReason ? modifiedLogReason : 'Log updated',
+        },
+      },
+      { new: true }
+    );
     res.status(200).json(coffee);
   } catch (error) {
     console.error(error);

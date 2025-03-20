@@ -1,6 +1,6 @@
 import { Card, CardContent, CardActions, Button, Grid2 as Grid } from '@mui/material';
 import { CoffeeCardMenu } from '..';
-import { calcRemainingDoses, calcRestDays, useCoffeeDose, isFrozen } from 'helpers';
+import { calcRemainingDoses, calcRestDays, useCoffeeDose } from 'helpers';
 import { formatDate } from 'date-fns';
 import { FaRegSnowflake } from 'react-icons/fa';
 
@@ -72,7 +72,7 @@ function CoffeeCard({
             <h3 className="text-sm">Days of rest:</h3>
             <p>
               {restDays + ' days'}{' '}
-              {isFrozen(coffeeData.frozenStart, coffeeData.frozenEnd) ? (
+              {coffeeData.isFrozen ? (
                 <FaRegSnowflake size={14} className="inline text-cyan-400" />
               ) : null}
             </p>
@@ -105,7 +105,7 @@ function CoffeeCard({
           </Grid>
           <Grid size={6} className="inline-flex justify-end">
             <Button size="large" sx={{ minWidth: 0 }} onClick={useDose}>
-              Use Dose
+              Dose
             </Button>
           </Grid>
         </Grid>

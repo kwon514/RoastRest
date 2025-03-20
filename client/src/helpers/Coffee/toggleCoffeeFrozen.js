@@ -1,16 +1,18 @@
 import axios from 'axios';
-import { isFrozen } from '..';
 
-function toggleCoffeeFrozen(coffeeId, frozenStart, frozenEnd) {
-  const frozen = isFrozen(frozenStart, frozenEnd);
+function toggleCoffeeFrozen(coffeeId, isFrozen) {
   const currentDate = new Date().setHours(13, 0, 0, 0);
 
-  if (frozen) {
-    return axios.put(`/coffee/${coffeeId}`, { frozenEnd: currentDate }, { withCredentials: true });
+  if (isFrozen) {
+    return axios.put(
+      `/coffee/${coffeeId}`,
+      { frozenEnd: currentDate, isFrozen: false, modifiedLogReason: 'Unfrozen' },
+      { withCredentials: true }
+    );
   } else {
     return axios.put(
       `/coffee/${coffeeId}`,
-      { frozenStart: currentDate },
+      { frozenStart: currentDate, isFrozen: true, modifiedLogReason: 'Frozen' },
       { withCredentials: true }
     );
   }

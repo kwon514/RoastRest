@@ -1,10 +1,5 @@
-import {
-  BinSearchSortPanel,
-  BinCoffeeGrid,
-  BinCoffeeGridSkeleton,
-  BinViewCoffeeDialog,
-  BinAddCoffeeDialog,
-} from '.';
+import { BinSearchSortPanel, BinCoffeeGrid } from '.';
+import { CoffeeGridSkeleton, ViewCoffeeDialog, AddCoffeeDialog } from 'pages/Dashboard';
 import { Navbar, Sidebar } from 'components';
 import {
   isLoggedIn,
@@ -125,7 +120,7 @@ function Bin() {
           sortCoffees={sortCoffees}
         />
         {isLoadingData ? (
-          <BinCoffeeGridSkeleton />
+          <CoffeeGridSkeleton />
         ) : (
           <BinCoffeeGrid
             coffeeData={visibleCoffeeData}
@@ -136,13 +131,13 @@ function Bin() {
             toastMsg={handleToast}
           />
         )}
-        <BinViewCoffeeDialog
+        <ViewCoffeeDialog
           open={viewDialog}
           handleClose={toggleViewDialog}
           coffeeData={targetCoffeeData}
           weightUnit={weightUnit}
         />
-        <BinAddCoffeeDialog
+        <AddCoffeeDialog
           open={addDialog}
           handleClose={toggleAddDialog}
           updateData={updateAllCoffeeData}

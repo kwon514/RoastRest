@@ -7,7 +7,7 @@ function useCoffeeDose(coffeeId, coffeeWeight, coffeeDose) {
     newWeight = 0;
   }
 
-  return editCoffeeData(coffeeId, { coffeeWeight: newWeight });
+  return editCoffeeData(coffeeId, { coffeeWeight: newWeight, modifiedLogReason: 'Dose used' });
 }
 
 export default useCoffeeDose;
