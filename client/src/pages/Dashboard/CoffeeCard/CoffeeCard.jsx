@@ -105,7 +105,7 @@ function CoffeeCard({
           </Grid>
           <Grid size={6} className="inline-flex justify-end">
             <Button size="large" sx={{ minWidth: 0 }} onClick={useDose}>
-              Use Dose
+              Dose
             </Button>
           </Grid>
         </Grid>
