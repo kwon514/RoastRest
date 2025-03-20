@@ -42,6 +42,7 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
       <DialogContent>
         <DataViewField label="Coffee name" value={coffeeData.coffeeName} />
         <DataViewField label="Roaster name" value={coffeeData.coffeeRoaster} />
+        <DataViewField label="Roast level" value={coffeeData.roastLevel} />
         <DataViewField label="Rest days" value={restDays} />
         <DataViewField
           label="Weight"
@@ -61,9 +62,8 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
               : '-'
           }
         />
-        <DataViewField label="Roast level" value={coffeeData.roastLevel} />
-        <DataViewField label="Notes" value={coffeeData.notes} />
         <DataViewField label="Website" value={coffeeData.websiteUrl} link={true} />
+        <DataViewField label="Notes" value={coffeeData.notes} />
         <Timeline
           sx={{
             [`& .${timelineOppositeContentClasses.root}`]: {
