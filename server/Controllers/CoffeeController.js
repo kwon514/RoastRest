@@ -4,9 +4,11 @@ const Coffee = require('../Models/CoffeeModel');
 module.exports.addCoffee = async (req, res) => {
   try {
     const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
+    const isFrozen = req.body.frozenStart && !req.body.frozenEnd ? true : false;
     const coffee = new Coffee({
       ...req.body,
       userId,
+      isFrozen,
     });
     const savedCoffee = await coffee.save();
     res.status(201).json(savedCoffee);
