@@ -61,6 +61,20 @@ function AddCoffeeDialog({
           event.preventDefault();
           const formData = new FormData(event.currentTarget);
           const formJson = Object.fromEntries(formData.entries());
+
+          if (coffeeData.frozenStart && !coffeeData.frozenEnd) {
+            formJson.isFrozen = true;
+          } else if (coffeeData.frozenStart && coffeeData.frozenEnd) {
+            const today = new Date();
+            const frozenStartDate = new Date(coffeeData.frozenStart);
+            const frozenEndDate = new Date(coffeeData.frozenEnd);
+            if (today >= frozenStartDate && today <= frozenEndDate) {
+              formJson.isFrozen = true;
+            }
+          } else {
+            formJson.isFrozen = false;
+          }
+
           handleAddCoffeeSubmit(formJson);
         },
       }}

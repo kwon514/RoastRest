@@ -93,7 +93,7 @@ function CoffeeCardMenu({ coffeeData, updateData, duplicateData, toastMsg }) {
             <ListItemIcon>
               <AcUnit fontSize="small" />
             </ListItemIcon>
-            {coffeeData.frozenStart ? 'Unfreeze' : 'Freeze'}
+            {coffeeData.isFrozen ? 'Unfreeze' : 'Freeze'}
           </MenuItem>
         )}
         <MenuItem onClick={handleDuplicate}>

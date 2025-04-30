@@ -6,13 +6,13 @@ function toggleCoffeeFrozen(coffeeId, isFrozen) {
   if (isFrozen) {
     return axios.put(
       `/coffee/${coffeeId}`,
-      { frozenEnd: currentDate, isFrozen: false, modifiedLogReason: 'Unfrozen' },
+      { frozenEnd: currentDate, isFrozen: false },
       { withCredentials: true }
     );
   } else {
     return axios.put(
       `/coffee/${coffeeId}`,
-      { frozenStart: currentDate, isFrozen: true, modifiedLogReason: 'Frozen' },
+      { frozenStart: currentDate, isFrozen: true },
       { withCredentials: true }
     );
   }

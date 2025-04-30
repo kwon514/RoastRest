@@ -37,6 +37,18 @@ function EditCoffeeDialog({
   ];
 
   const handleEditCoffeeSubmit = (formJson) => {
+    if (coffeeData.frozenStart && !coffeeData.frozenEnd) {
+      formJson.isFrozen = true;
+    } else if (coffeeData.frozenStart && coffeeData.frozenEnd) {
+      const today = new Date();
+      const frozenStartDate = new Date(coffeeData.frozenStart);
+      const frozenEndDate = new Date(coffeeData.frozenEnd);
+      if (today >= frozenStartDate && today <= frozenEndDate) {
+        formJson.isFrozen = true;
+      }
+    } else {
+      formJson.isFrozen = false;
+    }
     editCoffeeData(coffeeData._id, formJson).then(() => {
       handleClose();
       updateData();
