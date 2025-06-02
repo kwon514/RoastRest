@@ -18,7 +18,7 @@ Keeping track of the rest periods for coffee is crucial for achieving optimal fl
 
 ## Usage
 
-RoastRest is live and can be accessed [here](https://roastrest.me/).
+RoastRest is live and can be accessed [here](https://roastrest.coffee/).
 
 <div style="display:flex; justify-content: center; align-items: center; margin-top: 25px;">
     <img src="client/public/roastrest-mobile.png" alt="roastrest mobile dashboard" width="23%" style="padding: 4% 4% 0 2%;"/>
