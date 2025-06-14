@@ -67,6 +67,11 @@ module.exports.updateCoffeeById = async (req, res) => {
     const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
     const modifiedLogReason = req.body.modifiedLogReason;
     delete req.body.modifiedLog;
+    if (req.body.frozenStart) {
+      req.body.isFrozen = true;
+    } else {
+      req.body.isFrozen = false;
+    }
     const coffee = await Coffee.findOneAndUpdate(
       { _id: req.params.id, userId },
       {
