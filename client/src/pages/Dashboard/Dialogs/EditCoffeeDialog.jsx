@@ -11,7 +11,7 @@ import {
   Grid2 as Grid,
   Button,
 } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { editCoffeeData, binCoffeeData } from 'helpers';
 
@@ -166,7 +166,7 @@ function EditCoffeeDialog({
               </MenuItem>
             ))}
           </TextField>
-          <DatePicker
+          <DesktopDatePicker
             id="roastDate"
             name="roastDate"
             label="Roast date"
@@ -174,7 +174,7 @@ function EditCoffeeDialog({
             defaultValue={roastDate}
             slotProps={{ textField: { fullWidth: true, margin: 'dense', required: true } }}
           />
-          <DatePicker
+          <DesktopDatePicker
             id="frozenStart"
             name="frozenStart"
             label="Frozen start date"
@@ -185,7 +185,7 @@ function EditCoffeeDialog({
               textField: { fullWidth: true, margin: 'dense' },
             }}
           />
-          <DatePicker
+          <DesktopDatePicker
             id="frozenEnd"
             name="frozenEnd"
             label="Frozen end date (leave blank if frozen)"
