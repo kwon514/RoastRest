@@ -10,7 +10,7 @@ import {
   DialogActions,
   Button,
 } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { addCoffeeData } from 'helpers';
 
@@ -152,29 +152,38 @@ function AddCoffeeDialog({
               </MenuItem>
             ))}
           </TextField>
-          <DatePicker
+          <DesktopDatePicker
             id="roastDate"
             name="roastDate"
             label="Roast date"
             format="dd/MM/yyyy"
+            disableFuture={true}
             {...(isDuplicate ? { defaultValue: roastDate } : { defaultValue: new Date() })}
             slotProps={{ textField: { fullWidth: true, margin: 'dense', required: true } }}
           />
-          <DatePicker
+          <DesktopDatePicker
             id="frozenStart"
             name="frozenStart"
             label="Frozen start date"
             format="dd/MM/yyyy"
+            disableFuture={true}
             {...(isDuplicate ? { defaultValue: frozenStart } : {})}
-            slotProps={{ textField: { fullWidth: true, margin: 'dense' } }}
+            slotProps={{
+              field: { clearable: true },
+              textField: { fullWidth: true, margin: 'dense' },
+            }}
           />
-          <DatePicker
+          <DesktopDatePicker
             id="frozenEnd"
             name="frozenEnd"
             label="Frozen end date (leave blank if frozen)"
             format="dd/MM/yyyy"
+            disableFuture={true}
             {...(isDuplicate ? { defaultValue: frozenEnd } : {})}
-            slotProps={{ textField: { fullWidth: true, margin: 'dense' } }}
+            slotProps={{
+              field: { clearable: true },
+              textField: { fullWidth: true, margin: 'dense' },
+            }}
           />
           <TextField
             margin="dense"
