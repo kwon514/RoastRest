@@ -172,6 +172,7 @@ function EditCoffeeDialog({
             label="Roast date"
             format="dd/MM/yyyy"
             defaultValue={roastDate}
+            disableFuture={true}
             slotProps={{ textField: { fullWidth: true, margin: 'dense', required: true } }}
           />
           <DesktopDatePicker
@@ -180,6 +181,7 @@ function EditCoffeeDialog({
             label="Frozen start date"
             format="dd/MM/yyyy"
             defaultValue={frozenStart}
+            disableFuture={true}
             slotProps={{
               field: { clearable: true },
               textField: { fullWidth: true, margin: 'dense' },
@@ -191,6 +193,7 @@ function EditCoffeeDialog({
             label="Frozen end date (leave blank if frozen)"
             format="dd/MM/yyyy"
             defaultValue={frozenEnd}
+            disableFuture={true}
             slotProps={{
               field: { clearable: true },
               textField: { fullWidth: true, margin: 'dense' },
