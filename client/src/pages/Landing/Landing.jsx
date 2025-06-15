@@ -9,10 +9,10 @@ import landing_image from 'assets/landing_image.png';
 
 const StyledCtaButton = styled((props) => <Button {...props} />)(({ theme }) => ({
   fontFamily: 'inherit',
-  fontSize: 20,
+  fontSize: 16,
   textTransform: 'none',
   padding: '14px 24px',
-  borderRadius: 8,
+  borderRadius: 4,
 }));
 
 function Landing() {
@@ -39,7 +39,7 @@ function Landing() {
               Brew the best possible cup of coffee by staying on top of your beans
             </h1>
             <div className="w-3/4 text-left my-6">
-              <p className="">
+              <p className="text-base">
                 Keep tabs on roast dates, rest days, and more with an easy-to-use tracker for your
                 coffee beans.
               </p>
