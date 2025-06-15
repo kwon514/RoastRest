@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate, Link } from 'react-router-dom';
-import { Navbar } from 'components';
+import LandingNavbar from './LandingNavbar';
 import { isLoggedIn } from 'helpers';
 import { Button, Grid2 as Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -31,7 +31,7 @@ function Landing() {
       <Helmet>
         <title>RoastRest: Log, Track, & Optimise Your Coffee</title>
       </Helmet>
-      <Navbar />
+      <LandingNavbar />
       <Grid container spacing={0}>
         <Grid size={{ xs: 12, lg: 6, xl: 5 }} className="flex flex-col justify-center items-start">
           <div className="pt-36 px-10 sm:pl-16 md:pl-30 lg:pl-32 xl:pl-40">
@@ -44,7 +44,7 @@ function Landing() {
                 coffee beans.
               </p>
             </div>
-            <Link to={userLoggedIn ? '/dashboard' : '/login'}>
+            <Link to={userLoggedIn ? '/dashboard' : '/signup'}>
               <StyledCtaButton variant="contained" color="primary">
                 Get started
               </StyledCtaButton>
@@ -61,23 +61,6 @@ function Landing() {
           </div>
         </Grid>
       </Grid>
-
-      {/* <div className="mx-auto max-w-screen-lg px-3 py-12 md:py-24">
-        <header className="text-center">
-          <h1 className="text-4xl sm:text-[3.5rem] px-2 md:px-0 leading-none font-black text-rr-brown-primary">
-            Stay on top of your coffee rest periods.
-          </h1>
-          <p className="text-lg sm:text-2xl mt-6 sm:mt-10 px-5 md:px-20">
-            Keep tabs on roast dates, rest days, and more with an easy-to-use tracker for your
-            coffee beans.
-          </p>
-          <Link to={userLoggedIn ? '/dashboard' : '/login'}>
-            <StyledCtaButton variant="contained" color="primary">
-              Start logging ☕
-            </StyledCtaButton>
-          </Link>
-        </header>
-      </div> */}
     </>
   );
 }
