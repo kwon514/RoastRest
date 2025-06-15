@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   useMediaQuery,
   useTheme,
@@ -70,6 +71,12 @@ function EditCoffeeDialog({
         toastMsg(`${coffeeData.coffeeName} moved to bin`);
       }
     });
+  };
+
+  const [disableFrozenEnd, setDisableFrozenEnd] = useState(!frozenStart);
+
+  const handleFrozenStartChange = (newValue) => {
+    setDisableFrozenEnd(!newValue);
   };
 
   return (
@@ -182,6 +189,7 @@ function EditCoffeeDialog({
             format="dd/MM/yyyy"
             defaultValue={frozenStart}
             disableFuture={true}
+            onChange={handleFrozenStartChange}
             slotProps={{
               field: { clearable: true },
               textField: { fullWidth: true, margin: 'dense' },
@@ -194,6 +202,7 @@ function EditCoffeeDialog({
             format="dd/MM/yyyy"
             defaultValue={frozenEnd}
             disableFuture={true}
+            disabled={disableFrozenEnd}
             slotProps={{
               field: { clearable: true },
               textField: { fullWidth: true, margin: 'dense' },

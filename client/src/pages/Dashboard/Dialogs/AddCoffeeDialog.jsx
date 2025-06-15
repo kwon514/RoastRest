@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   useMediaQuery,
   useTheme,
@@ -46,6 +47,12 @@ function AddCoffeeDialog({
         toastMsg(`Created ${formJson.coffeeName}`);
       }
     });
+  };
+
+  const [disableFrozenEnd, setDisableFrozenEnd] = useState(!frozenStart);
+
+  const handleFrozenStartChange = (newValue) => {
+    setDisableFrozenEnd(!newValue);
   };
 
   return (
@@ -167,6 +174,7 @@ function AddCoffeeDialog({
             label="Frozen start date"
             format="dd/MM/yyyy"
             disableFuture={true}
+            onChange={handleFrozenStartChange}
             {...(isDuplicate ? { defaultValue: frozenStart } : {})}
             slotProps={{
               field: { clearable: true },
@@ -179,6 +187,7 @@ function AddCoffeeDialog({
             label="Frozen end date (leave blank if frozen)"
             format="dd/MM/yyyy"
             disableFuture={true}
+            disabled={disableFrozenEnd}
             {...(isDuplicate ? { defaultValue: frozenEnd } : {})}
             slotProps={{
               field: { clearable: true },
