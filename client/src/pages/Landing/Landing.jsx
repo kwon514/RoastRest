@@ -33,9 +33,9 @@ function Landing() {
       </Helmet>
       <Navbar />
       <Grid container spacing={0}>
-        <Grid size={5}>
-          <div className="pt-36 pl-40">
-            <h1 className="text-5xl/[1.3] font-bold text-rr-brown-primary">
+        <Grid size={{ xs: 12, lg: 6, xl: 5 }} className="flex flex-col justify-center items-start">
+          <div className="pt-36 px-10 sm:pl-16 md:pl-30 lg:pl-32 xl:pl-40">
+            <h1 className="text-4xl 2xl:text-5xl/[1.3] font-bold text-rr-brown-primary">
               Brew the best possible cup of coffee by staying on top of your beans
             </h1>
             <div className="w-3/4 text-left my-6">
@@ -46,17 +46,17 @@ function Landing() {
             </div>
             <Link to={userLoggedIn ? '/dashboard' : '/login'}>
               <StyledCtaButton variant="contained" color="primary">
-                Start logging
+                Get started
               </StyledCtaButton>
             </Link>
           </div>
         </Grid>
-        <Grid size={7} className="text-center mt-12">
-          <div className="pt-20">
+        <Grid size={{ xs: 12, lg: 6, xl: 7 }} className="text-center">
+          <div className="pt-32">
             <img
               src={landing_image}
               alt="RoastRest dashboard displayed on laptop"
-              className="w-3/4 mx-auto"
+              className="w-5/6 2xl:w-3/4 mx-auto"
             />
           </div>
         </Grid>
