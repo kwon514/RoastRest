@@ -1,17 +1,17 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate, Link } from 'react-router-dom';
 import { Navbar } from 'components';
 import { isLoggedIn } from 'helpers';
-import { Button } from '@mui/material';
+import { Button, Grid2 as Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useEffect } from 'react';
+import landing_image from 'assets/landing_image.png';
 
 const StyledCtaButton = styled((props) => <Button {...props} />)(({ theme }) => ({
   fontFamily: 'inherit',
   fontSize: 20,
   textTransform: 'none',
   padding: '14px 24px',
-  marginTop: 46,
   borderRadius: 8,
 }));
 
@@ -32,7 +32,37 @@ function Landing() {
         <title>RoastRest: Log, Track, & Optimise Your Coffee</title>
       </Helmet>
       <Navbar />
-      <div className="mx-auto max-w-screen-lg px-3 py-12 md:py-24">
+      <Grid container spacing={0}>
+        <Grid size={5}>
+          <div className="pt-36 pl-40">
+            <h1 className="text-5xl/[1.3] font-bold text-rr-brown-primary">
+              Brew the best possible cup of coffee by staying on top of your beans
+            </h1>
+            <div className="w-3/4 text-left my-6">
+              <p className="">
+                Keep tabs on roast dates, rest days, and more with an easy-to-use tracker for your
+                coffee beans.
+              </p>
+            </div>
+            <Link to={userLoggedIn ? '/dashboard' : '/login'}>
+              <StyledCtaButton variant="contained" color="primary">
+                Start logging
+              </StyledCtaButton>
+            </Link>
+          </div>
+        </Grid>
+        <Grid size={7} className="text-center mt-12">
+          <div className="pt-20">
+            <img
+              src={landing_image}
+              alt="RoastRest dashboard displayed on laptop"
+              className="w-3/4 mx-auto"
+            />
+          </div>
+        </Grid>
+      </Grid>
+
+      {/* <div className="mx-auto max-w-screen-lg px-3 py-12 md:py-24">
         <header className="text-center">
           <h1 className="text-4xl sm:text-[3.5rem] px-2 md:px-0 leading-none font-black text-rr-brown-primary">
             Stay on top of your coffee rest periods.
@@ -47,7 +77,7 @@ function Landing() {
             </StyledCtaButton>
           </Link>
         </header>
-      </div>
+      </div> */}
     </>
   );
 }
