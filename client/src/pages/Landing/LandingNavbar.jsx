@@ -47,6 +47,16 @@ function LandingNavbar({ showNavMenu, mobileSidebar, setMobileSidebar }) {
                 Dashboard
               </StyledButton>
             </Link>
+            <Link to="/about">
+              <StyledButton variant="text" color="inherit">
+                About
+              </StyledButton>
+            </Link>
+            <Link to="/contact">
+              <StyledButton variant="text" color="inherit">
+                Contact
+              </StyledButton>
+            </Link>
           </div>
         </Grid>
         <Grid

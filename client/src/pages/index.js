@@ -4,6 +4,8 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 export { default as Landing } from './Landing/Landing';
+export { default as About } from './Landing/About';
+export { default as Contact } from './Landing/Contact';
 export { default as Login } from './Login';
 export { default as Signup } from './Signup';
 export { default as Dashboard } from './Dashboard/Dashboard';
