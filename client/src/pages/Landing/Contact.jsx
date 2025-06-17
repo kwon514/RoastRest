@@ -1,11 +1,26 @@
 import { Helmet } from 'react-helmet';
 import LandingNavbar from './LandingNavbar';
 import { Paper, TextField, Button } from '@mui/material';
+import { ToastContainer } from 'react-toastify';
+import { toastMessage } from 'helpers';
 
 function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const formData = new FormData(e.target);
+      formData.append('access_key', 'df9e880e-cb2a-43e7-8e01-2196c688f6e2');
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await response.json();
+      if (data.success) {
+        toastMessage('success', 'Message sent successfully!');
+        e.target.reset();
+      } else {
+        toastMessage(data.message);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -64,11 +79,13 @@ function Contact() {
               multiline
               rows={4}
             />
+            <input type="checkbox" name="botcheck" className="hidden" />
             <Button type="submit" variant="contained" color="primary" className="!mt-4" fullWidth>
               Send Message
             </Button>
           </form>
         </Paper>
+        <ToastContainer />
       </div>
     </>
   );
