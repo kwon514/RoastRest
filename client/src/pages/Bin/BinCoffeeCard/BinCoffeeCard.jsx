@@ -1,6 +1,6 @@
 import { Card, CardContent, CardActions, Button, Grid2 as Grid } from '@mui/material';
 import { BinCoffeeCardMenu } from '..';
-import { calcRemainingDoses, calcRestDays, isFrozen, unbinCoffeeData } from 'helpers';
+import { calcRemainingDoses, calcRestDays, unbinCoffeeData } from 'helpers';
 import { formatDate } from 'date-fns';
 import { FaRegSnowflake } from 'react-icons/fa';
 
