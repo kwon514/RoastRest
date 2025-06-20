@@ -15,6 +15,7 @@ import {
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { editCoffeeData, binCoffeeData } from 'helpers';
+import { useEffect } from 'react';
 
 function EditCoffeeDialog({
   open,
@@ -74,6 +75,11 @@ function EditCoffeeDialog({
   };
 
   const [disableFrozenEnd, setDisableFrozenEnd] = useState(!frozenStart);
+  useEffect(() => {
+    if (open) {
+      setDisableFrozenEnd(!frozenStart);
+    }
+  }, [open, frozenStart]);
 
   const handleFrozenStartChange = (newValue) => {
     setDisableFrozenEnd(!newValue);
