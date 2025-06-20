@@ -19,7 +19,7 @@ function Contact() {
         toastMessage('success', 'Message sent successfully!');
         e.target.reset();
       } else {
-        toastMessage(data.message);
+        toastMessage('error', data.message);
       }
     } catch (error) {
       console.log(error);
