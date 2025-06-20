@@ -70,6 +70,7 @@ function Contact() {
               fullWidth
             />
             <TextField
+              required
               id="message"
               name="message"
               label="Message"
