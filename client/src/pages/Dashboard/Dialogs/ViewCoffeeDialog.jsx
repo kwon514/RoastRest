@@ -38,8 +38,18 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
       fullWidth={true}
       maxWidth={'md'}
     >
-      <DialogTitle>{coffeeData.name}</DialogTitle>
-      <DialogContent>
+      <DialogTitle
+        sx={{
+          padding: '25px 40px 15px 40px',
+        }}
+      >
+        {coffeeData.name}
+      </DialogTitle>
+      <DialogContent
+        sx={{
+          padding: '40px',
+        }}
+      >
         <DataViewField label="Coffee name" value={coffeeData.coffeeName} />
         <DataViewField label="Roaster name" value={coffeeData.coffeeRoaster} />
         <DataViewField label="Roast level" value={coffeeData.roastLevel} />
@@ -93,7 +103,7 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
             : null}
         </Timeline>
       </DialogContent>
-      <Grid container>
+      <Grid container sx={{ padding: '10px 35px 10px 35px' }}>
         <Grid size={6} className="flex items-center pl-6">
           {lastModifiedDate ? (
             <span className="text-sm text-gray-600">Last modified {lastModifiedDate}</span>

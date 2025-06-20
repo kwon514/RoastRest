@@ -86,8 +86,18 @@ function AddCoffeeDialog({
         },
       }}
     >
-      <DialogTitle>New Coffee Log</DialogTitle>
-      <DialogContent>
+      <DialogTitle
+        sx={{
+          padding: '25px 40px 15px 40px',
+        }}
+      >
+        Add Coffee Log
+      </DialogTitle>
+      <DialogContent
+        sx={{
+          padding: '40px',
+        }}
+      >
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <TextField
             margin="dense"
@@ -100,7 +110,7 @@ function AddCoffeeDialog({
           />
           <TextField
             required
-            margin="dense"
+            margin="normal"
             id="coffeeName"
             name="coffeeName"
             label="Coffee name"
@@ -118,7 +128,7 @@ function AddCoffeeDialog({
             fullWidth
           />
           <TextField
-            margin="dense"
+            margin="normal"
             id="coffeeWeight"
             name="coffeeWeight"
             label="Weight"
@@ -145,7 +155,7 @@ function AddCoffeeDialog({
           />
           <TextField
             select
-            margin="dense"
+            margin="normal"
             id="roastLevel"
             name="roastLevel"
             label="Roast level"
@@ -178,7 +188,7 @@ function AddCoffeeDialog({
             {...(isDuplicate ? { defaultValue: frozenStart } : {})}
             slotProps={{
               field: { clearable: true },
-              textField: { fullWidth: true, margin: 'dense' },
+              textField: { fullWidth: true, margin: 'normal' },
             }}
           />
           <DesktopDatePicker
@@ -195,7 +205,7 @@ function AddCoffeeDialog({
             }}
           />
           <TextField
-            margin="dense"
+            margin="normal"
             id="notes"
             name="notes"
             label="Notes"
@@ -216,7 +226,7 @@ function AddCoffeeDialog({
           />
         </LocalizationProvider>
       </DialogContent>
-      <DialogActions>
+      <DialogActions sx={{ padding: '10px 35px 20px 35px' }}>
         <Button onClick={handleClose} color="primary">
           Cancel
         </Button>
