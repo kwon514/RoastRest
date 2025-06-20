@@ -69,7 +69,7 @@ function Login() {
       </Helmet>
       <Navbar />
       <div className="max-w-screen-lg mx-auto px-3">
-        <Paper className="mx-auto mt-20 bg-white p-5 sm:w-2/3">
+        <Paper className="mx-auto mt-20 bg-white p-10 sm:w-2/3">
           <h2 className="text-2xl font-semibold pb-2">Welcome to RoastRest!</h2>
           <p className="text-md pb-2">Log back in to continue tracking your coffee beans.</p>
           <form onSubmit={handleSubmit}>

@@ -32,7 +32,7 @@ function Contact() {
       </Helmet>
       <LandingNavbar />
       <div className="max-w-screen-lg mx-auto px-3">
-        <Paper className="mx-auto mt-20 bg-white p-5 sm:w-2/3">
+        <Paper className="mx-auto mt-20 bg-white p-10 sm:w-2/3">
           <h2 className="text-2xl font-semibold pb-2">Get in touch</h2>
           <p className="text-md pb-2">
             If you have any questions, feedback, or just want to chat about coffee, feel free to
