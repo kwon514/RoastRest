@@ -36,7 +36,7 @@ function CoffeeCard({
   };
 
   return (
-    <Card>
+    <Card className="p-2">
       <CardContent sx={{ padding: '8px 0 8px 16px' }}>
         <Grid container>
           <Grid size={11}>

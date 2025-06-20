@@ -15,6 +15,7 @@ import {
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { editCoffeeData, binCoffeeData } from 'helpers';
+import { useEffect } from 'react';
 
 function EditCoffeeDialog({
   open,
@@ -74,6 +75,11 @@ function EditCoffeeDialog({
   };
 
   const [disableFrozenEnd, setDisableFrozenEnd] = useState(!frozenStart);
+  useEffect(() => {
+    if (open) {
+      setDisableFrozenEnd(!frozenStart);
+    }
+  }, [open, frozenStart]);
 
   const handleFrozenStartChange = (newValue) => {
     setDisableFrozenEnd(!newValue);
@@ -96,10 +102,16 @@ function EditCoffeeDialog({
         },
       }}
     >
-      <DialogTitle>Edit Coffee Log</DialogTitle>
+      <DialogTitle
+        sx={{
+          padding: '25px 40px 15px 40px',
+        }}
+      >
+        Edit Coffee Log
+      </DialogTitle>
       <DialogContent
         sx={{
-          paddingBottom: '0px',
+          padding: '40px',
         }}
       >
         <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -114,7 +126,7 @@ function EditCoffeeDialog({
           />
           <TextField
             required
-            margin="dense"
+            margin="normal"
             id="coffeeName"
             name="coffeeName"
             label="Coffee name"
@@ -132,7 +144,7 @@ function EditCoffeeDialog({
             fullWidth
           />
           <TextField
-            margin="dense"
+            margin="normal"
             id="coffeeWeight"
             name="coffeeWeight"
             label="Weight"
@@ -159,7 +171,7 @@ function EditCoffeeDialog({
           />
           <TextField
             select
-            margin="dense"
+            margin="normal"
             id="roastLevel"
             name="roastLevel"
             label="Roast level"
@@ -192,7 +204,7 @@ function EditCoffeeDialog({
             onChange={handleFrozenStartChange}
             slotProps={{
               field: { clearable: true },
-              textField: { fullWidth: true, margin: 'dense' },
+              textField: { fullWidth: true, margin: 'normal' },
             }}
           />
           <DesktopDatePicker
@@ -209,7 +221,7 @@ function EditCoffeeDialog({
             }}
           />
           <TextField
-            margin="dense"
+            margin="normal"
             id="notes"
             name="notes"
             label="Notes"
@@ -230,22 +242,17 @@ function EditCoffeeDialog({
           />
         </LocalizationProvider>
       </DialogContent>
-      <DialogActions>
-        <Grid container>
-          <Grid size={4} className="pl-4">
-            <Button onClick={binData} color="primary">
-              Delete
-            </Button>
-          </Grid>
-          <Grid size={8} className="inline-flex items-center justify-end pr-4">
-            <Button onClick={handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button type="submit" color="primary">
-              Confirm
-            </Button>
-          </Grid>
-        </Grid>
+      <DialogActions sx={{ padding: '20px 35px 20px 35px' }}>
+        <Button onClick={binData} color="primary">
+          Delete
+        </Button>
+        <div style={{ flex: '1 0 0' }} />
+        <Button onClick={handleClose} color="primary">
+          Cancel
+        </Button>
+        <Button type="submit" color="primary">
+          Confirm
+        </Button>
       </DialogActions>
     </Dialog>
   );
