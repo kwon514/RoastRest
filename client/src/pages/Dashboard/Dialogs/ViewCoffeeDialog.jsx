@@ -44,14 +44,20 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
     >
       <DialogTitle
         sx={{
-          padding: '25px 40px 15px 40px',
+          padding: {
+            xs: '25px 20px 15px 20px',
+            sm: '25px 40px 15px 40px',
+          },
         }}
       >
         {coffeeData.name}
       </DialogTitle>
       <DialogContent
         sx={{
-          padding: '40px',
+          padding: {
+            xs: '40px 20px',
+            sm: '40px',
+          },
         }}
       >
         <DataViewField label="Coffee name" value={coffeeData.coffeeName} />
@@ -119,7 +125,7 @@ function ViewCoffeeDialog({ open, handleClose, coffeeData, weightUnit = 'g' }) {
           </AccordionDetails>
         </Accordion>
       </DialogContent>
-      <Grid container sx={{ padding: '10px 35px 10px 35px' }}>
+      <Grid container sx={{ padding: { xs: '10px 8px', sm: '10px 35px 10px 35px' } }}>
         <Grid size={6} className="flex items-center pl-6">
           {lastModifiedDate ? (
             <span className="text-sm text-gray-600">Last modified {lastModifiedDate}</span>
