@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import { isLoggedIn } from 'helpers';
 import roastrest_logo from 'assets/roastrest_icon.png';
 import { Link } from 'react-router-dom';
 import { AppBar, Button, Grid2 as Grid } from '@mui/material';
@@ -13,6 +14,8 @@ const StyledButton = styled((props) => <Button {...props} />)(({ theme }) => ({
 }));
 
 function LandingNavbar({ showNavMenu, mobileSidebar, setMobileSidebar }) {
+  const userLoggedIn = isLoggedIn();
+
   return (
     <AppBar
       position="sticky"
@@ -65,7 +68,7 @@ function LandingNavbar({ showNavMenu, mobileSidebar, setMobileSidebar }) {
           className="flex justify-end"
         >
           <div className=" mr-1 md:mr-10 lg:mr-16 xl:mr-28 2xl:mr-44 mt-1">
-            <Link to="/login">
+            <Link to={userLoggedIn ? '/dashboard' : '/login'}>
               <StyledButton variant="contained" color="primary">
                 Login
               </StyledButton>
