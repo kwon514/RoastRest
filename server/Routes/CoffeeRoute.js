@@ -6,6 +6,7 @@ const {
   getCoffeeById,
   updateCoffeeById,
   deleteCoffeeById,
+  deleteAllBinnedCoffee,
 } = require('../Controllers/CoffeeController');
 
 router.use(RequireAuth);
@@ -15,5 +16,5 @@ router.get('/', getCoffee);
 router.get('/:id', getCoffeeById);
 router.put('/:id', updateCoffeeById);
 router.delete('/:id', deleteCoffeeById);
-
+router.delete('/binned', deleteAllBinnedCoffee);
 module.exports = router;
