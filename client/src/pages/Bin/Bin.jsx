@@ -1,4 +1,4 @@
-import { BinSearchSortPanel, BinCoffeeGrid } from '.';
+import { BinSearchSortPanel, BinDeleteButton, BinCoffeeGrid } from '.';
 import { CoffeeGridSkeleton, ViewCoffeeDialog, AddCoffeeDialog } from 'pages/Dashboard';
 import { Navbar, Sidebar } from 'components';
 import {
@@ -119,6 +119,7 @@ function Bin() {
           reverseSort={reverseSort}
           sortCoffees={sortCoffees}
         />
+        <BinDeleteButton />
         {isLoadingData ? (
           <CoffeeGridSkeleton />
         ) : (
