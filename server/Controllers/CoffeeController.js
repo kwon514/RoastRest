@@ -98,3 +98,13 @@ module.exports.deleteCoffeeById = async (req, res) => {
     console.error(error);
   }
 };
+
+module.exports.deleteAllBinnedCoffee = async (req, res) => {
+  try {
+    const userId = jwt.verify(req.cookies.token, process.env.TOKEN_KEY).id;
+    await Coffee.deleteMany({ userId, isBinned: true });
+    res.status(200).json({ message: 'All binned coffee logs deleted successfully!' });
+  } catch (error) {
+    console.error(error);
+  }
+};
