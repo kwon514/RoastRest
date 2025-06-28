@@ -15,6 +15,6 @@ router.post('/', addCoffee);
 router.get('/', getCoffee);
 router.get('/:id', getCoffeeById);
 router.put('/:id', updateCoffeeById);
-router.delete('/:id', deleteCoffeeById);
 router.delete('/binned', deleteAllBinnedCoffee);
+router.delete('/:id', deleteCoffeeById);
 module.exports = router;

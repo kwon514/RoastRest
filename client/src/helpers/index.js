@@ -9,6 +9,7 @@ export { default as deleteAccount } from './Authentication/deleteAccount';
 export { default as calcRestDays } from './Coffee/calcRestDays';
 export { default as getAllCoffeeData } from './Coffee/getAllCoffeeData';
 export { default as getBinnedCoffeeData } from './Coffee/getBinnedCoffeeData';
+export { default as deleteAllBinnedCoffeeData } from './Coffee/deleteAllBinnedCoffeeData';
 export { default as getCoffeeData } from './Coffee/getCoffeeData';
 export { default as addCoffeeData } from './Coffee/addCoffeeData';
 export { default as editCoffeeData } from './Coffee/editCoffeeData';
