@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { deleteAllBinnedCoffeeData } from 'helpers';
 
-function BinDeleteButton() {
+function BinDeleteButton({ updateData, toastMsg }) {
   const [deleteDialog, setDeleteDialog] = useState(false);
 
   const toggleDeleteDialog = (event, reason) => {
@@ -17,8 +17,11 @@ function BinDeleteButton() {
   };
 
   const handleBinDeletion = () => {
-    deleteAllBinnedCoffeeData();
-    setDeleteDialog(false);
+    deleteAllBinnedCoffeeData().then(() => {
+      setDeleteDialog(false);
+      updateData();
+      toastMsg(`Bin has been emptied successfully`);
+    });
   };
 
   return (

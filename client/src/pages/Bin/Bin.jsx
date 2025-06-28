@@ -119,7 +119,7 @@ function Bin() {
           reverseSort={reverseSort}
           sortCoffees={sortCoffees}
         />
-        <BinDeleteButton />
+        <BinDeleteButton updateData={updateAllCoffeeData} toastMsg={handleToast} />
         {isLoadingData ? (
           <CoffeeGridSkeleton />
         ) : (
