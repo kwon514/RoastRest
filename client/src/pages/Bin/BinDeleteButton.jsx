@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  Fab,
   Button,
   Dialog,
   DialogTitle,
@@ -7,6 +8,7 @@ import {
   DialogContentText,
   DialogActions,
 } from '@mui/material';
+import BinIcon from '@mui/icons-material/DeleteForever';
 import { deleteAllBinnedCoffeeData } from 'helpers';
 
 function BinDeleteButton({ updateData, toastMsg }) {
@@ -26,9 +28,9 @@ function BinDeleteButton({ updateData, toastMsg }) {
 
   return (
     <>
-      <Button onClick={toggleDeleteDialog} variant="contained" color="primary" sx={{ mb: 2 }}>
-        Empty bin
-      </Button>
+      <Fab color="primary" aria-label="add" onClick={toggleDeleteDialog}>
+        <BinIcon color="secondary" />
+      </Fab>
       <Dialog open={deleteDialog} onClose={toggleDeleteDialog}>
         <DialogTitle>Empty bin</DialogTitle>
         <DialogContent>

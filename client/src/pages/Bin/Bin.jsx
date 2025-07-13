@@ -119,7 +119,6 @@ function Bin() {
           reverseSort={reverseSort}
           sortCoffees={sortCoffees}
         />
-        <BinDeleteButton updateData={updateAllCoffeeData} toastMsg={handleToast} />
         {isLoadingData ? (
           <CoffeeGridSkeleton />
         ) : (
@@ -132,6 +131,7 @@ function Bin() {
             toastMsg={handleToast}
           />
         )}
+        <BinDeleteButton updateData={updateAllCoffeeData} toastMsg={handleToast} />
         <ViewCoffeeDialog
           open={viewDialog}
           handleClose={toggleViewDialog}
