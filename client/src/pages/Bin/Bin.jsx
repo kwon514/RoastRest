@@ -1,4 +1,4 @@
-import { BinSearchSortPanel, BinCoffeeGrid } from '.';
+import { BinSearchSortPanel, BinDeleteButton, BinCoffeeGrid } from '.';
 import { CoffeeGridSkeleton, ViewCoffeeDialog, AddCoffeeDialog } from 'pages/Dashboard';
 import { Navbar, Sidebar } from 'components';
 import {
@@ -131,6 +131,7 @@ function Bin() {
             toastMsg={handleToast}
           />
         )}
+        <BinDeleteButton updateData={updateAllCoffeeData} toastMsg={handleToast} />
         <ViewCoffeeDialog
           open={viewDialog}
           handleClose={toggleViewDialog}
