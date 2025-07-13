@@ -3,6 +3,7 @@ import { CoffeeCardMenu } from '..';
 import { calcRemainingDoses, calcRestDays, useCoffeeDose } from 'helpers';
 import { formatDate } from 'date-fns';
 import { FaRegSnowflake } from 'react-icons/fa';
+import { useState } from 'react';
 
 function CoffeeCard({
   coffeeData,
@@ -23,8 +24,10 @@ function CoffeeCard({
 
   const restDays = calcRestDays(coffeeData.roastDate, coffeeData.frozenStart, coffeeData.frozenEnd);
   const remainingDoses = calcRemainingDoses(coffeeData.coffeeWeight, coffeeData.coffeeDose);
+  const [awaitingDoseResponse, setAwaitingDoseResponse] = useState(false);
 
   const useDose = () => {
+    setAwaitingDoseResponse(true);
     useCoffeeDose(coffeeData._id, coffeeData.coffeeWeight, coffeeData.coffeeDose).then(() => {
       updateData();
       if (coffeeData.name) {
@@ -32,6 +35,7 @@ function CoffeeCard({
       } else {
         toastMsg(`Used dose of ${coffeeData.coffeeName}`);
       }
+      setAwaitingDoseResponse(false);
     });
   };
 
@@ -104,7 +108,12 @@ function CoffeeCard({
             </Button>
           </Grid>
           <Grid size={6} className="inline-flex justify-end">
-            <Button size="large" sx={{ minWidth: 0 }} onClick={useDose}>
+            <Button
+              size="large"
+              sx={{ minWidth: 0 }}
+              onClick={useDose}
+              disabled={!remainingDoses || awaitingDoseResponse}
+            >
               Dose
             </Button>
           </Grid>
